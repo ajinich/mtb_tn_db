@@ -1,7 +1,8 @@
 # mtb_tn_db
-m. tuberculosis transposon screen database 
+*M. tuberculosis* transposon (Tn) screen database 
 
 code subfolders: 
+
 * **data_wrangling:**
   * *Tn_data_wrangling.py*
   * *data_wrangling.ipynb*
@@ -16,5 +17,13 @@ code subfolders:
   * *visualizing_similarity.ipynb*
 
 data: 
+
+* Tn_datasets: 
+* files_and_columns.csv
+* files_and_columns_set2.csv
+* column_order.xlsx
+* Tn_library_DB.xlsx
+* Tn_library_DB_qval_log2FC.xlsx
+
 
 
