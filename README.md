@@ -4,9 +4,9 @@
 code subfolders: 
 
 * **data_wrangling:**
-  * *Tn_data_wrangling.py*
-  * *data_wrangling.ipynb*
-  * *data_wrangling_qvals_log2FC.ipynb*
+  * *data_wrangling.ipynb*: reads in and organizes data from *Tn_datasets* folder into a binary essentiality matrix. 
+  * *data_wrangling_qvals_log2FC.ipynb*: reads in and organizes data from *Tn_datasets* folder into a q-value and a log2FC matrix.
+  * *Tn_data_wrangling.py*: several functions used by the notebooks above are here. 
   
 * **functional_prediction:**
   * *distance_null_hypothesis.ipynb*
