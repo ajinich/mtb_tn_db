@@ -19,18 +19,18 @@ code subfolders:
 data: 
 
 * **Tn_datasets**: 
- * all the supplementary files I got from publications are stored in this folder.  
- * also contains the genetic interaction datasets from FLUTE knock-out strains. 
+  * all the supplementary files I got from publications are stored in this folder.  
+  * also contains the genetic interaction datasets from FLUTE knock-out strains. 
 * files_and_columns.csv: 
- * specifies for each file, the column name
+  * specifies for each file, the column name
 * files_and_columns_set2.csv
- * specifies for each file, the column name as well as if the file has q-value and log2FC data. 
+  * specifies for each file, the column name as well as if the file has q-value and log2FC data. 
 * column_order.xlsx
- * specifies the order of the columns in the binary matrix.  
+  * specifies the order of the columns in the binary matrix.  
 * Tn_library_DB.xlsx
- * the current version of the binary essentiality matrix. 
+  * the current version of the binary essentiality matrix. 
 * Tn_library_DB_qval_log2FC.xlsx
- * the current version of the q-value + log2FC matrix. 
+  * the current version of the q-value + log2FC matrix. 
 
 
 
