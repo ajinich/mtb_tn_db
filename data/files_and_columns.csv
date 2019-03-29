@@ -1,0 +1,20 @@
+file,col_name,q_val_col_name,ratio_col_name,is_ratio_log2FC
+2003_Sassetti_Boyd_Rubin/table_1.xls,2003A_Sassetti,p_val,ratio,FALSE
+2003_Sassetti_Rubin/table_3.xls,2003B_Sassetti,Week_8_P_value,Week_8_Ratio,FALSE
+2005_Rengarajan_Rubin/table_2.xls,2005_Rengarajan,Nan,Nan,Nan
+2006_Joshi_Sassetti/table_1.xlsx,2006_Joshi_GI_1,Nan,Nan,Nan
+2006_Joshi_Sassetti/table_2.xlsx,2006_Joshi_GI_2,Nan,Nan,Nan
+2011_Griffin_Sassetti/table_4.xlsx,2011_Griffin_2,p value,ratio,FALSE
+2013_Zhang_Rubin/table_2.xlsx,2013_Zhang_1,FDR (q-val) Day 45,in vitro:in vivo ratio Day 45,FALSE
+2013_Zhang_Rubin/table_3.xlsx,2013_Zhang_2,MWU P-value,wt:MHC ratio,FALSE
+2013_Zhang_Rubin/table_4A.xlsx,2013_Zhang_3A,MWU P-value,Ty6.5:Ty4.5 ratio,FALSE
+2013_Zhang_Rubin/table_4B.xlsx,2013_Zhang_3B,MWU P-value,Ty6.5:pcit4.5 ratio,FALSE
+2013_Zhang_Rubin/table_4C.xlsx,2013_Zhang_3C,MWU P-value,pH7:DETANO ratio,FALSE
+2013_Zhang_Rubin/table_4D.xlsx,2013_Zhang_3D,MWU P-value,trp:Rv ratio,FALSE
+2016_Korte_Kalscheuer/table_1.xlsx,2016_Korte,p-adj,Nan,NaN
+2017_Mishra_Sassetti/table_1A.xlsx,2017_Mishra_1A,Nan,C3HeB/BL6 (Log 2),TRUE
+2017_Mishra_Sassetti/table_1B.xlsx,2017_Mishra_1B,Nan,C3HeB/BL6 (Log2),TRUE
+2017_Mishra_Sassetti/table_1C.xlsx,2017_Mishra_1C,Nan,Nos2 KO/BL6 (Log2) ,TRUE
+2017_Mishra_Sassetti/table_1D.xlsx,2017_Mishra_1D,Nan,Nos2 KO/BL6 (Log2) ,TRUE
+2018_Rittershaus_Sassetti/table_2A.xlsx,2018_Rittershaus_1A,Q Value,Log2 Fold Change (H6/Input),TRUE
+2018_Rittershaus_Sassetti/table_2B.xlsx,2018_Rittershaus_1B,Q Value,Log2 Fold Change (H3/Input),TRUE
