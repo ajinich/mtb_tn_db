@@ -88,7 +88,7 @@ def get_qval_log2FC_func(file_list, df_col_info, df_WG, df_tn_qval_log2FC_ALL, d
             df_tn_qval_log2FC = df_tn[['Rv_ID', qval_col, log2FC_col]]
             df_tn_qval_log2FC.rename(columns = {qval_col:target_qval_col, log2FC_col:target_log2FC_col}, inplace=True)
             # deal with the format of the ratio column (is it already in log2FC format?)
-            if not(is_ratio_log2FC):
+            if is_ratio_log2FC == 'FALSE':
                 df_tn_qval_log2FC[target_log2FC_col] = np.log2(df_tn_qval_log2FC[target_log2FC_col])
 
         # here you're not adding a log2FC_col because there is no such data!
