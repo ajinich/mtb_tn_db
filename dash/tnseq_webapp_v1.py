@@ -11,10 +11,14 @@ import plotly.graph_objs as go
 
 external_stylesheets = [dbc.themes.UNITED]
 
-main_data = pd.read_csv('test_matrix.csv', header=0)
+main_data = pd.read_csv('Tn_library_DASH.csv', header=0)
+main_data = main_data.drop(columns='gene_name')
 cogs_df = pd.read_csv('all_cogs.csv', header=0)
-unique_expts = main_data['Expt_ID'].unique()
-unique_genes = main_data['#Orf'].unique()
+cogs_desc = pd.read_csv('cog_names.csv', header=0, index_col=0, squeeze=True)
+orf_details=pd.read_csv('ORF_details_final.csv')
+unique_expts = main_data['Expt'].unique()
+unique_genes = main_data['Rv_ID'].unique()
+
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
@@ -39,10 +43,10 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                                 handleLabel={"showCurrentValue": True, "label": "log2FC"})
                                  ], width=4),
                                  dbc.Col([
-                                     daq.Slider(id='p-val', min=0, max=1, value=0.05, step=0.05,
+                                     daq.Slider(id='q-val', min=0, max=1, value=0.05, step=0.05,
                                                 marks={x / 10: x / 10 for x in range(1, 11)},
                                                 size=300, color='#e95420',
-                                                handleLabel={"showCurrentValue": True, "label": "p-val"})
+                                                handleLabel={"showCurrentValue": True, "label": "q-val"})
                                  ], width=4)
                              ], align='center',
                                  style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
@@ -52,7 +56,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                              dbc.Row([
                                  dbc.Col([
                                      dt.DataTable(id='table',
-                                                  columns=[{"name": i, "id": i} for i in main_data.columns[1:]],
+                                                  columns=[{"name": i, "id": i} for i in ['Rv_ID', 'log2FC', 'q-val']],
                                                   # n_fixed_rows=1,
                                                   sorting=True,
                                                   sorting_type='multi',
@@ -65,7 +69,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                                   style_header={'color': '#e95420', 'font-weight': 'bold',
                                                                 'text-align': 'center'},
                                                   style_cell_conditional=[
-                                                      {'if': {'column_id': 'Adj. p-value'},
+                                                      {'if': {'column_id': 'q-val'},
                                                        'width': '30%'}
                                                       # {'if': {'row_index': 'odd'},
                                                       # 'backgroundColor': 'rgb(248,248,248)'}
@@ -102,11 +106,13 @@ analyze_genes = html.Div([
             html.Label('Pick a gene'),
             html.Br(),
             dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes],
-                         value=['Rv0001'], multi=True),
+                         value='Rv0001', multi=False),
             html.Br(),
-            html.Label('test'),
-            html.Br(),
-            html.Label('test2')
+            html.Div(id='orf_metadata')
+            # html.Br(),
+            # html.Label('test'),
+            # html.Br(),
+            # html.Label('test2')
         ], width=4, style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
                            'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
         dbc.Col([
@@ -117,9 +123,9 @@ analyze_genes = html.Div([
                          style_cell_conditional=[
                              # {'if': {'row_index': 'odd'},
                              # 'backgroundColor': 'rgb(248,248,248)'},
-                             {'if': {'column_id': 'Expt_ID'},
+                             {'if': {'column_id': 'Expt'},
                               'width': '40%'},
-                             {'if': {'column_id': '#Orf'},
+                             {'if': {'column_id': 'Rv_ID'},
                               'width': '20%'}
                          ],
                          style_cell={
@@ -159,11 +165,11 @@ def display_page(pathname):
     dash.dependencies.Output('volcano', 'figure'),
     [dash.dependencies.Input('Sel_dataset', 'value'),
      dash.dependencies.Input('log2FC', 'value'),
-     dash.dependencies.Input('p-val', 'value'),
+     dash.dependencies.Input('q-val', 'value'),
      dash.dependencies.Input('table', "derived_virtual_data"),
      dash.dependencies.Input('table', "derived_virtual_selected_rows")])
 def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows):
-    selected_data = main_data[main_data['Expt_ID'] == sel_dataset]
+    selected_data = main_data[main_data['Expt'] == sel_dataset]
     if derived_virtual_selected_rows is None:
         derived_virtual_selected_rows = []
 
@@ -171,12 +177,12 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
         dff = selected_data
     else:
         dff = pd.DataFrame(rows)
-    # print('here', dff['Adj. p-value'])
-    max_log_pval = np.unique(-np.log10(dff['Adj. p-value']))[-2]
+    # print('here', dff['q-val'])
+    max_log_pval = np.unique(-np.log10(dff['q-val']))[-2]
     # print(max_log_pval)
     inf_repl = np.ceil(max_log_pval) + 1
     # print(inf_repl)
-    dff['pval_plotting'] = -np.log10(dff['Adj. p-value'])
+    dff['pval_plotting'] = -np.log10(dff['q-val'])
     dff['pval_plotting'].replace(inf, inf_repl, inplace=True)
     tickvals = list(np.arange(0, inf_repl + 0.5, 0.5))
     ticklab = tickvals.copy()
@@ -185,7 +191,7 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
     ticked = dff.index.isin(derived_virtual_selected_rows)
     ticked_data = dff[ticked]
     unticked_data = dff[~ticked]
-    generated_filter = (unticked_data['Adj. p-value'] <= pval) & (
+    generated_filter = (unticked_data['q-val'] <= pval) & (
             (unticked_data['log2FC'] <= (-log2FC)) | (unticked_data['log2FC'] >= log2FC))
     sig_data = unticked_data[generated_filter]
     non_sig_data = unticked_data[~generated_filter]
@@ -208,7 +214,7 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
     traces = []
     traces.append(go.Scatter(x=sig_data['log2FC'],
                              y=sig_data['pval_plotting'],
-                             text=sig_data['#Orf'],
+                             text=sig_data['Rv_ID'],
                              hoverinfo='text',
                              mode='markers',
                              name='Outside cutoff',
@@ -217,7 +223,7 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
                              ))
     traces.append(go.Scatter(x=non_sig_data['log2FC'],
                              y=non_sig_data['pval_plotting'],
-                             text=non_sig_data['#Orf'],
+                             text=non_sig_data['Rv_ID'],
                              hoverinfo='text',
                              mode='markers',
                              name='Pass cutoff',
@@ -226,7 +232,7 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
                              ))
     traces.append(go.Scatter(x=ticked_data['log2FC'],
                              y=ticked_data['pval_plotting'],
-                             text=ticked_data['#Orf'],
+                             text=ticked_data['Rv_ID'],
                              hoverinfo='text',
                              mode='markers+text',
                              textposition='bottom center',
@@ -246,7 +252,7 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
                 # paper_bgcolor='rgba(0,0,0,0)',
                 # plot_bgcolor = 'rgba(0,0,0,0)',
                 xaxis={'title': 'log2FC'},
-                yaxis={'title': 'p-val', 'ticktext': ticklab, 'tickvals': tickvals},
+                yaxis={'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals},
                 hovermode='closest'
             )}
 
@@ -255,11 +261,11 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
     dash.dependencies.Output('table', 'data'),
     [dash.dependencies.Input('Sel_dataset', 'value')])
 def update_datatable(sel_dataset):
-    selected_data = main_data[main_data['Expt_ID'] == sel_dataset]
-    selected_data = selected_data.drop('Expt_ID', axis=1)
-    selected_data['Adj. p-value'] = np.round(selected_data['Adj. p-value'], 2)
+    selected_data = main_data[main_data['Expt'] == sel_dataset]
+    selected_data = selected_data.drop('Expt', axis=1)
+    selected_data['q-val'] = np.round(selected_data['q-val'], 2)
+    selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
     selected_data = selected_data.sort_values(by='log2FC')
-    # selected_data=selected_data.rename(columns={'Adj. p-value': 'Adj. p-val'})
     return selected_data.to_dict('rows')
 
 
@@ -267,10 +273,10 @@ def update_datatable(sel_dataset):
     dash.dependencies.Output('dataset_table', 'data'),
     [dash.dependencies.Input('Sel_gene', 'value')])
 def update_dataset_table(sel_gene):
-    selected_data = main_data[main_data['#Orf'].isin(sel_gene)]
-    selected_data['Adj. p-value'] = np.round(selected_data['Adj. p-value'], 2)
+    selected_data = main_data[main_data['Rv_ID']==sel_gene]
+    selected_data['q-val'] = np.round(selected_data['q-val'], 2)
+    selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
     selected_data = selected_data.sort_values(by='log2FC')
-    # selected_data=selected_data.rename(columns={'Adj. p-value': 'Adj. p-val'})
     return selected_data.to_dict('rows')
 
 
@@ -278,25 +284,29 @@ def update_dataset_table(sel_gene):
               [dash.dependencies.Input('Sel_dataset', 'value'),
                dash.dependencies.Input('Sel_cog', 'value'),
                dash.dependencies.Input('log2FC', 'value'),
-               dash.dependencies.Input('p-val', 'value')])
+               dash.dependencies.Input('q-val', 'value')])
 def update_cog(sel_dataset, sel_cog, log2FC, pval):
-    selected_data = main_data[main_data['Expt_ID'] == sel_dataset]
+    selected_data = main_data[main_data['Expt'] == sel_dataset]
     if sel_cog == 'Under-represented':
-        sel_subset_filter = (selected_data['Adj. p-value'] <= pval) & (selected_data['log2FC'] <= -log2FC)
+        sel_subset_filter = (selected_data['q-val'] <= pval) & (selected_data['log2FC'] <= -log2FC)
         colorscale = 'Cividis'
     else:
-        sel_subset_filter = (selected_data['Adj. p-value'] <= pval) & (selected_data['log2FC'] >= -log2FC)
+        sel_subset_filter = (selected_data['q-val'] <= pval) & (selected_data['log2FC'] >= -log2FC)
         colorscale = 'Viridis'
     sel_subset = selected_data[sel_subset_filter]
     cog_total_freq = cogs_df['COG'].value_counts(normalize=True)
-    sel_cogs = cogs_df[cogs_df['X.Orf'].isin(sel_subset['#Orf'])]
+    sel_cogs = cogs_df[cogs_df['X.Orf'].isin(sel_subset['Rv_ID'])]
     sel_cogs_freq = sel_cogs['COG'].value_counts(normalize=True)
     normalized_cogs = sel_cogs_freq / cog_total_freq
     normalized_cogs = normalized_cogs[~normalized_cogs.isnull()]
     normalized_cogs = normalized_cogs.sort_values()
+    cog_names=cogs_desc.loc[list(normalized_cogs.index)]
+    cog_names=list(cog_names.values)
 
     bar_data = [go.Bar(y=list(normalized_cogs.index), x=list(normalized_cogs.values),
                        orientation='h',
+                       text=cog_names,
+                       hoverinfo='text',
                        marker={'color': list(normalized_cogs.values), 'colorscale': colorscale})]
     return {'data': bar_data,
             'layout': go.Layout(
@@ -314,6 +324,12 @@ def update_cog(sel_dataset, sel_cog, log2FC, pval):
                          'line': {'color': 'grey', 'width': 1, 'dash': 'dot'}}])
             }
 
+@app.callback(
+    dash.dependencies.Output(component_id='orf_metadata', component_property='children'),
+    [dash.dependencies.Input(component_id='Sel_gene', component_property='value')])
+def print_orf_metadata(sel_gene):
+    sel_details=orf_details[orf_details['ORF']==sel_gene]
+    return sel_details['Description']
 
 if __name__ == '__main__':
     app.run_server(debug=True)
