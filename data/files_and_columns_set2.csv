@@ -21,20 +21,20 @@ file,col_name,q_val_col_name,ratio_col_name,is_ratio_log2FC
 2017B_DeJesus_Iorger/table_1A.xlsx,2017B_DeJesus_1A,BFDR,Mean delta log2FC,TRUE
 2017B_DeJesus_Iorger/table_1B.xlsx,2017B_DeJesus_1B,BFDR,Mean delta log2FC,TRUE
 2017B_DeJesus_Iorger/table_1C.xlsx,2017B_DeJesus_1C,BFDR,Mean delta log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv1432_day32_TTR.xlsx,marP,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv2680_day32_s10000_pc0.00.xlsx,Rv0950,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv1096_day0_s10000_pc0.00.xlsx,Rv3916c,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_WT_marP_s10000_pc0.00_1.xlsx,Rv0307c,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv1565c_day32_TTR.xlsx,Rv3717,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_vs_delta_Rv3717_TTR.xlsx,ponA1,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_WT_Rv0954_s10000_pc0.00.xlsx,Rv1565c,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_vs_delta_Rv3594_TTR.xlsx,Rv3684,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv0307c_day0_s10000_pc0.00.xlsx,Rv0954,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv3916c_day0_s10000_pc0.00.xlsx,Rv3811,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_vs_delta_Rv3811_TTR.xlsx,Rv1096,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv0950_day0_s10000_pc0.00.xlsx,Rv2680,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_glycerol_ponA1KO_s10000_pc0.00.xlsx,Rv1432,Adj. p-value,log2FC,TRUE
-FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv3684_day0_s10000_pc0.00.xlsx,Rv3594,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_WT_marP_s10000_pc0.00_1.xlsx,marP,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv0950_day0_s10000_pc0.00.xlsx,Rv0950,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv3916c_day0_s10000_pc0.00.xlsx,Rv3916c,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv0307c_day0_s10000_pc0.00.xlsx,Rv0307c,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_vs_delta_Rv3717_TTR.xlsx,Rv3717,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_glycerol_ponA1KO_s10000_pc0.00.xlsx,ponA1,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv1565c_day32_TTR.xlsx,Rv1565c,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv3684_day0_s10000_pc0.00.xlsx,Rv3684,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_WT_Rv0954_s10000_pc0.00.xlsx,Rv0954,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_vs_delta_Rv3811_TTR.xlsx,Rv3811,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv1096_day0_s10000_pc0.00.xlsx,Rv1096,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv2680_day32_s10000_pc0.00.xlsx,Rv2680,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv1432_day32_TTR.xlsx,Rv1432,Adj. p-value,log2FC,TRUE
+FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_vs_delta_Rv3594_TTR.xlsx,Rv3594,Adj. p-value,log2FC,TRUE
 FLUTE_KO_TnSeq/FLUTE_log2fc/resampling_H37Rv_Rv3005c_day32_s10000_pc0.00.xlsx,Rv3005c,Adj. p-value,log2FC,TRUE
 2013_DeJesus_Iorger/table_1.xls,2013_DeJesus,NONE,NONE,NONE
 2017A_DeJesus_Iorger/table_1.xlsx,2017A_DeJesus,NONE,NONE,NONE
