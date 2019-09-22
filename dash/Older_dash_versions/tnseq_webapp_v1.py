@@ -57,10 +57,10 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  dbc.Col([
                                      dt.DataTable(id='table',
                                                   columns=[{"name": i, "id": i} for i in ['Rv_ID', 'log2FC', 'q-val']],
-                                                  # n_fixed_rows=1,
+                                                  n_fixed_rows=1,
                                                   sorting=True,
                                                   sorting_type='multi',
-                                                  # sorting_settings=[],
+                                                  sorting_settings=[],
                                                   row_selectable='multi',
                                                   style_table={
                                                       'maxHeight': 600,
@@ -77,11 +77,11 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                                   style_cell={
                                                       'font-family': 'ubuntu', 'font-size': 14, 'text-align': 'center'},
                                                   pagination_settings={'current_page': 0, 'page_size': 15,
-                                                                       'displayed_pages': 1},
+                                                                    'displayed_pages': 1},
                                                   pagination_mode='fe',
                                                   navigation='page',
                                                   selected_rows=[],
-                                                  # style_as_list_view=True
+                                                  style_as_list_view=True
                                                   )
                                  ], width=4),
                                  dbc.Col([
