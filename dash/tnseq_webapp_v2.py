@@ -8,6 +8,8 @@ import pandas as pd
 import numpy as np
 from numpy import inf
 import plotly.graph_objs as go
+import urllib.parse
+from io import StringIO
 
 external_stylesheets = [dbc.themes.UNITED]
 
@@ -19,12 +21,16 @@ orf_details=pd.read_csv('ORF_details_final.csv')
 unique_expts = main_data['Expt'].unique()
 unique_genes = main_data['Rv_ID'].unique()
 
+main_data['id'] = main_data['Rv_ID']
+main_data.set_index('id', inplace=True, drop=False)
+
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 navbar = dbc.NavbarSimple([
     dbc.NavItem(dbc.NavLink('Analyze datasets', active=True, href='/analyze_datasets')),
-    dbc.NavItem(dbc.NavLink('Analyze genes', href='/analyze_genes'))
+    dbc.NavItem(dbc.NavLink('Analyze genes', href='/analyze_genes')),
+    dbc.NavItem(dbc.NavLink('About', active=True, href='/about'))
 ], brand="Mtb Tn-seq database", color='primary', light=True)
 
 analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
@@ -47,7 +53,9 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                                 marks={x / 10: x / 10 for x in range(1, 11)},
                                                 size=300, color='#e95420',
                                                 handleLabel={"showCurrentValue": True, "label": "q-val"})
-                                 ], width=4)
+                                 ], width=4),
+                                 html.Br(),
+                                 html.A('Download this dataset', id='download_dataset', download="", href="", target="_blank"),
                              ], align='center',
                                  style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
                                         'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
@@ -57,40 +65,55 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  dbc.Col([
                                      dt.DataTable(id='table',
                                                   columns=[{"name": i, "id": i} for i in ['Rv_ID', 'log2FC', 'q-val']],
-                                                  n_fixed_rows=1,
-                                                  sorting=True,
-                                                  sorting_type='multi',
-                                                  #sorting_settings=[],
+                                                  sort_action='native',
                                                   row_selectable='multi',
-                                                  style_table={
-                                                      'maxHeight': 600,
-                                                      # 'overflowY': 'auto'
-                                                  },
+                                                  #filter_action='native',
+                                                  selected_rows=[],
+                                                  page_action='native',
+                                                  page_size=15,
+                                                  page_current=0,
+                                                  # # n_fixed_rows=1,
+                                                  # sorting=True,
+                                                  # sorting_type='multi',
+                                                  # # sorting_settings=[],
+                                                  # row_selectable='multi',
+                                                  # style_table={
+                                                  #     'maxHeight': 600,
+                                                  #     # 'overflowY': 'auto'
+                                                  # },
                                                   style_header={'color': '#e95420', 'font-weight': 'bold',
-                                                                'text-align': 'center'},
+                                                                 'text-align': 'center'},
                                                   style_cell_conditional=[
                                                       {'if': {'column_id': 'q-val'},
                                                        'width': '30%'}
-                                                      # {'if': {'row_index': 'odd'},
-                                                      # 'backgroundColor': 'rgb(248,248,248)'}
+                                                      ],
+                                                  style_data_conditional=[
+                                                      {'if': {'row_index': 'odd'},
+                                                       'backgroundColor': 'rgb(248,248,248)'}
                                                   ],
                                                   style_cell={
-                                                      'font-family': 'ubuntu', 'font-size': 14, 'text-align': 'center'},
-                                                  pagination_settings={'current_page': 0, 'page_size': 15,
-                                                                    'displayed_pages': 1},
-                                                  pagination_mode='fe',
-                                                  navigation='page',
-                                                  selected_rows=[],
+                                                      'font-family': 'ubuntu',
+                                                      'font-size': 14,
+                                                      'height':'10px',
+                                                      'textOverFlow':'ellipsis',
+                                                      'text-align': 'center',
+                                                      'overflow':'hidden'
+                                                  },
+                                                  # pagination_settings={'current_page': 0, 'page_size': 15,
+                                                  #                      'displayed_pages': 1},
+                                                  # pagination_mode='fe',
+                                                  # navigation='page',
+                                                  # selected_rows=[],
                                                   style_as_list_view=True
-                                                  )
+                                                )
                                  ], width=4),
                                  dbc.Col([
-                                     html.Label('Volcano plot'),
+                                     #html.Label('Volcano plot'),
                                      dcc.Graph(id='volcano'),
                                  ],
                                      width=4),
                                  dbc.Col([
-                                     html.Label('COG categories'),
+                                     #html.Label('COG categories'),
                                      dcc.Dropdown(id='Sel_cog',
                                                   options=[{'label': x, 'value': x} for x in
                                                            ['Under-represented', 'Over-represented']],
@@ -109,35 +132,45 @@ analyze_genes = html.Div([
                          value='Rv0001', multi=False),
             html.Br(),
             html.Div(id='orf_metadata')
-            # html.Br(),
-            # html.Label('test'),
-            # html.Br(),
-            # html.Label('test2')
-        ], width=4, style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
+        ], width=2, style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
                            'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
         dbc.Col([
             dt.DataTable(id='dataset_table',
                          columns=[{"name": i, "id": i} for i in main_data.columns],
-                         sorting=True,
-                         style_header={'color': '#e95420', 'font-weight': 'bold'},
+                         sort_action='native',
+                         # sorting=True,
+                         style_header={'color': 'black', 'font-weight': 'bold', 'backgroundColor': '#e95420'},
                          style_cell_conditional=[
-                             # {'if': {'row_index': 'odd'},
-                             # 'backgroundColor': 'rgb(248,248,248)'},
                              {'if': {'column_id': 'Expt'},
                               'width': '40%'},
                              {'if': {'column_id': 'Rv_ID'},
                               'width': '20%'}
                          ],
+                         style_data_conditional=[{
+                           'if':{
+                               'filter_query':'(({log2FC} <= 1) || ({log2FC}>=1)) && ({q-val} <= 0.05)'
+                           },
+                             'backgroundColor':'#f5f5f5'
+                         }],
                          style_cell={
                              'font-family': 'ubuntu', 'font-size': 14, 'text-align': 'center'},
-                         pagination_settings={'current_page': 0, 'page_size': 15, 'displayed_pages': 1},
-                         pagination_mode='fe',
-                         navigation='page',
+                         # pagination_settings={'current_page': 0, 'page_size': 15, 'displayed_pages': 1},
+                         # pagination_mode='fe',
+                         # navigation='page',
                          # selected_rows=[],
                          # style_as_list_view=True
                          )
-        ], width=8)
+        ], width=10)
     ])
+])
+
+about = html.Div([
+    html.Label('Desc and credits'),
+    html.Br(),
+    html.A('Download raw data', href='https://www.dropbox.com/s/ktx859tq73i8y9m/ORF_details_final.csv?dl=1'),
+    #dbc.Button("Download raw data", href='https://www.dropbox.com/s/ktx859tq73i8y9m/ORF_details_final.csv?dl=1'),
+    #html.Label('Download raw_data')
+
 ])
 
 # app.layout = html.Div([navbar, body])
@@ -157,8 +190,24 @@ def display_page(pathname):
         return analyze_datasets
     if pathname == "/analyze_genes":
         return analyze_genes
+    if pathname == '/about':
+        return about
     # if not recognised, return 404 message
     return html.P("404 - page not found")
+
+
+@app.callback([
+    dash.dependencies.Output('download_dataset', 'href'),
+    dash.dependencies.Output('download_dataset', 'download')
+],
+    [dash.dependencies.Input('Sel_dataset', 'value')])
+def update_download_dataset(sel_dataset):
+    selected_data = main_data[main_data['Expt'] == sel_dataset]
+    csv_string=selected_data.to_csv(encoding='utf-8')
+    csv_string="data:text/csv;charset=utf-8," + urllib.parse.quote(csv_string)
+    download_string=sel_dataset + '.csv'
+    return csv_string, download_string
+
 
 
 @app.callback(
@@ -166,29 +215,38 @@ def display_page(pathname):
     [dash.dependencies.Input('Sel_dataset', 'value'),
      dash.dependencies.Input('log2FC', 'value'),
      dash.dependencies.Input('q-val', 'value'),
-     dash.dependencies.Input('table', "derived_virtual_data"),
-     dash.dependencies.Input('table', "derived_virtual_selected_rows")])
-def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows):
+     dash.dependencies.Input('table', "derived_virtual_row_ids"),
+     dash.dependencies.Input('table', "selected_row_ids")])
+def update_figure(sel_dataset, log2FC, pval, row_ids, selected_row_ids):
     selected_data = main_data[main_data['Expt'] == sel_dataset]
-    if derived_virtual_selected_rows is None:
-        derived_virtual_selected_rows = []
+    if selected_row_ids is None:
+        selected_row_ids = []
 
-    if rows is None:
+    if row_ids is None:
         dff = selected_data
+        row_ids=selected_data['id']
     else:
-        dff = pd.DataFrame(rows)
-    # print('here', dff['q-val'])
+        dff = selected_data.loc[row_ids]
+    #print('here', dff['q-val'])
+    #print ('here', np.unique(-np.log10(dff['q-val'])))
     max_log_pval = np.unique(-np.log10(dff['q-val']))[-2]
-    # print(max_log_pval)
+    #print(max_log_pval)
     inf_repl = np.ceil(max_log_pval) + 1
     # print(inf_repl)
     dff['pval_plotting'] = -np.log10(dff['q-val'])
-    dff['pval_plotting'].replace(inf, inf_repl, inplace=True)
+    dff['pval_plotting'].replace(np.inf, inf_repl, inplace=True)
+    #print('here2', np.arange(0, inf_repl + 0.5, 0.5))
     tickvals = list(np.arange(0, inf_repl + 0.5, 0.5))
     ticklab = tickvals.copy()
     ticklab[-1] = 'Inf'
 
-    ticked = dff.index.isin(derived_virtual_selected_rows)
+    for_x_ticks=dff['log2FC']
+    for_x_ticks=for_x_ticks.replace([np.inf, -np.inf], np.nan)
+    for_x_ticks=for_x_ticks.dropna()
+    tickvals_x=list(np.arange(int(for_x_ticks.min()-1), int(for_x_ticks.max()+1), 1))
+    ticklab_x=tickvals_x.copy()
+
+    ticked = dff.index.isin(selected_row_ids)
     ticked_data = dff[ticked]
     unticked_data = dff[~ticked]
     generated_filter = (unticked_data['q-val'] <= pval) & (
@@ -244,14 +302,14 @@ def update_figure(sel_dataset, log2FC, pval, rows, derived_virtual_selected_rows
             'layout': go.Layout(
                 autosize=False,
                 margin={
-                    'l': 30,
+                    'l': 45,
                     'r': 15,
                     'pad': 0,
                     't': 30,
                     'b': 90, },
                 # paper_bgcolor='rgba(0,0,0,0)',
                 # plot_bgcolor = 'rgba(0,0,0,0)',
-                xaxis={'title': 'log2FC'},
+                xaxis={'title': 'log2FC', 'ticktext': ticklab_x, 'tickvals': tickvals_x},
                 yaxis={'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals},
                 hovermode='closest'
             )}
@@ -266,7 +324,7 @@ def update_datatable(sel_dataset):
     selected_data['q-val'] = np.round(selected_data['q-val'], 2)
     selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
     selected_data = selected_data.sort_values(by='log2FC')
-    return selected_data.to_dict('rows')
+    return selected_data.to_dict('records')
 
 
 @app.callback(
