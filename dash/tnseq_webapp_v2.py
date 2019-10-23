@@ -8,13 +8,20 @@ import pandas as pd
 import numpy as np
 from numpy import inf
 import plotly.graph_objs as go
+import os
+import seaborn as sns
+from random import random
 import urllib.parse
 from io import StringIO
 
 external_stylesheets = [dbc.themes.UNITED]
-
+path_data = '../data/'
 main_data = pd.read_csv('Tn_library_DASH.csv', header=0)
-main_data = main_data.drop(columns='gene_name')
+#main_data = main_data.drop(columns='gene_name')
+column_descriptors=pd.read_csv('column_descriptors.csv', header=0)
+genes_data=pd.merge(main_data, column_descriptors, left_on='Expt', right_on='column_ID', how='left')
+genes_data=genes_data.drop(columns=['sequence_data', 'column_ID', 'journal', 'first_author', 'last_author'])
+
 cogs_df = pd.read_csv('all_cogs.csv', header=0)
 cogs_desc = pd.read_csv('cog_names.csv', header=0, index_col=0, squeeze=True)
 orf_details=pd.read_csv('ORF_details_final.csv')
@@ -23,6 +30,56 @@ unique_genes = main_data['Rv_ID'].unique()
 
 main_data['id'] = main_data['Rv_ID']
 main_data.set_index('id', inplace=True, drop=False)
+
+df_uk = pd.read_csv(os.path.join(path_data, 'unknown_essentials/unknown_ALL_levels_essential_scores.csv'))
+df_uk = df_uk[['Rv_ID', 'gene_name', 'UK_score_4']]
+
+
+def discretize_q_values(row):
+    q_val = row['q-val']
+    if q_val < 0.01:
+        q_val_d = 3
+    elif q_val < 0.05:
+        q_val_d = 2
+    else:
+        q_val_d = 1
+    return q_val_d
+
+
+def unknown_essential_xy(TnSeq_screen, df_data, df_uk, rand_param=0.6):
+    # Grab data for a single TnSeq screen
+    df_data_test=main_data[main_data['Expt']==TnSeq_screen]
+    print(df_data_test.head())
+    df_data_test['q_val_D'] = df_data_test.apply(discretize_q_values, 1)
+
+    # Merge with unknowns:
+    df_vis = df_data_test.merge(df_uk, on=['Rv_ID', 'gene_name'], how='inner')
+
+    # Get x-y datasets:
+    rv_ids = df_vis.Rv_ID.values
+    uk_list = np.array(df_vis.UK_score_4)
+    q_list = np.array(df_vis.q_val_D)
+
+    # randomize:
+    uk_rd = np.array([uk + rand_param * random() - rand_param / 2 for uk in uk_list])
+    q_rd = np.array([q + rand_param * random() - rand_param / 2 for q in q_list])
+
+    # color the unknown-essentials differently:
+    current_palette = sns.color_palette()
+    # all genes are gray by default.
+    color_list = np.array([(0.35, 0.35, 0.35)] * df_vis.shape[0])
+    # Unknown essentials in a different color.
+    ind_temp = list(df_vis[(df_vis.q_val_D == 3) & (df_vis.UK_score_4 == 4)].index)
+    color_list[ind_temp] = current_palette[0]
+    color_list_rgb = ['rgb(' + ', '.join([str(np.round(rgb, 2)) for rgb in col]) + ')' for col in color_list]
+
+    return uk_rd, q_rd, color_list_rgb, rv_ids
+
+
+TnSeq_screen = '2016_Nambi'
+uk_rd, q_rd, color_list_rgb, rv_ids = unknown_essential_xy(TnSeq_screen, main_data, df_uk)
+
+
 
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -121,48 +178,108 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                      dcc.Graph(id='cog')
 
                                  ], width=4)
-                             ])])
+                             ]),
+                             dbc.Row([
+                                 dcc.Graph(id='tSNE_plot')
+                             ])
+                             ])
+
+# analyze_genes = html.Div([
+#     dbc.Row([
+#         dbc.Col([
+#             html.Label('Pick a gene'),
+#             html.Br(),
+#             dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes],
+#                          value='Rv0001', multi=False),
+#             html.Br(),
+#             html.Div(id='orf_metadata')
+#         ], width=2, style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
+#                            'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+#         dbc.Col([
+#             dt.DataTable(id='dataset_table',
+#                          columns=[{"name": i, "id": i} for i in genes_data.drop(columns='Rv_ID').columns],
+#                          sort_action='native',
+#                          # sorting=True,
+#                          style_header={'color': 'black', 'font-weight': 'bold', 'backgroundColor': '#e95420'},
+#                          style_cell_conditional=[
+#                              {'if': {'column_id': 'Expt'},
+#                               'width': '40%'},
+#                              {'if': {'column_id': 'Rv_ID'},
+#                               'width': '20%'}
+#                          ],
+#                          style_data_conditional=[{
+#                            'if':{
+#                                'filter_query':'(({log2FC} <= 1) || ({log2FC}>=1)) && ({q-val} <= 0.05)'
+#                            },
+#                              'backgroundColor':'#f5f5f5'
+#                          }],
+#                          style_cell={
+#                              'font-family': 'ubuntu', 'font-size': 14, 'text-align': 'center'},
+#                          # pagination_settings={'current_page': 0, 'page_size': 15, 'displayed_pages': 1},
+#                          # pagination_mode='fe',
+#                          # navigation='page',
+#                          # selected_rows=[],
+#                          # style_as_list_view=True
+#                          style_table={'overflowX': 'scroll'},
+#                          #tooltip_data=[{'paper_title': create_tooltip(genes_data.loc[i, 'paper_title'])}
+#                          #                   for i in range(len(genes_data))],
+#                          #tooltip_data=[{'paper_title':[{'type': 'markdown', 'value': 'look'}]}]
+#                          #tooltip_duration=50000
+#                          )
+#         ], width=10)
+#     ])
+# ])
+
+
 
 analyze_genes = html.Div([
+    dbc.Row([html.Label('Pick a gene')]),
     dbc.Row([
         dbc.Col([
-            html.Label('Pick a gene'),
-            html.Br(),
-            dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes],
-                         value='Rv0001', multi=False),
-            html.Br(),
-            html.Div(id='orf_metadata')
-        ], width=2, style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
-                           'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+        dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes],
+                     value='Rv0001', multi=False)]),
         dbc.Col([
-            dt.DataTable(id='dataset_table',
-                         columns=[{"name": i, "id": i} for i in main_data.columns],
-                         sort_action='native',
-                         # sorting=True,
-                         style_header={'color': 'black', 'font-weight': 'bold', 'backgroundColor': '#e95420'},
-                         style_cell_conditional=[
-                             {'if': {'column_id': 'Expt'},
-                              'width': '40%'},
-                             {'if': {'column_id': 'Rv_ID'},
-                              'width': '20%'}
-                         ],
-                         style_data_conditional=[{
-                           'if':{
-                               'filter_query':'(({log2FC} <= 1) || ({log2FC}>=1)) && ({q-val} <= 0.05)'
-                           },
-                             'backgroundColor':'#f5f5f5'
-                         }],
-                         style_cell={
-                             'font-family': 'ubuntu', 'font-size': 14, 'text-align': 'center'},
-                         # pagination_settings={'current_page': 0, 'page_size': 15, 'displayed_pages': 1},
-                         # pagination_mode='fe',
-                         # navigation='page',
-                         # selected_rows=[],
-                         # style_as_list_view=True
-                         )
-        ], width=10)
+        html.Div(id='orf_metadata')])
+    ], style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
+                       'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+    html.Br(),
+    html.Br(),
+    dbc.Row([
+        dt.DataTable(id='dataset_table',
+                     columns=[{"name": i, "id": i} for i in genes_data.drop(columns='Rv_ID').columns],
+                     sort_action='native',
+                     # sorting=True,
+                     style_header={'color': 'black', 'font-weight': 'bold', 'backgroundColor': '#e95420'},
+                     style_cell_conditional=[
+                         {'if': {'column_id': 'Expt'},
+                          'width': '40%'},
+                         {'if': {'column_id': 'Rv_ID'},
+                          'width': '20%'}
+                     ],
+                     style_data_conditional=[{
+                         'if':{
+                             'filter_query':'(({log2FC} <= 1) || ({log2FC}>=1)) && ({q-val} <= 0.05)'
+                         },
+                         'backgroundColor':'#f5f5f5'
+                     }],
+                     style_cell={
+                         'font-family': 'ubuntu', 'font-size': 14, 'text-align': 'center'},
+                     # pagination_settings={'current_page': 0, 'page_size': 15, 'displayed_pages': 1},
+                     # pagination_mode='fe',
+                     # navigation='page',
+                     # selected_rows=[],
+                     # style_as_list_view=True
+                     style_table={'overflowX': 'scroll'},
+                     #tooltip_data=[{'paper_title': create_tooltip(genes_data.loc[i, 'paper_title'])}
+                     #                   for i in range(len(genes_data))],
+                     #tooltip_data=[{'paper_title':[{'type': 'markdown', 'value': 'look'}]}]
+                     #tooltip_duration=50000
+                     )
     ])
 ])
+
+
+
 
 about = html.Div([
     html.Label('Desc and credits'),
@@ -328,13 +445,64 @@ def update_datatable(sel_dataset):
 
 
 @app.callback(
+    dash.dependencies.Output('tSNE_plot', 'figure'),
+    [dash.dependencies.Input('Sel_dataset', 'value')])
+def update_bubble(sel_dataset):
+    uk_rd, q_rd, color_list_rgb, rv_ids = unknown_essential_xy(sel_dataset, main_data, df_uk)
+    return {
+        'data': [
+            go.Scatter(
+                x=uk_rd,
+                y=q_rd,
+                text=rv_ids,
+                mode='markers',
+                opacity=1,
+                hoverinfo='text',
+                marker={
+                    'size': 15,
+                    'line': {'width': 1.5, 'color': 'black'},
+                    'color': color_list_rgb
+                }
+            )
+        ],
+        'layout': go.Layout(
+            autosize=False,
+            width=800,
+            height=500,
+            xaxis=go.layout.XAxis(
+                tickmode='array',
+                tickvals=[0, 1, 2, 3, 4],
+                ticktext=['most well\ncharacterized', '', '', '',
+                          'least well\ncharacterized'],
+                tickfont=dict(size=14),
+                title='Annotation'
+
+            ),
+            yaxis=go.layout.YAxis(
+                tickmode='array',
+                tickvals=[1, 2, 3],
+                ticktext=['non-essential', 'q-val < 0.05', 'q-val < 0.01'],
+                tickangle=270,
+                tickfont=dict(size=14),
+                title='Essentiality'
+            ),
+            margin={'l': 100, 'b': 40, 't': 10, 'r': 10},
+            legend={'x': 0, 'y': 1},
+            hovermode='closest'
+        )
+    }
+
+
+
+@app.callback(
     dash.dependencies.Output('dataset_table', 'data'),
     [dash.dependencies.Input('Sel_gene', 'value')])
 def update_dataset_table(sel_gene):
-    selected_data = main_data[main_data['Rv_ID']==sel_gene]
+    selected_data = genes_data[genes_data['Rv_ID']==sel_gene]
     selected_data['q-val'] = np.round(selected_data['q-val'], 2)
     selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
     selected_data = selected_data.sort_values(by='log2FC')
+    selected_data=selected_data.drop(columns=['Rv_ID'])
     return selected_data.to_dict('rows')
 
 
