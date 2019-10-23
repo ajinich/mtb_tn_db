@@ -13,14 +13,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="447" column="35" selection-start-line="447" selection-start-column="35" selection-end-line="447" selection-end-column="35" />
+            <state relative-caret-position="-1881">
+              <caret line="361" selection-start-line="361" selection-end-line="361" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#7672#7700#0" />
-                <element signature="e#10180#12353#0" />
-                <element signature="e#10793#10915#0" />
-                <element signature="e#11018#11290#0" />
               </folding>
             </state>
           </provider>
@@ -119,12 +115,12 @@
       <option name="presentableId" value="Default" />
       <updated>1569447724800</updated>
       <workItem from="1569447736762" duration="16222000" />
-      <workItem from="1571844003640" duration="9341000" />
+      <workItem from="1571844003640" duration="12944000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25563000" />
+    <option name="totallyTimeSpent" value="29166000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -175,14 +171,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="447" column="35" selection-start-line="447" selection-start-column="35" selection-end-line="447" selection-end-column="35" />
+        <state relative-caret-position="-1881">
+          <caret line="361" selection-start-line="361" selection-end-line="361" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#7672#7700#0" />
-            <element signature="e#10180#12353#0" />
-            <element signature="e#10793#10915#0" />
-            <element signature="e#11018#11290#0" />
           </folding>
         </state>
       </provider>
