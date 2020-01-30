@@ -117,30 +117,32 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                      html.Div([
                                          html.Label('About this dataset')
                                      ], style={'textAlign': 'center', 'display': 'block'}),
-                                     html.Label('About this dataset')
-                                 ], align='center', width=3)
-                             ], justify='center'),
-                             dbc.Row([
+                                 ], align='center', width=3),
                                  dbc.Col([
                                      html.Div([
-                                         html.Label('About this dataset')
+                                         html.Label('Volcano plot')
                                      ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=5),
+                                 dbc.Col([
+                                     html.Div([
+                                         html.Label('Gene List')
+                                     ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=3),
+                                 ]),
+                             dbc.Row([
+                                 dbc.Col([
+                                     # html.Div([
+                                     #     html.Label('About this dataset')
+                                     # ], style={'textAlign': 'center', 'display': 'block'}),
                                      html.Div(id='dataset_metadata')]
                                      , width=3,
                                      style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
                                             'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
                                  dbc.Col([
-                                     html.Div([
-                                         html.Label('Volcano plot')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
                                      dcc.Graph(id='volcano'),
                                  ],
                                      width=5, align='center'),
                                  dbc.Col([
-                                     html.Div([
-                                         html.Label('Gene list')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
-
                                      dt.DataTable(id='table',
                                                   columns=[{"name": i, "id": i} for i in ['Rv_ID', 'log2FC', 'q-val']],
                                                   sort_action='native',
@@ -179,6 +181,15 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                      html.Div([
                                          html.Label('COG Categories')
                                      ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=6),
+                                 dbc.Col([
+                                     html.Div([
+                                         html.Label('Essentiality plot')
+                                     ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=6),
+                             ]),
+                             dbc.Row([
+                                 dbc.Col([
                                      dcc.Dropdown(id='Sel_cog',
                                                   options=[{'label': x, 'value': x} for x in
                                                            ['Under-represented', 'Over-represented']],
@@ -187,9 +198,6 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
 
                                  ], width=6, align='center'),
                                  dbc.Col([
-                                     html.Div([
-                                         html.Label('Essentiality plot')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
                                      dcc.Graph(id='tSNE_plot')
                                  ], width=6, align='center')
                              ], justify='center')
@@ -209,7 +217,7 @@ analyze_genes = html.Div([
     html.Br(),
     dbc.Row([
         dt.DataTable(id='dataset_table',
-                     columns=[{"name": i, "id": i} for i in genes_data.drop(columns='Rv_ID').columns],
+                     columns=[{"name": i, "id": i} for i in genes_data.drop(columns=['Rv_ID', 'gene_name']).columns],
                      sort_action='native',
                      # sorting=True,
                      style_header={'color': 'black', 'font-weight': 'bold', 'backgroundColor': '#e95420'},
@@ -434,7 +442,7 @@ def update_dataset_table(sel_gene):
     selected_data['q-val'] = np.round(selected_data['q-val'], 2)
     selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
     selected_data = selected_data.sort_values(by='log2FC')
-    selected_data = selected_data.drop(columns=['Rv_ID'])
+    selected_data = selected_data.drop(columns=['Rv_ID', 'gene_name'])
     return selected_data.to_dict('rows')
 
 

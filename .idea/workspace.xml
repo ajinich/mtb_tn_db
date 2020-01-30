@@ -11,24 +11,8 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1881">
-              <caret line="361" selection-start-line="361" selection-end-line="361" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dash/dash_bubble.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="21" />
-            </state>
-          </provider>
+        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -40,6 +24,13 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>dataset</find>
+      <find>dataset_table</find>
+      <find>server</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -48,13 +39,25 @@
       <list>
         <option value="$PROJECT_DIR$/dash/dash_bubble.py" />
         <option value="$PROJECT_DIR$/dash/tnseq_webapp_v2.py" />
+        <option value="$PROJECT_DIR$/dash/datatable_html.py" />
+        <option value="$PROJECT_DIR$/dash/datatable_html_3.py" />
+        <option value="$PROJECT_DIR$/dash/datatable_html_2.py" />
+        <option value="$PROJECT_DIR$/dash/datatable_html_4.py" />
+        <option value="$PROJECT_DIR$/dash/tnseq_webapp_v3.py" />
+        <option value="$PROJECT_DIR$/dash/app.py" />
+        <option value="$PROJECT_DIR$/dash/tnseq_webapp_v5/analyze_genes.py" />
+        <option value="$PROJECT_DIR$/dash/tnseq_webapp_v5/app.py" />
+        <option value="$PROJECT_DIR$/dash/tnseq_webapp_v5/analyze_datasets.py" />
+        <option value="$PROJECT_DIR$/dash/tnseq_webapp_v4.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
-    <option name="width" value="1473" />
-    <option name="height" value="1032" />
+    <option name="y" value="-12" />
+    <option name="width" value="984" />
+    <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -62,33 +65,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="mtb_tn_db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mtb_tn_db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mtb_tn_db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mtb_tn_db" type="462c0819:PsiDirectoryNode" />
-              <item name="dash" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mtb_tn_db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mtb_tn_db" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WILTY" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -115,18 +100,25 @@
       <option name="presentableId" value="Default" />
       <updated>1569447724800</updated>
       <workItem from="1569447736762" duration="16222000" />
-      <workItem from="1571844003640" duration="12944000" />
+      <workItem from="1571844003640" duration="14309000" />
+      <workItem from="1572375194497" duration="39000" />
+      <workItem from="1572375918918" duration="638000" />
+      <workItem from="1573582731001" duration="10065000" />
+      <workItem from="1575571166186" duration="12091000" />
+      <workItem from="1575686253919" duration="9660000" />
+      <workItem from="1575821202640" duration="1239000" />
+      <workItem from="1576033920442" duration="855000" />
+      <workItem from="1576203451660" duration="33000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29166000" />
+    <option name="totallyTimeSpent" value="65151000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25383994" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28860146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -153,14 +145,52 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v1.py">
+    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v1.py" />
+    <entry file="file://$PROJECT_DIR$/dash/datatable_html_3.py" />
+    <entry file="file://$PROJECT_DIR$/dash/datatable_html_4.py" />
+    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v2.py" />
+    <entry file="file://$PROJECT_DIR$/dash/datatable_html.py" />
+    <entry file="file://$PROJECT_DIR$/dash/datatable_html_2.py" />
+    <entry file="file://$PROJECT_DIR$/dash/app.py" />
+    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v3.py" />
+    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v5/analyze_datasets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-969">
+        <state relative-caret-position="119">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v5/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="346" column="19" selection-start-line="346" selection-start-column="19" selection-end-line="346" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1435#2694#0" />
+            <element signature="e#2732#2885#0" />
+            <element signature="e#2964#4098#0" />
+            <element signature="e#4699#12495#0" />
+            <element signature="e#12523#13090#0" />
+            <element signature="e#13110#13429#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v5/analyze_genes.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/dash/dash_bubble.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -169,15 +199,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash/tnseq_webapp_v2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1881">
-          <caret line="361" selection-start-line="361" selection-end-line="361" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
