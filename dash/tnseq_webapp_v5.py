@@ -30,7 +30,7 @@ unique_Rvs = list(main_data['Rv_ID'].unique())
 unique_genes = list(main_data['gene_name'].unique())
 main_data['id'] = main_data['Rv_ID']
 main_data.set_index('id', inplace=True, drop=False)
-
+print("Main", main_data.head())
 df_uk = pd.read_csv(os.path.join(
     path_annotation, 'unknown_essentials/unknown_ALL_levels_essential_scores.csv'))
 df_uk = df_uk[['Rv_ID', 'gene_name', 'UK_score_4']]
@@ -350,10 +350,11 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
         row_ids = selected_data['id']
     else:
         dff = selected_data.loc[row_ids]
-    # print('here', dff['q-val'])
+    print("dff", dff.head())
+    print('here', dff['q-val'])
     # print ('here', np.unique(-np.log10(dff['q-val'])))
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
-    # print(max_log_pval)
+    print(max_log_pval)
     inf_repl = np.ceil(max_log_qval) + 1
     # print(inf_repl)
     dff['qval_plotting'] = -np.log10(dff['q-val'])
