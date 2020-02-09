@@ -25,7 +25,7 @@ cogs_df = pd.read_csv(os.path.join(path_annotation, 'all_cogs.csv'))
 cogs_desc = pd.read_csv(os.path.join(
     path_annotation, 'cog_names.csv'), header=0, index_col=0, squeeze=True)
 
-unique_expts = main_data['Expt'].unique()
+unique_expts = list(main_data['Expt'].unique())
 unique_Rvs = list(main_data['Rv_ID'].unique())
 unique_genes = list(main_data['gene_name'].unique())
 main_data['id'] = main_data['Rv_ID']
@@ -190,7 +190,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  dbc.Col([
                                      dt.DataTable(id='sel_dataset_table',
                                                   columns=[{"name": i, "id": i} for i in [
-                                                      'Rv_ID', 'log2FC', 'q-val']],
+                                                      'Rv_ID', 'gene_name', 'log2FC', 'q-val']],
                                                   sort_action='native',
                                                   row_selectable='multi',
                                                   selected_rows=[],
@@ -334,6 +334,19 @@ def update_download_dataset(sel_dataset):
 
 
 @app.callback(
+    dash.dependencies.Output('sel_dataset_table', 'data'),
+    [dash.dependencies.Input('Sel_dataset', 'value')])
+def update_dataset_table(sel_dataset):
+    selected_data = main_data[main_data['Expt'] == sel_dataset]
+    selected_data = selected_data[[
+        'Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
+    selected_data['q-val'] = np.round(selected_data['q-val'], 2)
+    selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
+    selected_data = selected_data.sort_values(by='log2FC')
+    return selected_data.to_dict('records')
+
+
+@app.callback(
     dash.dependencies.Output('volcano', 'figure'),
     [dash.dependencies.Input('Sel_dataset', 'value'),
      dash.dependencies.Input('log2FC', 'value'),
@@ -350,16 +363,12 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
         row_ids = selected_data['id']
     else:
         dff = selected_data.loc[row_ids]
-    print("dff", dff.head())
-    print('here', dff['q-val'])
-    # print ('here', np.unique(-np.log10(dff['q-val'])))
+
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
-    print(max_log_pval)
+    print("max_log_qval", max_log_qval)
     inf_repl = np.ceil(max_log_qval) + 1
-    # print(inf_repl)
     dff['qval_plotting'] = -np.log10(dff['q-val'])
     dff['qval_plotting'].replace(np.inf, inf_repl, inplace=True)
-    # print('here2', np.arange(0, inf_repl + 0.5, 0.5))
     tickvals = list(np.arange(0, inf_repl + 0.5, 0.5))
     ticklab = tickvals.copy()
     ticklab[-1] = 'Inf'
@@ -426,18 +435,6 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
                     'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals},
                 hovermode='closest'
             )}
-
-
-@app.callback(
-    dash.dependencies.Output('sel_dataset_table', 'data'),
-    [dash.dependencies.Input('Sel_dataset', 'value')])
-def update_dataset_table(sel_dataset):
-    selected_data = main_data[main_data['Expt'] == sel_dataset]
-    selected_data = selected_data[['Rv_ID', 'gene_name', 'log2FC', 'q-val']]
-    selected_data['q-val'] = np.round(selected_data['q-val'], 2)
-    selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
-    selected_data = selected_data.sort_values(by='log2FC')
-    return selected_data.to_dict('records')
 
 
 @app.callback(
