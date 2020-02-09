@@ -256,7 +256,7 @@ analyze_genes = html.Div([
     dbc.Row([
         dbc.Col([
             dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes+unique_Rvs],
-                         placeholder='Select a gene', multi=False)]),
+                         placeholder='Select a gene', multi=False, clearable=False)]),
         dbc.Col([
             html.Div(id='gene_metadata')])
     ], style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
@@ -539,8 +539,9 @@ def update_cog(sel_dataset, sel_cog, log2FC, qval):
                              component_property='children'),
     [dash.dependencies.Input(component_id='Sel_gene', component_property='value')])
 def print_gene_metadata(sel_gene):
-    sel_details = main_data[main_data['Rv_ID'] == sel_gene].reset_index()
-    return sel_details['Description'][0]
+    sel_details = main_data[main_data['Rv_ID'] == sel_gene]
+    print(sel_details)
+    return list(sel_details['Description'])[0]
 
 
 if __name__ == '__main__':
