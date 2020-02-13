@@ -30,7 +30,7 @@ unique_Rvs = list(main_data['Rv_ID'].unique())
 unique_genes = list(main_data['gene_name'].unique())
 main_data['id'] = main_data['Rv_ID']
 main_data.set_index('id', inplace=True, drop=False)
-print("Main", main_data.head())
+# print("Main", main_data.head())
 df_uk = pd.read_csv(os.path.join(
     path_annotation, 'unknown_essentials/unknown_ALL_levels_essential_scores.csv'))
 df_uk = df_uk[['Rv_ID', 'gene_name', 'UK_score_4']]
@@ -51,7 +51,7 @@ def Table(df, id):
             if col == 'q-val':
                 if val <= 0.05:
                     sig = True
-            if col == 'paper_title':
+            if col == 'Expt':
                 link = paper_URLs.iloc[i]
                 cell = html.Td(
                     html.A(href=link, target="_blank", children=val))
@@ -301,6 +301,7 @@ def generate_dataset_table(selected_gene):
         df = main_data[main_data['gene_name'] == selected_gene]
     else:
         return None
+    df = df.drop(columns=['id', 'Description', 'meaning', 'paper_title'])
     df['q-val'] = np.round(df['q-val'], 2)
     df['log2FC'] = np.round(df['log2FC'], 2)
     df = df.sort_values(by='q-val')
@@ -365,7 +366,6 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
         dff = selected_data.loc[row_ids]
 
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
-    print("max_log_qval", max_log_qval)
     inf_repl = np.ceil(max_log_qval) + 1
     dff['qval_plotting'] = -np.log10(dff['q-val'])
     dff['qval_plotting'].replace(np.inf, inf_repl, inplace=True)
@@ -539,8 +539,12 @@ def update_cog(sel_dataset, sel_cog, log2FC, qval):
                              component_property='children'),
     [dash.dependencies.Input(component_id='Sel_gene', component_property='value')])
 def print_gene_metadata(sel_gene):
-    sel_details = main_data[main_data['Rv_ID'] == sel_gene]
-    print(sel_details)
+    if sel_gene in unique_Rvs:
+        sel_details = main_data[main_data['Rv_ID'] == sel_gene]
+    elif sel_gene in unique_genes:
+        sel_details = main_data[main_data['gene_name'] == sel_gene]
+
+    # sel_details = main_data[main_data['Rv_ID'] == sel_gene]
     return list(sel_details['Description'])[0]
 
 
