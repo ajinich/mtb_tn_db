@@ -1,0 +1,17 @@
+screen,both_CES,both_nonCES,CES_old_nonCES_new,nonCES_old_CES_new
+griffin_cholesterol_vs_griffin_glycerol,59,3877,37,17
+griffin_glycerol_vs_mbio_H37Rv,20,3214,647,109
+zhang_Tyloxapol_pH_6.5_vs_zhang_Tyloxapol_pH_4.5,3,3958,1,28
+zhang_Tyloxapol_pH_6.5_vs_zhang_pcit_pH_4.5,7,3909,14,60
+zhang_DETA-NO_pH_7.0_vs_zhang_pH_7.0_no_NO_control,11,3949,1,29
+zhang_Trp_Rescue_vs_zhang_in_vitro_control_Rescue,2,3968,10,10
+korte_2016_otsa_trehalose_vs_korte_2016_otsa_7h9,2,3854,134,0
+xu_mero_2.5_vs_xu_mero_0,41,3861,69,0
+carey_621_vs_mbio_H37Rv,8,3759,27,196
+carey_630_vs_mbio_H37Rv,9,3847,24,110
+carey_631_vs_mbio_H37Rv,10,3797,31,152
+carey_632_vs_mbio_H37Rv,5,3833,9,143
+carey_641_vs_mbio_H37Rv,6,3864,6,114
+carey_662_vs_mbio_H37Rv,10,3831,8,141
+carey_663_vs_mbio_H37Rv,19,3753,29,189
+carey_667_vs_mbio_H37Rv,8,3826,5,151
