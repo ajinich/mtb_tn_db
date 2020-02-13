@@ -25,12 +25,12 @@ cogs_df = pd.read_csv(os.path.join(path_annotation, 'all_cogs.csv'))
 cogs_desc = pd.read_csv(os.path.join(
     path_annotation, 'cog_names.csv'), header=0, index_col=0, squeeze=True)
 
-unique_expts = main_data['Expt'].unique()
+unique_expts = list(main_data['Expt'].unique())
 unique_Rvs = list(main_data['Rv_ID'].unique())
 unique_genes = list(main_data['gene_name'].unique())
 main_data['id'] = main_data['Rv_ID']
 main_data.set_index('id', inplace=True, drop=False)
-print("Main", main_data.head())
+# print("Main", main_data.head())
 df_uk = pd.read_csv(os.path.join(
     path_annotation, 'unknown_essentials/unknown_ALL_levels_essential_scores.csv'))
 df_uk = df_uk[['Rv_ID', 'gene_name', 'UK_score_4']]
@@ -51,7 +51,7 @@ def Table(df, id):
             if col == 'q-val':
                 if val <= 0.05:
                     sig = True
-            if col == 'paper_title':
+            if col == 'Expt':
                 link = paper_URLs.iloc[i]
                 cell = html.Td(
                     html.A(href=link, target="_blank", children=val))
@@ -190,7 +190,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  dbc.Col([
                                      dt.DataTable(id='sel_dataset_table',
                                                   columns=[{"name": i, "id": i} for i in [
-                                                      'Rv_ID', 'log2FC', 'q-val']],
+                                                      'Rv_ID', 'gene_name', 'log2FC', 'q-val']],
                                                   sort_action='native',
                                                   row_selectable='multi',
                                                   selected_rows=[],
@@ -256,7 +256,7 @@ analyze_genes = html.Div([
     dbc.Row([
         dbc.Col([
             dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes+unique_Rvs],
-                         placeholder='Select a gene', multi=False)]),
+                         placeholder='Select a gene', multi=False, clearable=False)]),
         dbc.Col([
             html.Div(id='gene_metadata')])
     ], style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
@@ -301,6 +301,7 @@ def generate_dataset_table(selected_gene):
         df = main_data[main_data['gene_name'] == selected_gene]
     else:
         return None
+    df = df.drop(columns=['id', 'Description', 'meaning', 'paper_title'])
     df['q-val'] = np.round(df['q-val'], 2)
     df['log2FC'] = np.round(df['log2FC'], 2)
     df = df.sort_values(by='q-val')
@@ -334,6 +335,19 @@ def update_download_dataset(sel_dataset):
 
 
 @app.callback(
+    dash.dependencies.Output('sel_dataset_table', 'data'),
+    [dash.dependencies.Input('Sel_dataset', 'value')])
+def update_dataset_table(sel_dataset):
+    selected_data = main_data[main_data['Expt'] == sel_dataset]
+    selected_data = selected_data[[
+        'Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
+    selected_data['q-val'] = np.round(selected_data['q-val'], 2)
+    selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
+    selected_data = selected_data.sort_values(by='log2FC')
+    return selected_data.to_dict('records')
+
+
+@app.callback(
     dash.dependencies.Output('volcano', 'figure'),
     [dash.dependencies.Input('Sel_dataset', 'value'),
      dash.dependencies.Input('log2FC', 'value'),
@@ -350,16 +364,11 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
         row_ids = selected_data['id']
     else:
         dff = selected_data.loc[row_ids]
-    print("dff", dff.head())
-    print('here', dff['q-val'])
-    # print ('here', np.unique(-np.log10(dff['q-val'])))
+
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
-    print(max_log_pval)
     inf_repl = np.ceil(max_log_qval) + 1
-    # print(inf_repl)
     dff['qval_plotting'] = -np.log10(dff['q-val'])
     dff['qval_plotting'].replace(np.inf, inf_repl, inplace=True)
-    # print('here2', np.arange(0, inf_repl + 0.5, 0.5))
     tickvals = list(np.arange(0, inf_repl + 0.5, 0.5))
     ticklab = tickvals.copy()
     ticklab[-1] = 'Inf'
@@ -426,18 +435,6 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
                     'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals},
                 hovermode='closest'
             )}
-
-
-@app.callback(
-    dash.dependencies.Output('sel_dataset_table', 'data'),
-    [dash.dependencies.Input('Sel_dataset', 'value')])
-def update_dataset_table(sel_dataset):
-    selected_data = main_data[main_data['Expt'] == sel_dataset]
-    selected_data = selected_data[['Rv_ID', 'gene_name', 'log2FC', 'q-val']]
-    selected_data['q-val'] = np.round(selected_data['q-val'], 2)
-    selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
-    selected_data = selected_data.sort_values(by='log2FC')
-    return selected_data.to_dict('records')
 
 
 @app.callback(
@@ -542,8 +539,13 @@ def update_cog(sel_dataset, sel_cog, log2FC, qval):
                              component_property='children'),
     [dash.dependencies.Input(component_id='Sel_gene', component_property='value')])
 def print_gene_metadata(sel_gene):
-    sel_details = main_data[main_data['Rv_ID'] == sel_gene].reset_index()
-    return sel_details['Description'][0]
+    if sel_gene in unique_Rvs:
+        sel_details = main_data[main_data['Rv_ID'] == sel_gene]
+    elif sel_gene in unique_genes:
+        sel_details = main_data[main_data['gene_name'] == sel_gene]
+
+    # sel_details = main_data[main_data['Rv_ID'] == sel_gene]
+    return list(sel_details['Description'])[0]
 
 
 if __name__ == '__main__':
