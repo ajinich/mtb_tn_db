@@ -14,6 +14,7 @@ import pandas as pd
 import plotly.graph_objs as go
 import seaborn as sns
 import visdcc
+from dash.exceptions import PreventUpdate
 from numpy import inf
 
 external_stylesheets = [dbc.themes.UNITED]
@@ -117,6 +118,9 @@ def unknown_essential_xy(TnSeq_screen, df_data, df_uk, rand_param=0.6):
 
 external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js',
                     'https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js']
+
+# external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js',
+#                     'https://www.dropbox.com/s/id266ow73gw19pl/test.js?dl=1']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets,
                 external_scripts=external_scripts)
 
@@ -256,7 +260,7 @@ analyze_genes = html.Div([
     dbc.Row([
         dbc.Col([
             dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes+unique_Rvs],
-                         placeholder='Select a gene', multi=False, clearable=False)]),
+                         placeholder='Select a gene', multi=False, searchable=True)]),
         dbc.Col([
             html.Div(id='gene_metadata')])
     ], style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
@@ -300,7 +304,7 @@ def generate_dataset_table(selected_gene):
     elif selected_gene in unique_genes:
         df = main_data[main_data['gene_name'] == selected_gene]
     else:
-        return None
+        raise PreventUpdate
     df = df.drop(columns=['id', 'Description', 'meaning', 'paper_title'])
     df['q-val'] = np.round(df['q-val'], 2)
     df['log2FC'] = np.round(df['log2FC'], 2)
@@ -543,6 +547,8 @@ def print_gene_metadata(sel_gene):
         sel_details = main_data[main_data['Rv_ID'] == sel_gene]
     elif sel_gene in unique_genes:
         sel_details = main_data[main_data['gene_name'] == sel_gene]
+    else:
+        return "gene not found"
 
     # sel_details = main_data[main_data['Rv_ID'] == sel_gene]
     return list(sel_details['Description'])[0]
