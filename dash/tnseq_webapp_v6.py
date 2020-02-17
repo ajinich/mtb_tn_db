@@ -4,6 +4,7 @@ from io import StringIO
 from random import random
 
 import dash
+# from dash._utils import get_relative_path
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_daq as daq
@@ -35,41 +36,6 @@ main_data.set_index('id', inplace=True, drop=False)
 df_uk = pd.read_csv(os.path.join(
     path_annotation, 'unknown_essentials/unknown_ALL_levels_essential_scores.csv'))
 df_uk = df_uk[['Rv_ID', 'gene_name', 'UK_score_4']]
-
-
-def Table(df, id):
-    paper_URLs = df['paper_URL']
-    df = df.drop(columns=['paper_URL'])
-    rows = []
-    for i in range(len(df)):
-        sig = False
-        row = []
-        for col in df.columns:
-            val = df.iloc[i][col]
-            # update this depending on which
-            # columns you want to show links for
-            # and what you want those links to be
-            if col == 'q-val':
-                if val <= 0.05:
-                    sig = True
-            if col == 'Expt':
-                link = paper_URLs.iloc[i]
-                cell = html.Td(
-                    html.A(href=link, target="_blank", children=val))
-            else:
-                cell = html.Td(children=val)
-            row.append(cell)
-        if sig:
-            rows.append(html.Tr(row, style={'background-color': '#eeeeee'}))
-        else:
-            rows.append(html.Tr(row))
-    Thead = html.Thead(
-        [html.Tr([html.Th(col, style={'color': "#DD4814", 'text-align': 'center',
-                                      'background-color': '#cccccc'}) for col in df.columns])]
-    )
-    Tbody = html.Tbody(rows, style={'text-align': 'center'})
-    # columns=html.Col()
-    return html.Table([Thead, Tbody], id=id, className="display", style={'border': '1', 'border-collapse': 'separate'})
 
 
 def discretize_q_values(row):
@@ -116,19 +82,15 @@ def unknown_essential_xy(TnSeq_screen, df_data, df_uk, rand_param=0.6):
     return uk_rd, q_rd, color_list_rgb, rv_ids
 
 
-external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js',
-                    'https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js']
-
-# external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js',
-#                     'https://www.dropbox.com/s/id266ow73gw19pl/test.js?dl=1']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets,
-                external_scripts=external_scripts)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 navbar = dbc.NavbarSimple([
     dbc.NavItem(dbc.NavLink('Analyze datasets',
-                            active=True, href='/analyze_datasets')),
-    dbc.NavItem(dbc.NavLink('Analyze genes', href='/analyze_genes')),
-    dbc.NavItem(dbc.NavLink('About', active=True, href='/about'))
+                            active=True, href=app.get_relative_path('/analyze_datasets'))),
+    dbc.NavItem(dbc.NavLink('Analyze genes',
+                            href=app.get_relative_path('/analyze_genes'))),
+    dbc.NavItem(dbc.NavLink('About', active=True,
+                            href=app.get_relative_path('/about')))
 ], brand="Mtb Tn-seq database", color='primary', light=True)
 
 analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
@@ -158,102 +120,102 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  html.A('Download this dataset', id='download_dataset', download="", href="",
                                         target="_blank"),
                              ], align='center',
-                                 style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
-                                        'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
-                             html.Br(),
-                             html.Br(),
-                             dbc.Row([
-                                 dbc.Col([
-                                     html.Div([
-                                         html.Label('About this dataset')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
-                                 ], align='center', width=3),
-                                 dbc.Col([
-                                     html.Div([
-                                         html.Label('Volcano plot')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
-                                 ], align='center', width=5),
-                                 dbc.Col([
-                                     html.Div([
-                                         html.Label('Gene List')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
-                                 ], align='center', width=3),
-                             ]),
-                             dbc.Row([
-                                 dbc.Col([
-                                     # html.Div([
-                                     #     html.Label('About this dataset')
-                                     # ], style={'textAlign': 'center', 'display': 'block'}),
-                                     html.Div(id='dataset_metadata')], width=3,
-                                     style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
-                                            'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
-                                 dbc.Col([
-                                     dcc.Graph(id='volcano'),
-                                 ],
-                                     width=5, align='center'),
-                                 dbc.Col([
-                                     dt.DataTable(id='sel_dataset_table',
-                                                  columns=[{"name": i, "id": i} for i in [
-                                                      'Rv_ID', 'gene_name', 'log2FC', 'q-val']],
-                                                  sort_action='native',
-                                                  row_selectable='multi',
-                                                  selected_rows=[],
-                                                  page_action='native',
-                                                  page_size=15,
-                                                  page_current=0,
-                                                  style_header={'color': '#e95420', 'font-weight': 'bold',
-                                                                'text-align': 'center'},
-                                                  style_cell_conditional=[
-                                                      {'if': {'column_id': 'q-val'},
-                                                       'width': '30%'}
-                                                  ],
-                                                  style_data_conditional=[
-                                                      {'if': {'row_index': 'odd'},
-                                                       'backgroundColor': 'rgb(248,248,248)'}
-                                                  ],
-                                                  style_cell={
-                                                      'font-family': 'ubuntu',
-                                                      'font-size': 14,
-                                                      'height': '10px',
-                                                      'textOverFlow': 'ellipsis',
-                                                      'text-align': 'center',
-                                                      'overflow': 'hidden'
-                                                  },
-                                                  style_as_list_view=True,
-                                                  tooltip={
-                                                      "Rv_ID": "this is a test tooltip"}
-                                                  )
-                                 ], width=4, align='center')
-                             ]),
-                             html.Br(),
-                             html.Br(),
-                             html.Br(),
-                             dbc.Row([
-                                 dbc.Col([
-                                     html.Div([
-                                         html.Label('COG Categories')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
-                                 ], align='center', width=6),
-                                 dbc.Col([
-                                     html.Div([
-                                         html.Label('Essentiality plot')
-                                     ], style={'textAlign': 'center', 'display': 'block'}),
-                                 ], align='center', width=6),
-                             ]),
-                             dbc.Row([
-                                 dbc.Col([
-                                     dcc.Dropdown(id='Sel_cog',
-                                                  options=[{'label': x, 'value': x} for x in
-                                                           ['Under-represented', 'Over-represented']],
-                                                  value='Under-represented'),
-                                     dcc.Graph(id='cog')
+    style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
+                                 'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+    html.Br(),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+            html.Div([
+                html.Label('About this dataset')
+            ], style={'textAlign': 'center', 'display': 'block'}),
+        ], align='center', width=3),
+        dbc.Col([
+            html.Div([
+                html.Label('Volcano plot')
+            ], style={'textAlign': 'center', 'display': 'block'}),
+        ], align='center', width=5),
+        dbc.Col([
+            html.Div([
+                html.Label('Gene List')
+            ], style={'textAlign': 'center', 'display': 'block'}),
+        ], align='center', width=3),
+    ]),
+    dbc.Row([
+        dbc.Col([
+            # html.Div([
+            #     html.Label('About this dataset')
+            # ], style={'textAlign': 'center', 'display': 'block'}),
+            html.Div(id='dataset_metadata')], width=3,
+            style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
+                   'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+        dbc.Col([
+            dcc.Graph(id='volcano'),
+        ],
+            width=5, align='center'),
+        dbc.Col([
+            dt.DataTable(id='sel_dataset_table',
+                         columns=[{"name": i, "id": i} for i in [
+                             'Rv_ID', 'gene_name', 'log2FC', 'q-val']],
+                         sort_action='native',
+                         row_selectable='multi',
+                         selected_rows=[],
+                         page_action='native',
+                         page_size=15,
+                         page_current=0,
+                         style_header={'color': '#e95420', 'font-weight': 'bold',
+                                       'text-align': 'center'},
+                         style_cell_conditional=[
+                             {'if': {'column_id': 'q-val'},
+                              'width': '30%'}
+                         ],
+                         style_data_conditional=[
+                             {'if': {'row_index': 'odd'},
+                              'backgroundColor': 'rgb(248,248,248)'}
+                         ],
+                         style_cell={
+                             'font-family': 'ubuntu',
+                             'font-size': 14,
+                             'height': '10px',
+                             'textOverFlow': 'ellipsis',
+                             'text-align': 'center',
+                             'overflow': 'hidden'
+                         },
+                         style_as_list_view=True,
+                         tooltip={
+                             "Rv_ID": "this is a test tooltip"}
+                         )
+        ], width=4, align='center')
+    ]),
+    html.Br(),
+    html.Br(),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+            html.Div([
+                html.Label('COG Categories')
+            ], style={'textAlign': 'center', 'display': 'block'}),
+        ], align='center', width=6),
+        dbc.Col([
+            html.Div([
+                html.Label('Essentiality plot')
+            ], style={'textAlign': 'center', 'display': 'block'}),
+        ], align='center', width=6),
+    ]),
+    dbc.Row([
+        dbc.Col([
+            dcc.Dropdown(id='Sel_cog',
+                         options=[{'label': x, 'value': x} for x in
+                                  ['Under-represented', 'Over-represented']],
+                         value='Under-represented'),
+            dcc.Graph(id='cog')
 
-                                 ], width=6, align='center'),
-                                 dbc.Col([
-                                     dcc.Graph(id='bubble_plot')
-                                 ], width=6, align='center')
-                             ], justify='center')
-                             ])
+        ], width=6, align='center'),
+        dbc.Col([
+            dcc.Graph(id='bubble_plot')
+        ], width=6, align='center')
+    ], justify='center')
+])
 
 analyze_genes = html.Div([
     dbc.Row([html.Label('Pick a gene')]),
@@ -267,7 +229,29 @@ analyze_genes = html.Div([
               'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
     html.Br(),
     html.Br(),
-    html.Div(id='sel_genes_table_div')
+    dt.DataTable(id='sel_genes_table',
+                 columns=[{"name": i, "id": i, "presentation": 'markdown'} for i in [
+                     'Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val', 'num_replicates_control', 'num_replicates_experimental']],
+                 sort_action='native',
+                 page_action='native',
+                 #  filter_action='native',
+                 page_size=15,
+                 page_current=0,
+                 style_header={'color': '#e95420', 'font-weight': 'bold',
+                               'text-align': 'center'},
+                 style_data_conditional=[
+                     {'if': {'row_index': 'odd'},
+                      'backgroundColor': 'rgb(248,248,248)'}
+                 ],
+                 style_cell={
+                     'font-family': 'ubuntu',
+                     'font-size': 14,
+                     'height': '10px',
+                     'textOverFlow': 'ellipsis',
+                     'text-align': 'center',
+                     'overflow': 'hidden'
+                 },
+                 style_as_list_view=True)
 ])
 
 about = html.Div([
@@ -283,46 +267,63 @@ about = html.Div([
 # app.layout = html.Div([navbar, body])
 app.layout = html.Div(
     [
-        dcc.Location(id="url", pathname="/analyze_datasets", refresh=False),
+        # dcc.Location(id="url"),
+        dcc.Location(id="url", refresh=False, ),
         navbar,
         dbc.Container(id="content", style={"padding": "20px"}),
-        # You need to write this here for dash to load visdcc across the whole app
-        visdcc.Run_js(id='javascript', run="$('#sel_genes_table').DataTable()")
     ])
 
 app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
 
-# TODO: still get javascript error with Rv1784, possible input df issue
-@app.callback(dash.dependencies.Output("sel_genes_table_div", "children"),
-              [dash.dependencies.Input("Sel_gene", 'value')]
-              )
-def generate_dataset_table(selected_gene):
+@app.callback(dash.dependencies.Output("content", "children"), [dash.dependencies.Input("url", "pathname")])
+def display_content(path):
+    page_name = app.strip_relative_path(path)
+    if page_name == 'analyze_datasets':
+        return analyze_datasets
+    if page_name == "analyze_genes":
+        return analyze_genes
+    if page_name == 'about':
+        return about
+
+
+@app.callback(
+    dash.dependencies.Output('sel_genes_table', 'data'),
+    [dash.dependencies.Input('Sel_gene', 'value')])
+def update_genes_table(selected_gene):
     if selected_gene in unique_Rvs:
         df = main_data[main_data['Rv_ID'] == selected_gene]
     elif selected_gene in unique_genes:
         df = main_data[main_data['gene_name'] == selected_gene]
     else:
         raise PreventUpdate
-    df = df.drop(columns=['id', 'Description', 'meaning', 'paper_title'])
-    print(df)
+    df = df[['Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val',
+             'num_replicates_control', 'num_replicates_experimental']]
     df['q-val'] = np.round(df['q-val'], 2)
     df['log2FC'] = np.round(df['log2FC'], 2)
-    df = df.sort_values(by='q-val')
-    return [visdcc.Run_js(id='javascript', run="$('#sel_genes_table').DataTable()"), Table(df, id='sel_genes_table')]
+    # df.loc[df['Expt'] == 'xu_mero_2.5_vs_xu_mero_0',
+    #        'Expt'] = '[xu_mero_2.5_vs_xu_mero_0](https://www.google.com)'
+    df = df.sort_values(by='log2FC')
+    return df.to_dict('records')
 
 
-@app.callback(dash.dependencies.Output("content", "children"), [dash.dependencies.Input("url", "pathname")])
-def display_page(pathname):
-    if pathname == "/analyze_datasets":
-        return analyze_datasets
-    if pathname == "/analyze_genes":
-        return analyze_genes
-    if pathname == '/about':
-        return about
-    # if not recognised, return 404 message
-    return html.P("404 - page not found")
+# @app.callback(dash.dependencies.Output("sel_genes_table_div", "children"),
+#               [dash.dependencies.Input("Sel_gene", 'value')]
+#               )
+# def generate_dataset_table(selected_gene):
+#     if selected_gene in unique_Rvs:
+#         df = main_data[main_data['Rv_ID'] == selected_gene]
+#     elif selected_gene in unique_genes:
+#         df = main_data[main_data['gene_name'] == selected_gene]
+#     else:
+#         raise PreventUpdate
+#     df = df.drop(columns=['id', 'Description', 'meaning', 'paper_title'])
+#     print(df)
+#     df['q-val'] = np.round(df['q-val'], 2)
+#     df['log2FC'] = np.round(df['log2FC'], 2)
+#     df = df.sort_values(by='q-val')
+#     return [visdcc.Run_js(id='javascript', run="$('#sel_genes_table').DataTable()"), Table(df, id='sel_genes_table')]
 
 
 @app.callback([
