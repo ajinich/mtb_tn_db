@@ -143,9 +143,6 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
     ]),
     dbc.Row([
         dbc.Col([
-            # html.Div([
-            #     html.Label('About this dataset')
-            # ], style={'textAlign': 'center', 'display': 'block'}),
             html.Div(id='dataset_metadata')], width=3,
             style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
                    'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
@@ -182,8 +179,6 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                              'overflow': 'hidden'
                          },
                          style_as_list_view=True,
-                         tooltip={
-                             "Rv_ID": "this is a test tooltip"}
                          )
         ], width=4, align='center')
     ]),
@@ -264,7 +259,6 @@ about = html.Div([
 
 ])
 
-# app.layout = html.Div([navbar, body])
 app.layout = html.Div(
     [
         # dcc.Location(id="url"),
@@ -306,25 +300,6 @@ def update_genes_table(selected_gene):
     #        'Expt'] = '[xu_mero_2.5_vs_xu_mero_0](https://www.google.com)'
     df = df.sort_values(by='log2FC')
     return df.to_dict('records')
-
-
-# @app.callback(dash.dependencies.Output("sel_genes_table_div", "children"),
-#               [dash.dependencies.Input("Sel_gene", 'value')]
-#               )
-# def generate_dataset_table(selected_gene):
-#     if selected_gene in unique_Rvs:
-#         df = main_data[main_data['Rv_ID'] == selected_gene]
-#     elif selected_gene in unique_genes:
-#         df = main_data[main_data['gene_name'] == selected_gene]
-#     else:
-#         raise PreventUpdate
-#     df = df.drop(columns=['id', 'Description', 'meaning', 'paper_title'])
-#     print(df)
-#     df['q-val'] = np.round(df['q-val'], 2)
-#     df['log2FC'] = np.round(df['log2FC'], 2)
-#     df = df.sort_values(by='q-val')
-#     return [visdcc.Run_js(id='javascript', run="$('#sel_genes_table').DataTable()"), Table(df, id='sel_genes_table')]
-
 
 @app.callback([
     dash.dependencies.Output('download_dataset', 'href'),
@@ -554,6 +529,34 @@ def print_gene_metadata(sel_gene):
 
     # sel_details = main_data[main_data['Rv_ID'] == sel_gene]
     return list(sel_details['Description'])[0]
+
+
+@app.callback(
+    dash.dependencies.Output(component_id='dataset_metadata',
+                             component_property='children'),
+    [dash.dependencies.Input(component_id='Sel_dataset', component_property='value')])
+def print_dataset_metadata(sel_dataset):
+    data_subset = main_data[main_data['Expt'] == sel_dataset]
+    text = [
+        html.Strong('Summary'),
+        html.Span(': ' + data_subset['meaning'][0]),
+        html.Br(),
+        html.Br(),
+        html.Strong('Original Publication'),
+        html.Br(),
+        html.Span(': '),
+        html.A(data_subset['paper_title'][0],
+               href=data_subset['paper_URL'][0]),
+        html.Br(),
+        html.Br(),
+        html.Strong('No of control replicates'),
+        html.Span(': ' + str(data_subset['num_replicates_control'][0])),
+        html.Br(),
+        html.Br(),
+        html.Strong('No of experimental replicates'),
+        html.Span(': ' + str(data_subset['num_replicates_experimental'][0]))
+    ]
+    return text
 
 
 if __name__ == '__main__':
