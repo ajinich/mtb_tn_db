@@ -4,7 +4,6 @@ from io import StringIO
 from random import random
 
 import dash
-from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_daq as daq
@@ -14,7 +13,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
 import seaborn as sns
-import visdcc
+from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 from numpy import inf
 
@@ -237,7 +236,9 @@ analyze_genes = html.Div([
     html.Br(),
     html.Br(),
     dt.DataTable(id='sel_gene_table',
-                 columns=[{"name": i, "id": i, "presentation": 'markdown'} for i in [
+                 columns=[{"name": i,
+                           "id": i,
+                           "presentation": 'markdown'} for i in [
                      'Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val', 'num_replicates_control', 'num_replicates_experimental']],
                  sort_action='native',
                  page_action='native',
@@ -273,7 +274,6 @@ about = html.Div([
 
 app.layout = html.Div(
     [
-        # dcc.Location(id="url"),
         dcc.Location(id="url", refresh=False),
         navbar,
         dbc.Container(id="content", style={"padding": "20px"}),
@@ -283,7 +283,8 @@ app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
 
-@app.callback(Output("content", "children"), [Input("url", "pathname")])
+@app.callback(Output("content", "children"),
+              [Input("url", "pathname")])
 def display_content(path):
     page_name = app.strip_relative_path(path)
     if page_name == 'analyze_datasets':
@@ -293,25 +294,6 @@ def display_content(path):
     if page_name == 'about':
         return about
 
-
-@app.callback(
-    Output('sel_gene_table', 'data'),
-    [Input('sel_gene', 'value')])
-def update_genes_table(selected_gene):
-    if selected_gene in unique_Rvs:
-        dff = main_data[main_data['Rv_ID'] == selected_gene]
-    elif selected_gene in unique_genes:
-        dff = main_data[main_data['gene_name'] == selected_gene]
-    else:
-        raise PreventUpdate
-    dff = dff[['Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val',
-               'num_replicates_control', 'num_replicates_experimental']]
-    dff['q-val'] = np.round(dff['q-val'], 2)
-    dff['log2FC'] = np.round(dff['log2FC'], 2)
-    # df.loc[df['Expt'] == 'xu_mero_2.5_vs_xu_mero_0',
-    #        'Expt'] = '[xu_mero_2.5_vs_xu_mero_0](https://www.google.com)'
-    dff = dff.sort_values(by='log2FC')
-    return dff.to_dict('records')
 
 @app.callback([
     Output('download_dataset', 'href'),
@@ -328,16 +310,30 @@ def update_download_dataset(sel_dataset):
 
 
 @app.callback(
-    Output('sel_dataset_table', 'data'),
+    Output('dataset_metadata', 'children'),
     [Input('sel_dataset', 'value')])
-def update_dataset_table(sel_dataset):
+def print_dataset_metadata(sel_dataset):
     dff = main_data[main_data['Expt'] == sel_dataset]
-    dff = dff[[
-        'Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
-    dff['q-val'] = np.round(dff['q-val'], 2)
-    dff['log2FC'] = np.round(dff['log2FC'], 2)
-    dff = dff.sort_values(by='log2FC')
-    return dff.to_dict('records')
+    text = [
+        html.Strong('Summary'),
+        html.Span(': ' + dff['meaning'][0]),
+        html.Br(),
+        html.Br(),
+        html.Strong('Original Publication'),
+        html.Br(),
+        html.Span(': '),
+        html.A(dff['paper_title'][0],
+               href=dff['paper_URL'][0]),
+        html.Br(),
+        html.Br(),
+        html.Strong('No of control replicates'),
+        html.Span(': ' + str(dff['num_replicates_control'][0])),
+        html.Br(),
+        html.Br(),
+        html.Strong('No of experimental replicates'),
+        html.Span(': ' + str(dff['num_replicates_experimental'][0]))
+    ]
+    return text
 
 
 @app.callback(
@@ -351,6 +347,7 @@ def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
     if selected_row_ids is None:
         selected_row_ids = []
 
+    # make qval ticks, replacing the np.nans with inf
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
     inf_repl = np.ceil(max_log_qval) + 1
     dff['qval_plotting'] = -np.log10(dff['q-val'])
@@ -360,12 +357,14 @@ def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
     ticklab[-1] = 'Inf'
 
     for_x_ticks = dff['log2FC']
+    # TODO: WHAT is this?
     for_x_ticks = for_x_ticks.replace([np.inf, -np.inf], np.nan)
     for_x_ticks = for_x_ticks.dropna()
     tickvals_x = list(np.arange(int(for_x_ticks.min() - 1),
                                 int(for_x_ticks.max() + 1), 1))
     ticklab_x = tickvals_x.copy()
 
+    # split data into tickeed,unticked_sig, unticked_non_sig
     ticked = dff['id'].isin(selected_row_ids)
     ticked_data = dff[ticked]
     unticked_data = dff[~ticked]
@@ -382,7 +381,7 @@ def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
                              mode='markers',
                              name='Outside cutoff',
                              marker={'opacity': 0.6, 'size': 10,
-                                     'color': 'orangered'},
+                                       'color': 'orangered'},
                              showlegend=False,
                              ))
     traces.append(go.Scatter(x=non_sig_data['log2FC'],
@@ -392,8 +391,8 @@ def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
                              mode='markers',
                              name='Pass cutoff',
                              marker={'opacity': 0.6,
-                                     'size': 10,
-                                     'color': 'grey'},
+                                       'size': 10,
+                                       'color': 'grey'},
                              showlegend=False
                              ))
     traces.append(go.Scatter(x=ticked_data['log2FC'],
@@ -404,8 +403,8 @@ def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
                              textposition='bottom center',
                              name='T',
                              marker={'opacity': 0.6,
-                                     'size': 10,
-                                     'color': 'green'},
+                                       'size': 10,
+                                       'color': 'green'},
                              showlegend=False
                              ))
     return {'data': traces,
@@ -423,6 +422,71 @@ def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
                     'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals},
                 hovermode='closest'
             )}
+
+
+@app.callback(
+    Output('sel_dataset_table', 'data'),
+    [Input('sel_dataset', 'value')])
+def update_dataset_table(sel_dataset):
+    dff = main_data[main_data['Expt'] == sel_dataset]
+    dff = dff[[
+        'Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
+    dff['q-val'] = np.round(dff['q-val'], 2)
+    dff['log2FC'] = np.round(dff['log2FC'], 2)
+    dff = dff.sort_values(by='log2FC')
+    return dff.to_dict('records')
+
+
+@app.callback(Output('cog', 'figure'),
+              [Input('sel_dataset', 'value'),
+               Input('Sel_cog', 'value'),
+               Input('log2FC', 'value'),
+               Input('q-val', 'value')])
+def update_cog(sel_dataset, sel_cog, log2FC, qval):
+    # filter data
+    selected_data = main_data[main_data['Expt'] == sel_dataset]
+    if sel_cog == 'Under-represented':
+        sel_subset_filter = (
+            selected_data['q-val'] <= qval) & (selected_data['log2FC'] <= -log2FC)
+        colorscale = 'Cividis'
+    else:
+        sel_subset_filter = (
+            selected_data['q-val'] <= qval) & (selected_data['log2FC'] >= -log2FC)
+        colorscale = 'Viridis'
+    sel_subset = selected_data[sel_subset_filter]
+    # calculate genome freq
+    cog_total_freq = cogs_df['COG'].value_counts(normalize=True)
+    # calculate subset freq
+    sel_cogs = cogs_df[cogs_df['X.Orf'].isin(sel_subset['Rv_ID'])]
+    sel_cogs_freq = sel_cogs['COG'].value_counts(normalize=True)
+    # enrichment
+    normalized_cogs = sel_cogs_freq / cog_total_freq
+    # format
+    normalized_cogs = normalized_cogs[~normalized_cogs.isnull()]
+    normalized_cogs = normalized_cogs.sort_values()
+    cog_names = cogs_desc.loc[list(normalized_cogs.index)]
+    cog_names = list(cog_names.values)
+
+    bar_data = [go.Bar(y=list(normalized_cogs.index), x=list(normalized_cogs.values),
+                       orientation='h',
+                       text=cog_names,
+                       hoverinfo='text',
+                       marker={'color': list(normalized_cogs.values), 'colorscale': colorscale})]
+    return {'data': bar_data,
+            'layout': go.Layout(
+                margin={
+                    'l': 50,
+                    'r': 10,
+                    'pad': 3,
+                    't': 30,
+                    'b': 90, },
+                # paper_bgcolor='rgba(0,0,0,0)',
+                # plot_bgcolor = 'rgba(0,0,0,0)',
+                xaxis={'title': 'Normalized to genomic frequency'},
+                hovermode='closest',
+                shapes=[{'type': 'line', 'x0': 1, 'y0': 0, 'x1': 1, 'y1': len(normalized_cogs),
+                         'line': {'color': 'grey', 'width': 1, 'dash': 'dot'}}])
+            }
 
 
 @app.callback(
@@ -475,51 +539,22 @@ def update_bubble(sel_dataset):
     }
 
 
-@app.callback(Output('cog', 'figure'),
-              [Input('sel_dataset', 'value'),
-               Input('Sel_cog', 'value'),
-               Input('log2FC', 'value'),
-               Input('q-val', 'value')])
-def update_cog(sel_dataset, sel_cog, log2FC, qval):
-    selected_data = main_data[main_data['Expt'] == sel_dataset]
-    if sel_cog == 'Under-represented':
-        sel_subset_filter = (
-            selected_data['q-val'] <= qval) & (selected_data['log2FC'] <= -log2FC)
-        colorscale = 'Cividis'
+@app.callback(
+    Output('sel_gene_table', 'data'),
+    [Input('sel_gene', 'value')])
+def update_genes_table(selected_gene):
+    if selected_gene in unique_Rvs:
+        dff = main_data[main_data['Rv_ID'] == selected_gene]
+    elif selected_gene in unique_genes:
+        dff = main_data[main_data['gene_name'] == selected_gene]
     else:
-        sel_subset_filter = (
-            selected_data['q-val'] <= qval) & (selected_data['log2FC'] >= -log2FC)
-        colorscale = 'Viridis'
-    sel_subset = selected_data[sel_subset_filter]
-    cog_total_freq = cogs_df['COG'].value_counts(normalize=True)
-    sel_cogs = cogs_df[cogs_df['X.Orf'].isin(sel_subset['Rv_ID'])]
-    sel_cogs_freq = sel_cogs['COG'].value_counts(normalize=True)
-    normalized_cogs = sel_cogs_freq / cog_total_freq
-    normalized_cogs = normalized_cogs[~normalized_cogs.isnull()]
-    normalized_cogs = normalized_cogs.sort_values()
-    cog_names = cogs_desc.loc[list(normalized_cogs.index)]
-    cog_names = list(cog_names.values)
-
-    bar_data = [go.Bar(y=list(normalized_cogs.index), x=list(normalized_cogs.values),
-                       orientation='h',
-                       text=cog_names,
-                       hoverinfo='text',
-                       marker={'color': list(normalized_cogs.values), 'colorscale': colorscale})]
-    return {'data': bar_data,
-            'layout': go.Layout(
-                margin={
-                    'l': 50,
-                    'r': 10,
-                    'pad': 3,
-                    't': 30,
-                    'b': 90, },
-                # paper_bgcolor='rgba(0,0,0,0)',
-                # plot_bgcolor = 'rgba(0,0,0,0)',
-                xaxis={'title': 'Normalized to genomic frequency'},
-                hovermode='closest',
-                shapes=[{'type': 'line', 'x0': 1, 'y0': 0, 'x1': 1, 'y1': len(normalized_cogs),
-                         'line': {'color': 'grey', 'width': 1, 'dash': 'dot'}}])
-            }
+        raise PreventUpdate
+    dff = dff[['Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val',
+               'num_replicates_control', 'num_replicates_experimental']]
+    dff['q-val'] = np.round(dff['q-val'], 2)
+    dff['log2FC'] = np.round(dff['log2FC'], 2)
+    dff = dff.sort_values(by='log2FC')
+    return dff.to_dict('records')
 
 
 @app.callback(
@@ -532,36 +567,7 @@ def print_gene_metadata(sel_gene):
         sel_details = main_data[main_data['gene_name'] == sel_gene]
     else:
         return "gene not found"
-
-    # sel_details = main_data[main_data['Rv_ID'] == sel_gene]
     return list(sel_details['Description'])[0]
-
-
-@app.callback(
-    Output('dataset_metadata', 'children'),
-    [Input('sel_dataset', 'value')])
-def print_dataset_metadata(sel_dataset):
-    dff = main_data[main_data['Expt'] == sel_dataset]
-    text = [
-        html.Strong('Summary'),
-        html.Span(': ' + dff['meaning'][0]),
-        html.Br(),
-        html.Br(),
-        html.Strong('Original Publication'),
-        html.Br(),
-        html.Span(': '),
-        html.A(dff['paper_title'][0],
-               href=dff['paper_URL'][0]),
-        html.Br(),
-        html.Br(),
-        html.Strong('No of control replicates'),
-        html.Span(': ' + str(dff['num_replicates_control'][0])),
-        html.Br(),
-        html.Br(),
-        html.Strong('No of experimental replicates'),
-        html.Span(': ' + str(dff['num_replicates_experimental'][0]))
-    ]
-    return text
 
 
 if __name__ == '__main__':
