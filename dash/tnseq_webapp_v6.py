@@ -1,3 +1,5 @@
+# TODO: https://community.plot.ly/t/dcc-loading-for-loading-graph-s/23039/5
+
 import os
 import urllib.parse
 from io import StringIO
@@ -20,7 +22,6 @@ from numpy import inf
 external_stylesheets = [dbc.themes.UNITED]
 path_data = '../data/'
 main_data = pd.read_csv(os.path.join(path_data, 'data_dash_meta.csv'))
-# main_data = main_data.drop(columns='gene_name')
 path_annotation = '../data/annotations/'
 cogs_df = pd.read_csv(os.path.join(path_annotation, 'all_cogs.csv'))
 cogs_desc = pd.read_csv(os.path.join(
@@ -153,41 +154,39 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                    'border-color': '#dcdcdc',
                    'border-width': '2px',
                    'border-style': 'solid'}),
-        dbc.Col([
-            dcc.Graph(id='volcano'),
-        ],
-            width=5, align='center'),
-        dbc.Col([
-            dt.DataTable(id='sel_dataset_table',
-                         columns=[{"name": i, "id": i} for i in [
-                             'Rv_ID', 'gene_name', 'log2FC', 'q-val']],
-                         sort_action='native',
-                         row_selectable='multi',
-                         selected_rows=[],
-                         page_action='native',
-                         page_size=15,
-                         page_current=0,
-                         style_header={'color': '#e95420', 'font-weight': 'bold',
-                                       'text-align': 'center'},
-                         style_cell_conditional=[
-                             {'if': {'column_id': 'q-val'},
-                              'width': '30%'}
-                         ],
-                         style_data_conditional=[
-                             {'if': {'row_index': 'odd'},
-                              'backgroundColor': 'rgb(248,248,248)'}
-                         ],
-                         style_cell={
-                             'font-family': 'ubuntu',
-                             'font-size': 14,
-                             'height': '10px',
-                             'textOverFlow': 'ellipsis',
-                             'text-align': 'center',
-                             'overflow': 'hidden'
-                         },
-                         style_as_list_view=True,
-                         )
-        ], width=4, align='center')
+        dbc.Col([dcc.Loading(id='loading_volcano', children=dcc.Graph(id='volcano')),
+                 ],
+                width=5, align='center'),
+        dbc.Col([dcc.Loading(id='loading_dataset_table', children=dt.DataTable(id='sel_dataset_table',
+                                                                               columns=[{"name": i, "id": i} for i in [
+                                                                                   'Rv_ID', 'gene_name', 'log2FC', 'q-val']],
+                                                                               sort_action='native',
+                                                                               row_selectable='multi',
+                                                                               selected_rows=[],
+                                                                               page_action='native',
+                                                                               page_size=15,
+                                                                               page_current=0,
+                                                                               style_header={'color': '#e95420', 'font-weight': 'bold',
+                                                                                             'text-align': 'center'},
+                                                                               style_cell_conditional=[
+                                                                                   {'if': {'column_id': 'q-val'},
+                                                                                    'width': '30%'}
+                                                                               ],
+                                                                               style_data_conditional=[
+                                                                                   {'if': {'row_index': 'odd'},
+                                                                                    'backgroundColor': 'rgb(248,248,248)'}
+                                                                               ],
+                                                                               style_cell={
+                                                                                   'font-family': 'ubuntu',
+                                                                                   'font-size': 14,
+                                                                                   'height': '10px',
+                                                                                   'textOverFlow': 'ellipsis',
+                                                                                   'text-align': 'center',
+                                                                                   'overflow': 'hidden'
+                                                                               },
+                                                                               style_as_list_view=True,
+                                                                               ))
+                 ], width=4, align='center')
     ]),
     html.Br(),
     html.Br(),
@@ -283,6 +282,8 @@ app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
 
+@app.callback(Output('loading_dataset_table', "children"))
+@app.callback(Output("loading_volcano", "children"))
 @app.callback(Output("content", "children"),
               [Input("url", "pathname")])
 def display_content(path):
