@@ -144,8 +144,12 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
     dbc.Row([
         dbc.Col([
             html.Div(id='dataset_metadata')], width=3,
-            style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
-                   'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+            style={'background-color': '#f5f5f5',
+                   'padding': '30px',
+                   'border-radius': '25px',
+                   'border-color': '#dcdcdc',
+                   'border-width': '2px',
+                   'border-style': 'solid'}),
         dbc.Col([
             dcc.Graph(id='volcano'),
         ],
@@ -220,8 +224,12 @@ analyze_genes = html.Div([
                          placeholder='Select a gene', multi=False, searchable=True)]),
         dbc.Col([
             html.Div(id='gene_metadata')])
-    ], style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
-              'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+    ], style={'background-color': '#f5f5f5',
+              'padding': '30px',
+              'border-radius': '25px',
+              'border-color': '#dcdcdc',
+              'border-width': '2px',
+              'border-style': 'solid'}),
     html.Br(),
     html.Br(),
     dt.DataTable(id='sel_genes_table',
@@ -387,7 +395,8 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
                              mode='markers',
                              name='Pass cutoff',
                              marker={'opacity': 0.6,
-                                     'size': 10, 'color': 'grey'},
+                                     'size': 10,
+                                     'color': 'grey'},
                              showlegend=False
                              ))
     traces.append(go.Scatter(x=ticked_data['log2FC'],
@@ -398,7 +407,8 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
                              textposition='bottom center',
                              name='T',
                              marker={'opacity': 0.6,
-                                     'size': 10, 'color': 'green'},
+                                     'size': 10,
+                                     'color': 'green'},
                              showlegend=False
                              ))
     return {'data': traces,
