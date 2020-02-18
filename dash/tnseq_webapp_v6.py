@@ -341,18 +341,11 @@ def update_dataset_table(sel_dataset):
     [dash.dependencies.Input('Sel_dataset', 'value'),
      dash.dependencies.Input('log2FC', 'value'),
      dash.dependencies.Input('q-val', 'value'),
-     dash.dependencies.Input('sel_dataset_table', "derived_virtual_row_ids"),
-     dash.dependencies.Input('sel_dataset_table', "selected_row_ids")])
-def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
-    selected_data = main_data[main_data['Expt'] == sel_dataset]
+     dash.dependencies.Input('sel_dataset_table', "derived_virtual_selected_row_ids")])
+def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
+    dff = main_data[main_data['Expt'] == sel_dataset]
     if selected_row_ids is None:
         selected_row_ids = []
-
-    if row_ids is None:
-        dff = selected_data
-        row_ids = selected_data['id']
-    else:
-        dff = selected_data.loc[row_ids]
 
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
     inf_repl = np.ceil(max_log_qval) + 1
@@ -369,7 +362,7 @@ def update_volcano(sel_dataset, log2FC, qval, row_ids, selected_row_ids):
                                 int(for_x_ticks.max() + 1), 1))
     ticklab_x = tickvals_x.copy()
 
-    ticked = dff.index.isin(selected_row_ids)
+    ticked = dff['id'].isin(selected_row_ids)
     ticked_data = dff[ticked]
     unticked_data = dff[~ticked]
     generated_filter = (unticked_data['q-val'] <= qval) & (
