@@ -4,7 +4,7 @@ from io import StringIO
 from random import random
 
 import dash
-# from dash._utils import get_relative_path
+from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_daq as daq
@@ -28,8 +28,8 @@ cogs_desc = pd.read_csv(os.path.join(
     path_annotation, 'cog_names.csv'), header=0, index_col=0, squeeze=True)
 
 unique_expts = list(main_data['Expt'].unique())
-unique_Rvs = list(main_data['Rv_ID'].unique())
-unique_genes = list(main_data['gene_name'].unique())
+unique_Rvs = sorted(list(main_data['Rv_ID'].unique()))
+unique_genes = sorted(list(main_data['gene_name'].unique()))
 main_data['id'] = main_data['Rv_ID']
 main_data.set_index('id', inplace=True, drop=False)
 # print("Main", main_data.head())
@@ -98,7 +98,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  html.Br(),
                                  html.Br(),
                                  dbc.Col([
-                                     dcc.Dropdown(id='Sel_dataset',
+                                     dcc.Dropdown(id='sel_dataset',
                                                   options=[{'label': x, 'value': x}
                                                            for x in unique_expts],
                                                   value=unique_expts[0])
@@ -120,8 +120,12 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  html.A('Download this dataset', id='download_dataset', download="", href="",
                                         target="_blank"),
                              ], align='center',
-    style={'background-color': '#f5f5f5', 'padding': '30px', 'border-radius': '25px',
-                                 'border-color': '#dcdcdc', 'border-width': '2px', 'border-style': 'solid'}),
+    style={'background-color': '#f5f5f5',
+                                 'padding': '30px',
+                                 'border-radius': '25px',
+                                 'border-color': '#dcdcdc',
+                                 'border-width': '2px',
+                                 'border-style': 'solid'}),
     html.Br(),
     html.Br(),
     dbc.Row([
@@ -220,7 +224,7 @@ analyze_genes = html.Div([
     dbc.Row([html.Label('Pick a gene')]),
     dbc.Row([
         dbc.Col([
-            dcc.Dropdown(id='Sel_gene', options=[{'label': x, 'value': x} for x in unique_genes+unique_Rvs],
+            dcc.Dropdown(id='sel_gene', options=[{'label': x, 'value': x} for x in unique_genes+unique_Rvs],
                          placeholder='Select a gene', multi=False, searchable=True)]),
         dbc.Col([
             html.Div(id='gene_metadata')])
@@ -232,7 +236,7 @@ analyze_genes = html.Div([
               'border-style': 'solid'}),
     html.Br(),
     html.Br(),
-    dt.DataTable(id='sel_genes_table',
+    dt.DataTable(id='sel_gene_table',
                  columns=[{"name": i, "id": i, "presentation": 'markdown'} for i in [
                      'Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val', 'num_replicates_control', 'num_replicates_experimental']],
                  sort_action='native',
@@ -270,7 +274,7 @@ about = html.Div([
 app.layout = html.Div(
     [
         # dcc.Location(id="url"),
-        dcc.Location(id="url", refresh=False, ),
+        dcc.Location(id="url", refresh=False),
         navbar,
         dbc.Container(id="content", style={"padding": "20px"}),
     ])
@@ -279,7 +283,7 @@ app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
 
-@app.callback(dash.dependencies.Output("content", "children"), [dash.dependencies.Input("url", "pathname")])
+@app.callback(Output("content", "children"), [Input("url", "pathname")])
 def display_content(path):
     page_name = app.strip_relative_path(path)
     if page_name == 'analyze_datasets':
@@ -291,32 +295,32 @@ def display_content(path):
 
 
 @app.callback(
-    dash.dependencies.Output('sel_genes_table', 'data'),
-    [dash.dependencies.Input('Sel_gene', 'value')])
+    Output('sel_gene_table', 'data'),
+    [Input('sel_gene', 'value')])
 def update_genes_table(selected_gene):
     if selected_gene in unique_Rvs:
-        df = main_data[main_data['Rv_ID'] == selected_gene]
+        dff = main_data[main_data['Rv_ID'] == selected_gene]
     elif selected_gene in unique_genes:
-        df = main_data[main_data['gene_name'] == selected_gene]
+        dff = main_data[main_data['gene_name'] == selected_gene]
     else:
         raise PreventUpdate
-    df = df[['Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val',
-             'num_replicates_control', 'num_replicates_experimental']]
-    df['q-val'] = np.round(df['q-val'], 2)
-    df['log2FC'] = np.round(df['log2FC'], 2)
+    dff = dff[['Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val',
+               'num_replicates_control', 'num_replicates_experimental']]
+    dff['q-val'] = np.round(dff['q-val'], 2)
+    dff['log2FC'] = np.round(dff['log2FC'], 2)
     # df.loc[df['Expt'] == 'xu_mero_2.5_vs_xu_mero_0',
     #        'Expt'] = '[xu_mero_2.5_vs_xu_mero_0](https://www.google.com)'
-    df = df.sort_values(by='log2FC')
-    return df.to_dict('records')
+    dff = dff.sort_values(by='log2FC')
+    return dff.to_dict('records')
 
 @app.callback([
-    dash.dependencies.Output('download_dataset', 'href'),
-    dash.dependencies.Output('download_dataset', 'download')
+    Output('download_dataset', 'href'),
+    Output('download_dataset', 'download')
 ],
-    [dash.dependencies.Input('Sel_dataset', 'value')])
+    [Input('sel_dataset', 'value')])
 def update_download_dataset(sel_dataset):
-    selected_data = main_data[main_data['Expt'] == sel_dataset]
-    csv_string = selected_data.to_csv(encoding='utf-8')
+    dff = main_data[main_data['Expt'] == sel_dataset]
+    csv_string = dff.to_csv(encoding='utf-8')
     csv_string = "data:text/csv;charset=utf-8," + \
         urllib.parse.quote(csv_string)
     download_string = sel_dataset + '.csv'
@@ -324,24 +328,24 @@ def update_download_dataset(sel_dataset):
 
 
 @app.callback(
-    dash.dependencies.Output('sel_dataset_table', 'data'),
-    [dash.dependencies.Input('Sel_dataset', 'value')])
+    Output('sel_dataset_table', 'data'),
+    [Input('sel_dataset', 'value')])
 def update_dataset_table(sel_dataset):
-    selected_data = main_data[main_data['Expt'] == sel_dataset]
-    selected_data = selected_data[[
+    dff = main_data[main_data['Expt'] == sel_dataset]
+    dff = dff[[
         'Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
-    selected_data['q-val'] = np.round(selected_data['q-val'], 2)
-    selected_data['log2FC'] = np.round(selected_data['log2FC'], 2)
-    selected_data = selected_data.sort_values(by='log2FC')
-    return selected_data.to_dict('records')
+    dff['q-val'] = np.round(dff['q-val'], 2)
+    dff['log2FC'] = np.round(dff['log2FC'], 2)
+    dff = dff.sort_values(by='log2FC')
+    return dff.to_dict('records')
 
 
 @app.callback(
-    dash.dependencies.Output('volcano', 'figure'),
-    [dash.dependencies.Input('Sel_dataset', 'value'),
-     dash.dependencies.Input('log2FC', 'value'),
-     dash.dependencies.Input('q-val', 'value'),
-     dash.dependencies.Input('sel_dataset_table', "derived_virtual_selected_row_ids")])
+    Output('volcano', 'figure'),
+    [Input('sel_dataset', 'value'),
+     Input('log2FC', 'value'),
+     Input('q-val', 'value'),
+     Input('sel_dataset_table', "derived_virtual_selected_row_ids")])
 def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
     dff = main_data[main_data['Expt'] == sel_dataset]
     if selected_row_ids is None:
@@ -422,8 +426,8 @@ def update_volcano(sel_dataset, log2FC, qval, selected_row_ids):
 
 
 @app.callback(
-    dash.dependencies.Output('bubble_plot', 'figure'),
-    [dash.dependencies.Input('Sel_dataset', 'value')])
+    Output('bubble_plot', 'figure'),
+    [Input('sel_dataset', 'value')])
 def update_bubble(sel_dataset):
     uk_rd, q_rd, color_list_rgb, rv_ids = unknown_essential_xy(
         sel_dataset, main_data, df_uk)
@@ -471,11 +475,11 @@ def update_bubble(sel_dataset):
     }
 
 
-@app.callback(dash.dependencies.Output('cog', 'figure'),
-              [dash.dependencies.Input('Sel_dataset', 'value'),
-               dash.dependencies.Input('Sel_cog', 'value'),
-               dash.dependencies.Input('log2FC', 'value'),
-               dash.dependencies.Input('q-val', 'value')])
+@app.callback(Output('cog', 'figure'),
+              [Input('sel_dataset', 'value'),
+               Input('Sel_cog', 'value'),
+               Input('log2FC', 'value'),
+               Input('q-val', 'value')])
 def update_cog(sel_dataset, sel_cog, log2FC, qval):
     selected_data = main_data[main_data['Expt'] == sel_dataset]
     if sel_cog == 'Under-represented':
@@ -519,9 +523,8 @@ def update_cog(sel_dataset, sel_cog, log2FC, qval):
 
 
 @app.callback(
-    dash.dependencies.Output(component_id='gene_metadata',
-                             component_property='children'),
-    [dash.dependencies.Input(component_id='Sel_gene', component_property='value')])
+    Output('gene_metadata', 'children'),
+    [Input('sel_gene', 'value')])
 def print_gene_metadata(sel_gene):
     if sel_gene in unique_Rvs:
         sel_details = main_data[main_data['Rv_ID'] == sel_gene]
@@ -535,29 +538,28 @@ def print_gene_metadata(sel_gene):
 
 
 @app.callback(
-    dash.dependencies.Output(component_id='dataset_metadata',
-                             component_property='children'),
-    [dash.dependencies.Input(component_id='Sel_dataset', component_property='value')])
+    Output('dataset_metadata', 'children'),
+    [Input('sel_dataset', 'value')])
 def print_dataset_metadata(sel_dataset):
-    data_subset = main_data[main_data['Expt'] == sel_dataset]
+    dff = main_data[main_data['Expt'] == sel_dataset]
     text = [
         html.Strong('Summary'),
-        html.Span(': ' + data_subset['meaning'][0]),
+        html.Span(': ' + dff['meaning'][0]),
         html.Br(),
         html.Br(),
         html.Strong('Original Publication'),
         html.Br(),
         html.Span(': '),
-        html.A(data_subset['paper_title'][0],
-               href=data_subset['paper_URL'][0]),
+        html.A(dff['paper_title'][0],
+               href=dff['paper_URL'][0]),
         html.Br(),
         html.Br(),
         html.Strong('No of control replicates'),
-        html.Span(': ' + str(data_subset['num_replicates_control'][0])),
+        html.Span(': ' + str(dff['num_replicates_control'][0])),
         html.Br(),
         html.Br(),
         html.Strong('No of experimental replicates'),
-        html.Span(': ' + str(data_subset['num_replicates_experimental'][0]))
+        html.Span(': ' + str(dff['num_replicates_experimental'][0]))
     ]
     return text
 
