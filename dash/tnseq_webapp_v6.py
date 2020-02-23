@@ -1,5 +1,3 @@
-# TODO: https://community.plot.ly/t/dcc-loading-for-loading-graph-s/23039/5
-
 import os
 import urllib.parse
 from io import StringIO
@@ -49,13 +47,13 @@ def discretize_q_values(row):
     return q_val_d
 
 
-def unknown_essential_xy(TnSeq_screen, df_data, df_uk, rand_param=0.6):
+def unknown_essential_xy(TnSeq_screen, rand_param=0.6):
     # Grab data for a single TnSeq screen
-    df_data_test = main_data[main_data['Expt'] == TnSeq_screen]
-    df_data_test['q_val_D'] = df_data_test.apply(discretize_q_values, 1)
+    selected_data = main_data[main_data['Expt'] == TnSeq_screen]
+    selected_data['q_val_D'] = selected_data.apply(discretize_q_values, 1)
 
     # Merge with unknowns:
-    df_vis = df_data_test.merge(df_uk, on=['Rv_ID', 'gene_name'], how='inner')
+    df_vis = selected_data.merge(df_uk, on=['Rv_ID'], how='inner')
 
     # Get x-y datasets:
     rv_ids = df_vis.Rv_ID.values
@@ -69,17 +67,10 @@ def unknown_essential_xy(TnSeq_screen, df_data, df_uk, rand_param=0.6):
                      rand_param / 2 for q in q_list])
 
     # color the unknown-essentials differently:
-    current_palette = sns.color_palette()
-    # all genes are gray by default.
-    color_list = np.array([(0.35, 0.35, 0.35)] * df_vis.shape[0])
-    # Unknown essentials in a different color.
-    ind_temp = list(df_vis[(df_vis.q_val_D == 3) &
-                           (df_vis.UK_score_4 == 4)].index)
-    color_list[ind_temp] = current_palette[0]
-    color_list_rgb = ['rgb(' + ', '.join([str(np.round(rgb, 2))
-                                          for rgb in col]) + ')' for col in color_list]
-
-    return uk_rd, q_rd, color_list_rgb, rv_ids
+    color_list = np.array(['#585858']*df_vis.shape[0])
+    color_list[df_vis[(df_vis.q_val_D == 3) &
+                      (df_vis.UK_score_4 == 4)].index] = '#2b7bba'
+    return uk_rd, q_rd, color_list, rv_ids
 
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -320,9 +311,8 @@ def print_dataset_metadata(sel_dataset):
         html.Span(': ' + dff['meaning'][0]),
         html.Br(),
         html.Br(),
-        html.Strong('Original Publication'),
+        html.Strong('Original Publication:'),
         html.Br(),
-        html.Span(': '),
         html.A(dff['paper_title'][0],
                href=dff['paper_URL'][0]),
         html.Br(),
@@ -444,7 +434,7 @@ def update_dataset_table(sel_dataset):
                Input('log2FC', 'value'),
                Input('q-val', 'value')])
 def update_cog(sel_dataset, sel_cog, log2FC, qval):
-    # filter data
+    # filter data based on user inputs
     selected_data = main_data[main_data['Expt'] == sel_dataset]
     if sel_cog == 'Under-represented':
         sel_subset_filter = (
@@ -460,7 +450,7 @@ def update_cog(sel_dataset, sel_cog, log2FC, qval):
     # calculate subset freq
     sel_cogs = cogs_df[cogs_df['X.Orf'].isin(sel_subset['Rv_ID'])]
     sel_cogs_freq = sel_cogs['COG'].value_counts(normalize=True)
-    # enrichment
+    # calculate enrichment
     normalized_cogs = sel_cogs_freq / cog_total_freq
     # format
     normalized_cogs = normalized_cogs[~normalized_cogs.isnull()]
@@ -494,8 +484,9 @@ def update_cog(sel_dataset, sel_cog, log2FC, qval):
     Output('bubble_plot', 'figure'),
     [Input('sel_dataset', 'value')])
 def update_bubble(sel_dataset):
-    uk_rd, q_rd, color_list_rgb, rv_ids = unknown_essential_xy(
-        sel_dataset, main_data, df_uk)
+    uk_rd, q_rd, color_list, rv_ids = unknown_essential_xy(
+        sel_dataset)
+    print(color_list)
     return {
         'data': [
             go.Scatter(
@@ -508,7 +499,7 @@ def update_bubble(sel_dataset):
                 marker={
                     'size': 15,
                     'line': {'width': 1.5, 'color': 'black'},
-                    'color': color_list_rgb
+                    'color': color_list
                 }
             )
         ],
