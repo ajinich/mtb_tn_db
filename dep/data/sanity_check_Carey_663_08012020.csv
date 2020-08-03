@@ -1,0 +1,4 @@
+screen,both_CES,num_both_nonCES,num_CES_old_nonCES_new,num_nonCES_old_CES_new
+663_LOESS,38,3564,10,72
+663_LOESS_term15,40,3561,8,75
+663_LOESS_term15_2,32,3578,16,58

@@ -5,6 +5,8 @@ file,col_name,q_val_col_name,ratio_col_name,is_ratio_log2FC
 2015_Kieser_Rubin/table_1C_edited.xlsx,2015_Kieser_GI_3,P-value,Fold Change,FALSE
 2015_Mendum_Stewart/table_1A.xlsx,2015_Mendum,p_val_7days,NONE,NONE
 2016_Nambi_Sassetti/table_1.xlsx,2016_Nambi,Qval,Log2 ctpC/WT,TRUE
+2017_Mishra_Sassetti/table_1.xlsx,2017_Mishra_1,Qval (C3HeBvsBL6),log2(C3HeB/BL6),TRUE
+2017_Mishra_Sassetti/table_1.xlsx,2017_Mishra_2,Qval (NOS2vsBL6),log2(NOS2/BL6),TRUE
 2017_Xu_Ehrt/table_3A.xlsx,2017_Xu_1A,qval,FC [log2],TRUE
 2017_Xu_Ehrt/table_3B.xlsx,2017_Xu_1B,qval,FC [log2],TRUE
 2017_Xu_Ehrt/table_3C.xlsx,2017_Xu_1C,qval,FC [log2],TRUE
