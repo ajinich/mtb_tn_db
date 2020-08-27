@@ -137,6 +137,8 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
             html.Div([
                 html.Label('Volcano plot')
             ], style={'textAlign': 'center', 'display': 'block'}),
+            html.Div(id='num_significant', style={
+                     'textAlign': 'center', 'display': 'block'}),
         ], align='center', width=5),
         dbc.Col([
             html.Div([
@@ -221,8 +223,18 @@ analyze_genes = html.Div([
     dbc.Row([html.Label('Pick a gene')]),
     dbc.Row([
         dbc.Col([
-            dcc.Dropdown(id='sel_gene', options=[{'label': x, 'value': x} for x in unique_genes+unique_Rvs],
-                         placeholder='Select a gene', multi=False, searchable=True)]),
+            dcc.Dropdown(id='sel_gene',
+                         options=[{'label': x, 'value': x}
+                                  for x in unique_genes+unique_Rvs],
+                         placeholder='Select a gene',
+                         multi=False,
+                         searchable=True),
+            dcc.Dropdown(id='sel_standardized_gene_table',
+                         options=[
+                             {'label': x, 'value': x} for x in ['Standardized', 'Original']],
+                         value='Standardized',
+                         multi=False)
+        ]),
         dbc.Col([
             html.Div(id='gene_metadata')])
     ], style={'background-color': '#f5f5f5',
@@ -343,6 +355,24 @@ def print_dataset_metadata(sel_dataset):
         html.Strong('No of experimental replicates'),
         html.Span(': ' + str(dff['num_replicates_experimental'][0]))
     ]
+    return text
+
+
+@ app.callback(
+    Output('num_significant', 'children'),
+    [Input('sel_dataset', 'value'),
+     Input('log2FC', 'value'),
+     Input('q-val', 'value')])
+def update_num_significant(sel_dataset, log2FC, qval):
+    dff = main_data[main_data['Expt'] == sel_dataset]
+    num_neg_sig = dff[(dff['q-val'] <= qval) &
+                      (dff['log2FC'] <= -log2FC)].shape[0]
+    num_pos_sig = dff[(dff['q-val'] <= qval) &
+                      (dff['log2FC'] >= log2FC)].shape[0]
+    text = [html.Span(f'Number of neg_sig : {num_neg_sig} ; Number of pos_sig : {num_pos_sig}'),
+            # html.Br(),
+            # html.Span(f'#pos-significant:{num_pos_sig}')
+            ]
     return text
 
 
