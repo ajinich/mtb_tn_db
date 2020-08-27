@@ -98,7 +98,8 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                      dcc.Dropdown(id='sel_dataset',
                                                   options=[{'label': x, 'value': x}
                                                            for x in unique_expts],
-                                                  value=unique_expts[0])
+                                                  value=unique_expts[0]),
+                                     dcc.Dropdown(id='sel_standardized')
                                  ], width=4),
                                  dbc.Col([
                                      daq.Slider(id='log2FC', min=0, max=6, value=1, step=0.5,
@@ -116,6 +117,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                  html.Br(),
                                  html.A('Download this dataset', id='download_dataset', download="", href="",
                                         target="_blank"),
+
                              ], align='center',
     style={'background-color': '#f5f5f5',
                                  'padding': '30px',
@@ -288,6 +290,20 @@ def display_content(path):
         return analyze_genes
     if page_name == 'about':
         return about
+
+
+@app.callback(
+    Output('sel_standardized', 'options'),
+    [Input('sel_dataset', 'value')])
+def update_standardized_dropdown(sel_dataset):
+    return [{'label': x, 'value': x} for x in ['Standardized', 'Original']]
+
+
+@app.callback(
+    Output('sel_standardized', 'value'),
+    [Input('sel_dataset', 'value')])
+def update_standardized_dropdown_default(sel_dataset):
+    return 'Standardized'
 
 
 @ app.callback([
