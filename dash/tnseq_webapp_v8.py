@@ -22,7 +22,7 @@ path_data = '../data/'
 std_data = pd.read_csv(os.path.join(
     path_data, 'standardized_data_dash.csv'), low_memory=False)
 si_data = pd.read_csv(os.path.join(
-    path_data, 'si_data_dash.csv'), dtype={''})
+    path_data, 'si_data_dash.csv'), dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float32, 'q-val': np.float32})
 print(si_data.dtypes, 'dtypes')
 # TODO: make num_replicates into int
 metadata = pd.read_csv(os.path.join(path_data, 'col_desc_dash.csv'))
