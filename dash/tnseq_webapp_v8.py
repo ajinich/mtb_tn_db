@@ -18,17 +18,18 @@ from numpy import inf
 
 external_stylesheets = [dbc.themes.UNITED]
 path_data = '../data/'
-# TODO: specify coltypes
+
 std_data = pd.read_csv(os.path.join(
-    path_data, 'standardized_data_dash.csv'), low_memory=False)
+    path_data, 'standardized_data_dash.tsv'),  sep='\t', dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float, 'q-val': np.float})
 si_data = pd.read_csv(os.path.join(
-    path_data, 'si_data_dash.csv'), dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float32, 'q-val': np.float32})
-print(si_data.dtypes, 'dtypes')
+    path_data, 'si_data_dash.tsv'), sep='\t', dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float, 'q-val': np.float})
 # TODO: make num_replicates into int
-metadata = pd.read_csv(os.path.join(path_data, 'col_desc_dash.csv'))
+# TODO: fill empty strings in meaning etc with ' ' instead of nan
+metadata = pd.read_csv(os.path.join(path_data, 'col_desc_dash.tsv'), sep='\t')
 dict_std_to_si = dict(zip(metadata.column_ID_std, metadata.column_ID_SI))
 dict_si_to_std = dict(zip(metadata.column_ID_SI, metadata.column_ID_std))
 
+# TODO: prerun the annotations?
 path_annotation = '../data/annotations/'
 cogs_df = pd.read_csv(os.path.join(path_annotation, 'all_cogs.csv'))
 cogs_desc = pd.read_csv(os.path.join(
@@ -226,9 +227,8 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
             dcc.Graph(id='cog')
 
         ], width=6, align='center'),
-        dbc.Col([
-            dcc.Graph(id='bubble_plot')
-        ], width=6, align='center')
+        dbc.Col([dcc.Loading(id='loading_bubble', children=dcc.Graph(id='bubble_plot'))
+                 ], width=6, align='center')
     ], justify='center')
 ])
 
@@ -349,10 +349,12 @@ def update_download_dataset(sel_dataset, sel_standardized):
     else:
         dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
         dff = si_data[si_data['Expt'] == dataset_name]
-    csv_string = dff.to_csv(encoding='utf-8')
-    csv_string = "data:text/csv;charset=utf-8," +\
+    dff.reset_index(inplace=True, drop=True)
+    dff = dff.drop(columns='id')
+    csv_string = dff.to_csv(encoding='utf-8', sep='\t', index=False)
+    csv_string = "data:text/plain;charset=utf-8," +\
         urllib.parse.quote(csv_string)
-    download_string = dataset_name + '.csv'
+    download_string = dataset_name + '.tsv'
     return csv_string, download_string
 
 
@@ -402,8 +404,6 @@ def update_num_significant(sel_dataset, sel_standardized, log2FC, qval):
         dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
         dff = si_data[si_data['Expt'] == dataset_name]
     dff = dff.dropna(axis=0, subset=['log2FC', 'q-val'])
-    print('aaaaa', dff)
-    print(dff.dtypes)
     num_neg_sig = dff[(dff['q-val'] <= qval) &
                       (dff['log2FC'] <= -log2FC)].shape[0]
     num_pos_sig = dff[(dff['q-val'] <= qval) &
@@ -442,9 +442,9 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
     ticklab[-1] = 'Inf'
 
     for_x_ticks = dff['log2FC']
-    # TODO: WHAT is this?
-    for_x_ticks = for_x_ticks.replace([np.inf, -np.inf], np.nan)
-    for_x_ticks = for_x_ticks.dropna()
+    # TODO: WHAT is this? - commented for now
+    #for_x_ticks = for_x_ticks.replace([np.inf, -np.inf], np.nan)
+    #for_x_ticks = for_x_ticks.dropna()
     tickvals_x = list(np.arange(int(for_x_ticks.min() - 1),
                                 int(for_x_ticks.max() + 1), 1))
     ticklab_x = tickvals_x.copy()
@@ -511,34 +511,45 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
 
 @ app.callback(
     Output('sel_dataset_table', 'data'),
-    [Input('sel_dataset', 'value')])
-def update_dataset_table(sel_dataset):
-    dff = main_data[main_data['Expt'] == sel_dataset]
+    [Input('sel_dataset', 'value'),
+     Input('sel_standardized', 'value')])
+def update_dataset_table(sel_dataset, sel_standardized):
+    if sel_standardized == 'Standardized':
+        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
+        dff = std_data[std_data['Expt'] == dataset_name]
+    else:
+        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
+        dff = si_data[si_data['Expt'] == dataset_name]
     dff = dff[[
         'Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
-    dff['q-val'] = np.round(dff['q-val'], 2)
-    dff['log2FC'] = np.round(dff['log2FC'], 2)
+    dff['q-val'] = dff['q-val'].astype(float).round(2)
+    dff['log2FC'] = dff['log2FC'].astype(float).round(2)
     dff = dff.sort_values(by='log2FC')
     return dff.to_dict('records')
 
 
 @ app.callback(Output('cog', 'figure'),
                [Input('sel_dataset', 'value'),
+                Input('sel_standardized', 'value'),
                 Input('Sel_cog', 'value'),
                 Input('log2FC', 'value'),
                 Input('q-val', 'value')])
-def update_cog(sel_dataset, sel_cog, log2FC, qval):
-    # filter data based on user inputs
-    selected_data = main_data[main_data['Expt'] == sel_dataset]
+def update_cog(sel_dataset, sel_standardized, sel_cog, log2FC, qval):
+    if sel_standardized == 'Standardized':
+        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
+        dff = std_data[std_data['Expt'] == dataset_name]
+    else:
+        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
+        dff = si_data[si_data['Expt'] == dataset_name]
     if sel_cog == 'Under-represented':
         sel_subset_filter = (
-            selected_data['q-val'] <= qval) & (selected_data['log2FC'] <= -log2FC)
+            dff['q-val'] <= qval) & (dff['log2FC'] <= -log2FC)
         colorscale = 'Cividis'
     else:
         sel_subset_filter = (
-            selected_data['q-val'] <= qval) & (selected_data['log2FC'] >= -log2FC)
+            dff['q-val'] <= qval) & (dff['log2FC'] >= -log2FC)
         colorscale = 'Viridis'
-    sel_subset = selected_data[sel_subset_filter]
+    sel_subset = dff[sel_subset_filter]
     # calculate genome freq
     cog_total_freq = cogs_df['COG'].value_counts(normalize=True)
     # calculate subset freq
@@ -576,11 +587,17 @@ def update_cog(sel_dataset, sel_cog, log2FC, qval):
 
 @ app.callback(
     Output('bubble_plot', 'figure'),
-    [Input('sel_dataset', 'value')])
-def update_bubble(sel_dataset):
+    [Input('sel_dataset', 'value'),
+     Input('sel_standardized', 'value')])
+def update_bubble(sel_dataset, sel_standardized):
+    if sel_standardized == 'Standardized':
+        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
+        dff = std_data[std_data['Expt'] == dataset_name]
+    else:
+        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
+        dff = si_data[si_data['Expt'] == dataset_name]
     uk_rd, q_rd, color_list, rv_ids = unknown_essential_xy(
-        sel_dataset)
-    print(color_list)
+        dff)
     return {
         'data': [
             go.Scatter(
@@ -627,21 +644,31 @@ def update_bubble(sel_dataset):
 
 @ app.callback(
     Output('sel_gene_table', 'data'),
-    [Input('sel_gene', 'value')])
-def update_genes_table(selected_gene):
+    [Input('sel_gene', 'value'),
+     Input('sel_standardized_gene_table', 'value')])
+def update_genes_table(selected_gene, sel_standardized_gene_table):
+    if sel_standardized_gene_table == 'Standardized':
+        dff = std_data.copy()
+        metadata_col = 'column_ID_std'
+    else:
+        dff = si_data.copy()
+        metadata_col = 'column_ID_SI'
     if selected_gene in unique_Rvs:
-        dff = main_data[main_data['Rv_ID'] == selected_gene]
+        dff = dff[dff['Rv_ID'] == selected_gene]
     elif selected_gene in unique_genes:
-        dff = main_data[main_data['gene_name'] == selected_gene]
+        dff = dff[dff['gene_name'] == selected_gene]
     else:
         raise PreventUpdate
-    dff['paper'] = '['+dff['paper_title']+']('+dff['paper_URL']+')'
-    dff = dff[['Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val',
-               'num_replicates_control', 'num_replicates_experimental', 'paper']]
-    dff['q-val'] = np.round(dff['q-val'], 2)
-    dff['log2FC'] = np.round(dff['log2FC'], 2)
-    dff = dff.sort_values(by='log2FC')
-    return dff.to_dict('records')
+    metadata['paper'] = '['+metadata['paper_title'] + \
+        ']('+metadata['paper_URL']+')'
+    metadata_trunc = metadata[[metadata_col,
+                               'num_replicates_control', 'num_replicates_experimental', 'paper']]
+    metadata_trunc = metadata_trunc.rename(columns={metadata_col: 'Expt'})
+    merged_data = dff.merge(metadata_trunc, how='left', on='Expt')
+    merged_data['q-val'] = np.round(merged_data['q-val'], 2)
+    merged_data['log2FC'] = np.round(merged_data['log2FC'], 2)
+    merged_data = merged_data.sort_values(by='q-val')
+    return merged_data.to_dict('records')
 
 
 @ app.callback(
@@ -649,9 +676,9 @@ def update_genes_table(selected_gene):
     [Input('sel_gene', 'value')])
 def print_gene_metadata(sel_gene):
     if sel_gene in unique_Rvs:
-        sel_details = main_data[main_data['Rv_ID'] == sel_gene]
+        sel_details = std_data[std_data['Rv_ID'] == sel_gene]
     elif sel_gene in unique_genes:
-        sel_details = main_data[main_data['gene_name'] == sel_gene]
+        sel_details = si_data[si_data['gene_name'] == sel_gene]
     else:
         return "gene not found"
     return list(sel_details['Description'])[0]
