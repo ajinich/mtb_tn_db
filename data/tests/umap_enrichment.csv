@@ -1,15 +1,12 @@
 categories,pval,cluster,annot
-V,0.00010593395381262799,3,COG
-F,0.00010406472643274093,5,COG
-Q,1.4427116314781331e-05,10,COG
-L,1.3232845836570734e-21,11,COG
-E,3.1644921028114778e-06,17,COG
-H,0.0005636186222006833,17,COG
-S,0.0007857811965074301,22,COG
-intermediary metabolism and respiration,0.00010811072522347076,2,func_tuberculist
-intermediary metabolism and respiration,0.0005189010788481594,5,func_tuberculist
-lipid metabolism,0.0002566002442185223,10,func_tuberculist
-insertion seqs and phages,3.0674584349850142e-25,11,func_tuberculist
-intermediary metabolism and respiration,7.638387667092411e-10,17,func_tuberculist
-cell wall and cell processes,0.0009422491250746713,18,func_tuberculist
-conserved hypotheticals,0.0004463262823762523,22,func_tuberculist
+L,1.3232845836570734e-21,4,COG
+F,7.932235324630048e-05,6,COG
+E,3.1644921028114778e-06,11,COG
+H,0.0005636186222006833,11,COG
+Q,1.4427116314781331e-05,12,COG
+insertion seqs and phages,3.0674584349850142e-25,4,func_tuberculist
+intermediary metabolism and respiration,0.0009309183523737574,6,func_tuberculist
+intermediary metabolism and respiration,7.638387667092411e-10,11,func_tuberculist
+lipid metabolism,0.0002566002442185223,12,func_tuberculist
+cell wall and cell processes,0.00020701779245906908,16,func_tuberculist
+intermediary metabolism and respiration,0.000407611279581644,17,func_tuberculist
