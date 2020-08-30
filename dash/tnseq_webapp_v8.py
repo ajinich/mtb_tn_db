@@ -220,7 +220,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
     ]),
     dbc.Row([
         dbc.Col([
-            dcc.Dropdown(id='Sel_cog',
+            dcc.Dropdown(id='sel_cog',
                          options=[{'label': x, 'value': x} for x in
                                   ['Under-represented', 'Over-represented']],
                          value='Under-represented'),
@@ -336,19 +336,18 @@ def update_standardized_dropdown(sel_dataset):
 # TODO: Combine outputs from sel_datasets
 
 
-@ app.callback([
-    Output('download_dataset', 'href'),
-    Output('download_dataset', 'download')
-],
-    [Input('sel_dataset', 'value'),
-     Input('sel_standardized', 'value')])
-def update_download_dataset(sel_dataset, sel_standardized):
+def filter_dataset(sel_dataset, sel_standardized):
     if sel_standardized == 'Standardized':
         dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
         dff = std_data[std_data['Expt'] == dataset_name]
     else:
         dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
         dff = si_data[si_data['Expt'] == dataset_name]
+    return dff, dataset_name
+
+
+def update_download_dataset(dff, dataset_name):
+    dff = dff.copy(deep=True)
     dff.reset_index(inplace=True, drop=True)
     dff = dff.drop(columns='id')
     csv_string = dff.to_csv(encoding='utf-8', sep='\t', index=False)
@@ -358,51 +357,8 @@ def update_download_dataset(sel_dataset, sel_standardized):
     return csv_string, download_string
 
 
-@ app.callback(
-    Output('dataset_metadata', 'children'),
-    [Input('sel_dataset', 'value'),
-     Input('sel_standardized', 'value')])
-def print_dataset_metadata(sel_dataset, sel_standardized):
-    if sel_standardized == 'Standardized':
-        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
-        dff = metadata[metadata['column_ID_std'] == dataset_name]
-    else:
-        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
-        dff = metadata[metadata['column_ID_SI'] == dataset_name]
-    text = [
-        html.Strong('Summary'),
-        html.Span(': ' + dff['meaning'].values[0]),
-        html.Br(),
-        html.Br(),
-        html.Strong('Original Publication:'),
-        html.Br(),
-        html.A(dff['paper_title'].values[0],
-               href=dff['paper_URL'].values[0], target='_blank'),
-        html.Br(),
-        html.Br(),
-        html.Strong('No of control replicates'),
-        html.Span(': ' + str(dff['num_replicates_control'].values[0])),
-        html.Br(),
-        html.Br(),
-        html.Strong('No of experimental replicates'),
-        html.Span(': ' + str(dff['num_replicates_experimental'].values[0]))
-    ]
-    return text
-
-
-@ app.callback(
-    Output('num_significant', 'children'),
-    [Input('sel_dataset', 'value'),
-     Input('sel_standardized', 'value'),
-     Input('log2FC', 'value'),
-     Input('q-val', 'value')])
-def update_num_significant(sel_dataset, sel_standardized, log2FC, qval):
-    if sel_standardized == 'Standardized':
-        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
-        dff = std_data[std_data['Expt'] == dataset_name]
-    else:
-        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
-        dff = si_data[si_data['Expt'] == dataset_name]
+# TODO: decide what to do with NAs
+def update_num_significant(dff, log2FC, qval):
     dff = dff.dropna(axis=0, subset=['log2FC', 'q-val'])
     num_neg_sig = dff[(dff['q-val'] <= qval) &
                       (dff['log2FC'] <= -log2FC)].shape[0]
@@ -415,22 +371,10 @@ def update_num_significant(sel_dataset, sel_standardized, log2FC, qval):
     return text
 
 
-@ app.callback(
-    Output('volcano', 'figure'),
-    [Input('sel_dataset', 'value'),
-     Input('sel_standardized', 'value'),
-     Input('log2FC', 'value'),
-     Input('q-val', 'value'),
-     Input('sel_dataset_table', "derived_virtual_selected_row_ids")])
-def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids):
-    if sel_standardized == 'Standardized':
-        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
-        dff = std_data[std_data['Expt'] == dataset_name]
-    else:
-        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
-        dff = si_data[si_data['Expt'] == dataset_name]
+def update_volcano(dff, log2FC, qval, selected_row_ids):
     if selected_row_ids is None:
         selected_row_ids = []
+    # TODO: Figure out NAs
     dff = dff.dropna(axis=0, subset=['log2FC', 'q-val'])
     # make qval ticks, replacing the np.nans with inf
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
@@ -443,8 +387,8 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
 
     for_x_ticks = dff['log2FC']
     # TODO: WHAT is this? - commented for now
-    #for_x_ticks = for_x_ticks.replace([np.inf, -np.inf], np.nan)
-    #for_x_ticks = for_x_ticks.dropna()
+    # for_x_ticks = for_x_ticks.replace([np.inf, -np.inf], np.nan)
+    # for_x_ticks = for_x_ticks.dropna()
     tickvals_x = list(np.arange(int(for_x_ticks.min() - 1),
                                 int(for_x_ticks.max() + 1), 1))
     ticklab_x = tickvals_x.copy()
@@ -509,93 +453,9 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
             )}
 
 
-@ app.callback(
-    Output('sel_dataset_table', 'data'),
-    [Input('sel_dataset', 'value'),
-     Input('sel_standardized', 'value')])
-def update_dataset_table(sel_dataset, sel_standardized):
-    if sel_standardized == 'Standardized':
-        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
-        dff = std_data[std_data['Expt'] == dataset_name]
-    else:
-        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
-        dff = si_data[si_data['Expt'] == dataset_name]
-    dff = dff[[
-        'Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
-    dff['q-val'] = dff['q-val'].astype(float).round(2)
-    dff['log2FC'] = dff['log2FC'].astype(float).round(2)
-    dff = dff.sort_values(by='log2FC')
-    return dff.to_dict('records')
-
-
-@ app.callback(Output('cog', 'figure'),
-               [Input('sel_dataset', 'value'),
-                Input('sel_standardized', 'value'),
-                Input('Sel_cog', 'value'),
-                Input('log2FC', 'value'),
-                Input('q-val', 'value')])
-def update_cog(sel_dataset, sel_standardized, sel_cog, log2FC, qval):
-    if sel_standardized == 'Standardized':
-        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
-        dff = std_data[std_data['Expt'] == dataset_name]
-    else:
-        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
-        dff = si_data[si_data['Expt'] == dataset_name]
-    if sel_cog == 'Under-represented':
-        sel_subset_filter = (
-            dff['q-val'] <= qval) & (dff['log2FC'] <= -log2FC)
-        colorscale = 'Cividis'
-    else:
-        sel_subset_filter = (
-            dff['q-val'] <= qval) & (dff['log2FC'] >= -log2FC)
-        colorscale = 'Viridis'
-    sel_subset = dff[sel_subset_filter]
-    # calculate genome freq
-    cog_total_freq = cogs_df['COG'].value_counts(normalize=True)
-    # calculate subset freq
-    sel_cogs = cogs_df[cogs_df['X.Orf'].isin(sel_subset['Rv_ID'])]
-    sel_cogs_freq = sel_cogs['COG'].value_counts(normalize=True)
-    # calculate enrichment
-    normalized_cogs = sel_cogs_freq / cog_total_freq
-    # format
-    normalized_cogs = normalized_cogs[~normalized_cogs.isnull()]
-    normalized_cogs = normalized_cogs.sort_values()
-    cog_names = cogs_desc.loc[list(normalized_cogs.index)]
-    cog_names = list(cog_names.values)
-
-    bar_data = [go.Bar(y=list(normalized_cogs.index), x=list(normalized_cogs.values),
-                       orientation='h',
-                       text=cog_names,
-                       hoverinfo='text',
-                       marker={'color': list(normalized_cogs.values), 'colorscale': colorscale})]
-    return {'data': bar_data,
-            'layout': go.Layout(
-                margin={
-                    'l': 50,
-                    'r': 10,
-                    'pad': 3,
-                    't': 30,
-                    'b': 90, },
-                # paper_bgcolor='rgba(0,0,0,0)',
-                # plot_bgcolor = 'rgba(0,0,0,0)',
-                xaxis={'title': 'Normalized to genomic frequency'},
-                hovermode='closest',
-                shapes=[{'type': 'line', 'x0': 1, 'y0': 0, 'x1': 1, 'y1': len(normalized_cogs),
-                         'line': {'color': 'grey', 'width': 1, 'dash': 'dot'}}])
-            }
-
-
-@ app.callback(
-    Output('bubble_plot', 'figure'),
-    [Input('sel_dataset', 'value'),
-     Input('sel_standardized', 'value')])
-def update_bubble(sel_dataset, sel_standardized):
-    if sel_standardized == 'Standardized':
-        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
-        dff = std_data[std_data['Expt'] == dataset_name]
-    else:
-        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
-        dff = si_data[si_data['Expt'] == dataset_name]
+# TODO: Combine into single function
+def update_bubble(dff):
+    dff = dff.copy(deep=True)
     uk_rd, q_rd, color_list, rv_ids = unknown_essential_xy(
         dff)
     return {
@@ -640,6 +500,125 @@ def update_bubble(sel_dataset, sel_standardized):
             hovermode='closest'
         )
     }
+
+
+@ app.callback([
+    Output('download_dataset', 'href'),
+    Output('download_dataset', 'download'),
+    Output('num_significant', 'children'),
+    Output('volcano', 'figure'),
+    Output('bubble_plot', 'figure')
+],
+    [Input('sel_dataset', 'value'),
+     Input('sel_standardized', 'value'),
+     Input('log2FC', 'value'),
+     Input('q-val', 'value'),
+     Input('sel_dataset_table', "derived_virtual_selected_row_ids"),
+     ])
+def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids):
+    dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
+    csv_string, download_string = update_download_dataset(dff, dataset_name)
+    num_significant_text = update_num_significant(dff, log2FC, qval)
+    volcano = update_volcano(dff, log2FC, qval, selected_row_ids)
+    bubble = update_bubble(dff)
+    return csv_string, download_string, num_significant_text, volcano, bubble
+
+
+@ app.callback(
+    Output('dataset_metadata', 'children'),
+    [Input('sel_dataset', 'value'),
+     Input('sel_standardized', 'value')])
+def print_dataset_metadata(sel_dataset, sel_standardized):
+    if sel_standardized == 'Standardized':
+        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
+        dff = metadata[metadata['column_ID_std'] == dataset_name]
+    else:
+        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
+        dff = metadata[metadata['column_ID_SI'] == dataset_name]
+    text = [
+        html.Strong('Summary'),
+        html.Span(': ' + dff['meaning'].values[0]),
+        html.Br(),
+        html.Br(),
+        html.Strong('Original Publication:'),
+        html.Br(),
+        html.A(dff['paper_title'].values[0],
+               href=dff['paper_URL'].values[0], target='_blank'),
+        html.Br(),
+        html.Br(),
+        html.Strong('No of control replicates'),
+        html.Span(': ' + str(dff['num_replicates_control'].values[0])),
+        html.Br(),
+        html.Br(),
+        html.Strong('No of experimental replicates'),
+        html.Span(': ' + str(dff['num_replicates_experimental'].values[0]))
+    ]
+    return text
+
+
+@ app.callback(
+    Output('sel_dataset_table', 'data'),
+    [Input('sel_dataset', 'value'),
+     Input('sel_standardized', 'value')])
+def update_dataset_table(sel_dataset, sel_standardized):
+    dff, _ = filter_dataset(sel_dataset, sel_standardized)
+    dff = dff[['Rv_ID', 'gene_name', 'log2FC', 'q-val', 'id']]
+    dff['q-val'] = dff['q-val'].astype(float).round(2)
+    dff['log2FC'] = dff['log2FC'].astype(float).round(2)
+    dff = dff.sort_values(by='log2FC')
+    return dff.to_dict('records')
+
+
+@ app.callback(Output('cog', 'figure'),
+               [Input('sel_dataset', 'value'),
+                Input('sel_standardized', 'value'),
+                Input('sel_cog', 'value'),
+                Input('log2FC', 'value'),
+                Input('q-val', 'value')])
+def update_cog(sel_dataset, sel_standardized, sel_cog, log2FC, qval):
+    dff, _ = filter_dataset(sel_dataset, sel_standardized)
+    if sel_cog == 'Under-represented':
+        sel_subset_filter = (
+            dff['q-val'] <= qval) & (dff['log2FC'] <= -log2FC)
+        colorscale = 'Cividis'
+    else:
+        sel_subset_filter = (
+            dff['q-val'] <= qval) & (dff['log2FC'] >= -log2FC)
+        colorscale = 'Viridis'
+    sel_subset = dff[sel_subset_filter]
+    # calculate genome freq
+    cog_total_freq = cogs_df['COG'].value_counts(normalize=True)
+    # calculate subset freq
+    sel_cogs = cogs_df[cogs_df['X.Orf'].isin(sel_subset['Rv_ID'])]
+    sel_cogs_freq = sel_cogs['COG'].value_counts(normalize=True)
+    # calculate enrichment
+    normalized_cogs = sel_cogs_freq / cog_total_freq
+    # format
+    normalized_cogs = normalized_cogs[~normalized_cogs.isnull()]
+    normalized_cogs = normalized_cogs.sort_values()
+    cog_names = cogs_desc.loc[list(normalized_cogs.index)]
+    cog_names = list(cog_names.values)
+
+    bar_data = [go.Bar(y=list(normalized_cogs.index), x=list(normalized_cogs.values),
+                       orientation='h',
+                       text=cog_names,
+                       hoverinfo='text',
+                       marker={'color': list(normalized_cogs.values), 'colorscale': colorscale})]
+    return {'data': bar_data,
+            'layout': go.Layout(
+                margin={
+                    'l': 50,
+                    'r': 10,
+                    'pad': 3,
+                    't': 30,
+                    'b': 90, },
+                # paper_bgcolor='rgba(0,0,0,0)',
+                # plot_bgcolor = 'rgba(0,0,0,0)',
+                xaxis={'title': 'Normalized to genomic frequency'},
+                hovermode='closest',
+                shapes=[{'type': 'line', 'x0': 1, 'y0': 0, 'x1': 1, 'y1': len(normalized_cogs),
+                         'line': {'color': 'grey', 'width': 1, 'dash': 'dot'}}])
+            }
 
 
 @ app.callback(
