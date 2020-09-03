@@ -373,8 +373,12 @@ def update_num_significant(dff, log2FC, qval):
      ])
 def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2FC, qval):
     dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
-    csv_string, download_string = update_download_dataset(dff, dataset_name)
     num_significant_text = update_num_significant(dff, log2FC, qval)
+    if sel_standardized == 'Original':
+        if dict_plot_si[dataset_name] == 'No':
+            num_significant_text = ' '
+    csv_string, download_string = update_download_dataset(dff, dataset_name)
+
     return csv_string, download_string, num_significant_text
 
 
