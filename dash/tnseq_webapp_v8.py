@@ -47,33 +47,18 @@ unique_expts = [x for x in unique_expts if str(x) != 'nan']
 unique_Rvs = sorted(list(set(list(std_data.Rv_ID) + list(si_data.Rv_ID))))
 unique_genes = sorted(
     list(set(list(std_data.gene_name) + list(si_data.gene_name))))
+# TODO: remove '-' from gene name
 std_data['id'] = std_data['Rv_ID']
 std_data.set_index('id', inplace=True, drop=False)
 si_data['id'] = si_data['Rv_ID']
 si_data.set_index('id', inplace=True, drop=False)
 # print("Main", main_data.head())
-df_uk = pd.read_csv(os.path.join(
-    path_annotation, 'unknown_essentials/unknown_ALL_levels_essential_scores.csv'))
-df_uk = df_uk[['Rv_ID', 'gene_name', 'UK_score_4']]
-
-
-def discretize_q_values(row):
-    q_val = row['q-val']
-    if q_val < 0.01:
-        q_val_d = 3
-    elif q_val < 0.05:
-        q_val_d = 2
-    else:
-        q_val_d = 1
-    return q_val_d
 
 
 def unknown_essential_xy(selected_data, rand_param=0.6):
-    # Grab data for a single TnSeq screen
-    selected_data['q_val_D'] = selected_data.apply(discretize_q_values, 1)
-
     # Merge with unknowns:
-    df_vis = selected_data.merge(df_uk, on=['Rv_ID'], how='inner')
+    df_vis = selected_data.dropna(subset=['UK_score_4'])
+    df_vis = df_vis.reset_index(drop=True)
 
     # Get x-y datasets:
     rv_ids = df_vis.Rv_ID.values
@@ -333,8 +318,6 @@ def update_standardized_dropdown(sel_dataset):
         else:
             return [{'label': x, 'value': x} for x in ['Standardized', 'Original']], 'Original'
 
-# TODO: Combine outputs from sel_datasets
-
 
 def filter_dataset(sel_dataset, sel_standardized):
     if sel_standardized == 'Standardized':
@@ -371,7 +354,32 @@ def update_num_significant(dff, log2FC, qval):
     return text
 
 
-def update_volcano(dff, log2FC, qval, selected_row_ids):
+@ app.callback([
+    Output('download_dataset', 'href'),
+    Output('download_dataset', 'download'),
+    Output('num_significant', 'children'),
+],
+    [Input('sel_dataset', 'value'),
+     Input('sel_standardized', 'value'),
+     Input('log2FC', 'value'),
+     Input('q-val', 'value'),
+     ])
+def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2FC, qval):
+    dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
+    csv_string, download_string = update_download_dataset(dff, dataset_name)
+    num_significant_text = update_num_significant(dff, log2FC, qval)
+    return csv_string, download_string, num_significant_text
+
+
+@app.callback(Output('volcano', 'figure'),
+              [Input('sel_dataset', 'value'),
+               Input('sel_standardized', 'value'),
+               Input('log2FC', 'value'),
+               Input('q-val', 'value'),
+               Input('sel_dataset_table', "derived_virtual_selected_row_ids")
+               ])
+def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids):
+    dff, _ = filter_dataset(sel_dataset, sel_standardized)
     if selected_row_ids is None:
         selected_row_ids = []
     # TODO: Figure out NAs
@@ -453,9 +461,13 @@ def update_volcano(dff, log2FC, qval, selected_row_ids):
             )}
 
 
-# TODO: Combine into single function
-def update_bubble(dff):
-    dff = dff.copy(deep=True)
+@ app.callback(
+    Output('bubble_plot', 'figure'),
+    [Input('sel_dataset', 'value'),
+     Input('sel_standardized', 'value'),
+     ])
+def update_bubble(sel_dataset, sel_standardized):
+    dff, _ = filter_dataset(sel_dataset, sel_standardized)
     uk_rd, q_rd, color_list, rv_ids = unknown_essential_xy(
         dff)
     return {
@@ -500,28 +512,6 @@ def update_bubble(dff):
             hovermode='closest'
         )
     }
-
-
-@ app.callback([
-    Output('download_dataset', 'href'),
-    Output('download_dataset', 'download'),
-    Output('num_significant', 'children'),
-    Output('volcano', 'figure'),
-    Output('bubble_plot', 'figure')
-],
-    [Input('sel_dataset', 'value'),
-     Input('sel_standardized', 'value'),
-     Input('log2FC', 'value'),
-     Input('q-val', 'value'),
-     Input('sel_dataset_table', "derived_virtual_selected_row_ids"),
-     ])
-def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids):
-    dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
-    csv_string, download_string = update_download_dataset(dff, dataset_name)
-    num_significant_text = update_num_significant(dff, log2FC, qval)
-    volcano = update_volcano(dff, log2FC, qval, selected_row_ids)
-    bubble = update_bubble(dff)
-    return csv_string, download_string, num_significant_text, volcano, bubble
 
 
 @ app.callback(
