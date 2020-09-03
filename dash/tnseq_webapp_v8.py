@@ -371,6 +371,33 @@ def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2
     return csv_string, download_string, num_significant_text
 
 
+def empty_plot(label_annotation):
+    '''
+    Returns an empty plot with a centered text.
+    '''
+    return {
+        "layout": {
+            "xaxis": {
+                "visible": False
+            },
+            "yaxis": {
+                "visible": False
+            },
+            "annotations": [
+                {
+                    "text": label_annotation,
+                    "xref": "paper",
+                    "yref": "paper",
+                    "showarrow": False,
+                    "font": {
+                        "size": 28
+                    }
+                }
+            ]
+        }
+    }
+
+
 @app.callback(Output('volcano', 'figure'),
               [Input('sel_dataset', 'value'),
                Input('sel_standardized', 'value'),
@@ -379,6 +406,8 @@ def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2
                Input('sel_dataset_table', "derived_virtual_selected_row_ids")
                ])
 def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids):
+    if sel_dataset == 'Rv3684_KO_vs_CB_WT':
+        return empty_plot('lll')
     dff, _ = filter_dataset(sel_dataset, sel_standardized)
     if selected_row_ids is None:
         selected_row_ids = []
