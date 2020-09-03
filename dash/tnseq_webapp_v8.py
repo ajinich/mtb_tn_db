@@ -28,16 +28,19 @@ si_data = pd.read_csv(os.path.join(
 metadata = pd.read_csv(os.path.join(path_data, 'col_desc_dash.tsv'), sep='\t')
 dict_std_to_si = dict(zip(metadata.column_ID_std, metadata.column_ID_SI))
 dict_si_to_std = dict(zip(metadata.column_ID_SI, metadata.column_ID_std))
+dict_plot_si = dict(zip(metadata.column_ID_SI, metadata.plot_SI_graph))
 
 # TODO: prerun the annotations?
 path_annotation = '../data/annotations/'
 cogs_df = pd.read_csv(os.path.join(path_annotation, 'all_cogs.csv'))
 cogs_desc = pd.read_csv(os.path.join(
     path_annotation, 'cog_names.csv'), header=0, index_col=0, squeeze=True)
+metadata_cols_display = [col for col in metadata.columns if col not in [
+    'plot_SI_graph', 'column_ID_std', 'column_ID_SI', 'paper_title', 'paper_URL']]
 sel_gene_table_columns = [{"name": i,
                            "id": i,
                            } for i in [
-    'Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val', 'num_replicates_control', 'num_replicates_experimental']]
+    'Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val'] + metadata_cols_display]
 sel_gene_table_columns.append(
     {"name": 'paper', "id": 'paper', "presentation": 'markdown'})
 
@@ -53,6 +56,9 @@ std_data.set_index('id', inplace=True, drop=False)
 si_data['id'] = si_data['Rv_ID']
 si_data.set_index('id', inplace=True, drop=False)
 # print("Main", main_data.head())
+
+plotly_buttons_remove = ['pan2d', 'lasso2d', 'select2d', 'hoverClosestCartesian', 'hoverCompareCartesian', 'zoomIn2d', 'zoomOut2d', 'toggleSpikelines', 'autoScale2d', 'zoom2d'
+                         ]
 
 
 def unknown_essential_xy(selected_data, rand_param=0.6):
@@ -97,8 +103,9 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                      dcc.Dropdown(id='sel_dataset',
                                                   options=[{'label': x, 'value': x}
                                                            for x in unique_expts],
-                                                  value=unique_expts[0]),
-                                     dcc.Dropdown(id='sel_standardized')
+                                                  value=unique_expts[0], clearable=False),
+                                     dcc.Dropdown(
+                                         id='sel_standardized', clearable=False)
                                  ], width=4),
                                  dbc.Col([
                                      daq.Slider(id='log2FC', min=0, max=6, value=1, step=0.5,
@@ -230,7 +237,7 @@ analyze_genes = html.Div([
             dcc.Dropdown(id='sel_standardized_gene_table',
                          options=[
                              {'label': x, 'value': x} for x in ['Standardized', 'Original']],
-                         value='Standardized',
+                         value='Standardized', clearable=False,
                          multi=False)
         ]),
         dbc.Col([
@@ -390,7 +397,7 @@ def empty_plot(label_annotation):
                     "yref": "paper",
                     "showarrow": False,
                     "font": {
-                        "size": 28
+                        "size": 16
                     }
                 }
             ]
@@ -398,7 +405,8 @@ def empty_plot(label_annotation):
     }
 
 
-@app.callback(Output('volcano', 'figure'),
+@app.callback([Output('volcano', 'figure'),
+               Output('volcano', 'config')],
               [Input('sel_dataset', 'value'),
                Input('sel_standardized', 'value'),
                Input('log2FC', 'value'),
@@ -406,9 +414,14 @@ def empty_plot(label_annotation):
                Input('sel_dataset_table', "derived_virtual_selected_row_ids")
                ])
 def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids):
-    if sel_dataset == 'Rv3684_KO_vs_CB_WT':
-        return empty_plot('lll')
-    dff, _ = filter_dataset(sel_dataset, sel_standardized)
+    dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
+    config = {'modeBarButtonsToRemove': plotly_buttons_remove, 'toImageButtonOptions': {
+        'height': 700,
+        'width': 700, 'scale': 5, 'filename': f'{dataset_name}_volcano.png'
+    }}
+    if sel_standardized == 'Original':
+        if dict_plot_si[dataset_name] == 'No':
+            return (empty_plot('Not enough datapoints' + '\n' + 'for a meaningful plot'), config)
     if selected_row_ids is None:
         selected_row_ids = []
     # TODO: Figure out NAs
@@ -473,33 +486,41 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
                                        'color': 'green'},
                              showlegend=False
                              ))
-    return {'data': traces,
-            'layout': go.Layout(
-                autosize=False,
-                margin={
-                    'l': 45,
-                    'r': 15,
-                    'pad': 0,
-                    't': 30,
-                    'b': 90, },
-                xaxis={'title': 'log2FC', 'ticktext': ticklab_x,
-                       'tickvals': tickvals_x},
-                yaxis={
-                    'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals},
-                hovermode='closest'
-            )}
+    return ({'data': traces,
+             'layout': go.Layout(
+                 autosize=False,
+                 margin={
+                     'l': 45,
+                     'r': 15,
+                     'pad': 0,
+                     't': 30,
+                     'b': 90, },
+                 xaxis={'title': 'log2FC', 'ticktext': ticklab_x,
+                        'tickvals': tickvals_x, 'fixedrange': True},
+                 yaxis={
+                     'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals, 'fixedrange': True},
+                 hovermode='closest'
+             )}, config)
 
 
 @ app.callback(
-    Output('bubble_plot', 'figure'),
+    [Output('bubble_plot', 'figure'),
+     Output('bubble_plot', 'config')],
     [Input('sel_dataset', 'value'),
      Input('sel_standardized', 'value'),
      ])
 def update_bubble(sel_dataset, sel_standardized):
-    dff, _ = filter_dataset(sel_dataset, sel_standardized)
+    dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
+    config = {'modeBarButtonsToRemove': plotly_buttons_remove, 'toImageButtonOptions': {
+        'height': 500,
+        'width': 700, 'scale': 5, 'filename': f'{dataset_name}_bubble.png'
+    }}
+    if sel_standardized == 'Original':
+        if dict_plot_si[dataset_name] == 'No':
+            return (empty_plot('Not enough datapoints' + '\n' + 'for a meaningful plot'), config)
     uk_rd, q_rd, color_list, rv_ids = unknown_essential_xy(
         dff)
-    return {
+    return ({
         'data': [
             go.Scatter(
                 x=uk_rd,
@@ -540,7 +561,7 @@ def update_bubble(sel_dataset, sel_standardized):
             legend={'x': 0, 'y': 1},
             hovermode='closest'
         )
-    }
+    }, config)
 
 
 @ app.callback(
@@ -588,14 +609,21 @@ def update_dataset_table(sel_dataset, sel_standardized):
     return dff.to_dict('records')
 
 
-@ app.callback(Output('cog', 'figure'),
+@ app.callback([Output('cog', 'figure'), Output('cog', 'config')],
                [Input('sel_dataset', 'value'),
                 Input('sel_standardized', 'value'),
                 Input('sel_cog', 'value'),
                 Input('log2FC', 'value'),
                 Input('q-val', 'value')])
 def update_cog(sel_dataset, sel_standardized, sel_cog, log2FC, qval):
-    dff, _ = filter_dataset(sel_dataset, sel_standardized)
+    dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
+    config = {'modeBarButtonsToRemove': plotly_buttons_remove, 'toImageButtonOptions': {
+        'height': 500,
+        'width': 700, 'scale': 5, 'filename': f'{dataset_name}_bubble.png'
+    }}
+    if sel_standardized == 'Original':
+        if dict_plot_si[dataset_name] == 'No':
+            return (empty_plot('Not enough datapoints' + '\n' + 'for a meaningful plot'), config)
     if sel_cog == 'Under-represented':
         sel_subset_filter = (
             dff['q-val'] <= qval) & (dff['log2FC'] <= -log2FC)
@@ -623,21 +651,21 @@ def update_cog(sel_dataset, sel_standardized, sel_cog, log2FC, qval):
                        text=cog_names,
                        hoverinfo='text',
                        marker={'color': list(normalized_cogs.values), 'colorscale': colorscale})]
-    return {'data': bar_data,
-            'layout': go.Layout(
-                margin={
-                    'l': 50,
-                    'r': 10,
-                    'pad': 3,
-                    't': 30,
-                    'b': 90, },
-                # paper_bgcolor='rgba(0,0,0,0)',
-                # plot_bgcolor = 'rgba(0,0,0,0)',
-                xaxis={'title': 'Normalized to genomic frequency'},
-                hovermode='closest',
-                shapes=[{'type': 'line', 'x0': 1, 'y0': 0, 'x1': 1, 'y1': len(normalized_cogs),
-                         'line': {'color': 'grey', 'width': 1, 'dash': 'dot'}}])
-            }
+    return ({'data': bar_data,
+             'layout': go.Layout(
+                 margin={
+                     'l': 50,
+                     'r': 10,
+                     'pad': 3,
+                     't': 30,
+                     'b': 90, },
+                 # paper_bgcolor='rgba(0,0,0,0)',
+                 # plot_bgcolor = 'rgba(0,0,0,0)',
+                 xaxis={'title': 'Normalized to genomic frequency'},
+                 hovermode='closest',
+                 shapes=[{'type': 'line', 'x0': 1, 'y0': 0, 'x1': 1, 'y1': len(normalized_cogs),
+                          'line': {'color': 'grey', 'width': 1, 'dash': 'dot'}}])
+             }, config)
 
 
 @ app.callback(
@@ -659,8 +687,9 @@ def update_genes_table(selected_gene, sel_standardized_gene_table):
         raise PreventUpdate
     metadata['paper'] = '['+metadata['paper_title'] + \
         ']('+metadata['paper_URL']+')'
-    metadata_trunc = metadata[[metadata_col,
-                               'num_replicates_control', 'num_replicates_experimental', 'paper']]
+    metadata_cols_display = [col for col in metadata.columns if col not in [
+        'plot_SI_graph', 'column_ID_std', 'column_ID_SI', 'paper_title', 'paper_URL']]
+    metadata_trunc = metadata[[metadata_col]+metadata_cols_display]
     metadata_trunc = metadata_trunc.rename(columns={metadata_col: 'Expt'})
     merged_data = dff.merge(metadata_trunc, how='left', on='Expt')
     merged_data['q-val'] = np.round(merged_data['q-val'], 2)

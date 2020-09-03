@@ -29,7 +29,7 @@ col_desc.column_ID_SI.unique()
 col_desc = pd.read_excel('../../data/column_descriptors_standardized.xlsx')
 
 
-col_desc = col_desc.rename(columns = {'column_ID_2': 'column_ID_std'})
+col_desc = col_desc.rename(columns={'column_ID_2': 'column_ID_std'})
 
 
 lfc = pd.read_csv(
@@ -90,7 +90,8 @@ std_data.head()
 std_data.isna().sum()
 
 
-std_data['gene_name'] = std_data.apply(lambda x: '-' if pd.isna(x.gene_name) else x.gene_name, axis=1)
+std_data['gene_name'] = std_data.apply(
+    lambda x: '-' if pd.isna(x.gene_name) else x.gene_name, axis=1)
 
 
 std_data
@@ -123,19 +124,21 @@ std_data['q_val_D'] = std_data['q-val'].apply(discretize_q_values)
 std_data.head()
 
 
-df_uk = pd.read_csv('../../data/annotations/unknown_essentials/unknown_ALL_levels_essential_scores.csv')
+df_uk = pd.read_csv(
+    '../../data/annotations/unknown_essentials/unknown_ALL_levels_essential_scores.csv')
 
 
 df_uk.head()
 
 
-std_data = std_data.merge(df_uk[['Rv_ID', 'UK_score_4']], how='left', on='Rv_ID')
+std_data = std_data.merge(
+    df_uk[['Rv_ID', 'UK_score_4']], how='left', on='Rv_ID')
 
 
 std_data.isna().sum()
 
 
-##have to save as tsv to because descriptions have commas
+# have to save as tsv to because descriptions have commas
 std_data.to_csv('../../data/standardized_data_dash.tsv', index=False, sep='\t')
 
 
@@ -155,7 +158,7 @@ import os
 col_desc = pd.read_excel('../../data/column_descriptors_standardized.xlsx')
 
 
-col_desc = col_desc.rename(columns = {'column_ID_2': 'column_ID_std'})
+col_desc = col_desc.rename(columns={'column_ID_2': 'column_ID_std'})
 
 
 lfc_si = pd.read_csv(
@@ -201,14 +204,15 @@ set(col_ID_SI).difference(set(qval_si.columns))
 lfc_si.head()
 
 
-lfc_si = lfc_si.merge(gene_names[['Rv_ID', 'gene_name', 'Description']], how='left')
+lfc_si = lfc_si.merge(
+    gene_names[['Rv_ID', 'gene_name', 'Description']], how='left')
 
 
 lfc_si.shape
 
 
 lfc_si = lfc_si.melt(id_vars=['Rv_ID', 'gene_name', 'Description'],
-               var_name='Expt', value_name='log2FC')
+                     var_name='Expt', value_name='log2FC')
 qval_si = qval_si.melt(id_vars=['Rv_ID'], var_name='Expt', value_name='q-val')
 
 
@@ -227,14 +231,15 @@ si_data.head()
 si_data.isna().sum()
 
 
-si_data['gene_name'] = si_data.apply(lambda x: '-' if pd.isna(x.gene_name) else x.gene_name, axis=1)
+si_data['gene_name'] = si_data.apply(
+    lambda x: '-' if pd.isna(x.gene_name) else x.gene_name, axis=1)
 
 
 si_data
 
 
 si_data.dtypes
-#si_data['q-val'] = si_data['q-val'].replace({'no replicates':np.nan}) 
+#si_data['q-val'] = si_data['q-val'].replace({'no replicates':np.nan})
 
 
 si_data.isna().sum()
@@ -258,7 +263,8 @@ si_data['q_val_D'] = si_data['q-val'].apply(discretize_q_values)
 si_data.head()
 
 
-df_uk = pd.read_csv('../../data/annotations/unknown_essentials/unknown_ALL_levels_essential_scores.csv')
+df_uk = pd.read_csv(
+    '../../data/annotations/unknown_essentials/unknown_ALL_levels_essential_scores.csv')
 
 
 df_uk.head()
@@ -286,7 +292,7 @@ import os
 col_desc = pd.read_excel('../../data/column_descriptors_standardized.xlsx')
 
 
-col_desc = col_desc.rename(columns = {'column_ID_2': 'column_ID_std'})
+col_desc = col_desc.rename(columns={'column_ID_2': 'column_ID_std'})
 col_desc = col_desc.drop(columns=['column_ID', 'wig_files'])
 
 
@@ -294,6 +300,20 @@ col_desc.head()
 
 
 col_desc.head()
+
+
+col_desc.isna().sum()
+
+
+col_desc.drop(columns=['year', 'journal',
+                       'first_author', 'last_author', 'control', 'experimental'], inplace=True)
+
+
+fill_na_cols = [c for c in col_desc.columns if c not in [
+    'control', 'experimental', 'column_ID_std', 'column_ID_SI', 'plot_SI_graph']]
+
+
+col_desc[fill_na_cols] = col_desc[fill_na_cols].fillna(' ')
 
 
 col_desc.to_csv('../../data/col_desc_dash.tsv', index=False, sep='\t')
