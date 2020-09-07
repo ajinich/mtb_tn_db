@@ -60,7 +60,7 @@ def fisher_enrichment_test(df_annot, annotation, cluster, clus_col_name = 'clust
     df_clus = df_test[df_test[clus_col_name] == cluster]
 
     # Get top 5 categories to test
-    cats = df_clus[annotation].value_counts().head().index.to_list()
+    cats = df_clus[annotation].value_counts().head().index.tolist()
     
     # Number of genes in the cluster (sample size)
     N = df_clus.shape[0]
