@@ -50,7 +50,7 @@ unique_expts = [x for x in unique_expts if str(x) != 'nan']
 unique_Rvs = sorted(list(set(list(std_data.Rv_ID) + list(si_data.Rv_ID))))
 unique_genes = sorted(
     list(set(list(std_data.gene_name) + list(si_data.gene_name))))
-# TODO: remove '-' from gene name
+unique_genes = [x for x in unique_genes if x != '-']
 std_data['id'] = std_data['Rv_ID']
 std_data.set_index('id', inplace=True, drop=False)
 si_data['id'] = si_data['Rv_ID']
