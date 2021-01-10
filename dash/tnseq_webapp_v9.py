@@ -78,12 +78,12 @@ plotly_buttons_remove = [
 
 def unknown_essential_xy(selected_data, rand_param=0.6):
     # Merge with unknowns:
-    df_vis = selected_data.dropna(subset=['UK_score_4'])
+    df_vis = selected_data.dropna(subset=['annotation_score'])
     df_vis = df_vis.reset_index(drop=True)
 
     # Get x-y datasets:
     rv_ids = df_vis.Rv_ID.values
-    uk_list = np.array(df_vis.UK_score_4)
+    uk_list = np.array(df_vis.annotation_score)
     q_list = np.array(df_vis.q_val_D)
 
     # randomize:
@@ -95,7 +95,7 @@ def unknown_essential_xy(selected_data, rand_param=0.6):
     # color the unknown-essentials differently:
     color_list = np.array(['#585858'] * df_vis.shape[0])
     color_list[df_vis[(df_vis.q_val_D == 3) &
-                      (df_vis.UK_score_4 == 4)].index] = '#2b7bba'
+                      (df_vis.annotation_score == 4)].index] = '#2b7bba'
     return uk_rd, q_rd, color_list, rv_ids
 
 
