@@ -15,6 +15,7 @@ import plotly.graph_objs as go
 from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 from numpy import inf
+import itertools
 
 external_stylesheets = [dbc.themes.UNITED]
 path_data = '../data/'
@@ -76,29 +77,97 @@ plotly_buttons_remove = [
 ]
 
 
-def unknown_essential_xy(selected_data, rand_param=0.6):
-    # Merge with unknowns:
+def unknown_essential_xy(selected_data):
     df_vis = selected_data.dropna(subset=['annotation_score'])
     df_vis = df_vis.reset_index(drop=True)
 
-    # Get x-y datasets:
-    rv_ids = df_vis.Rv_ID.values
-    uk_list = np.array(df_vis.annotation_score)
-    q_list = np.array(df_vis.q_val_D)
+    # NO MORE RANDOMIZATION! Instead this:
+    rv_id_list = []
+    x_coords_list = []
+    y_coords_list = []
+    color_list = []
+    scatter_size_list = []
+    lw_list = []
 
-    # randomize:
-    uk_rd = np.array([uk + rand_param * random() -
-                      rand_param / 2 for uk in uk_list])
-    q_rd = np.array([q + rand_param * random() -
-                     rand_param / 2 for q in q_list])
+    for ann in [1, 2, 3, 4, 5]:
+        for qq in [1, 2, 3]:
 
-    # color the unknown-essentials differently:
-    color_list = np.array(['#585858'] * df_vis.shape[0])
-    color_list[df_vis[(df_vis.q_val_D == 3) &
-                      (df_vis.annotation_score == 4)].index] = '#2b7bba'
-    return uk_rd, q_rd, color_list, rv_ids
+            df = df_vis[(df_vis.q_val_D.values == qq) &
+                        (df_vis.annotation_score.values == ann)]
+            # update rv_id list
+            rv_id_list.append(list(df.Rv_ID.values))
+
+            if df.shape[0] < 30:
+                scatter_size = 6
+                edge_param = 0.40
+                lw = 4
+            elif df.shape[0] < 100:
+                scatter_size = 6
+                edge_param = 0.40
+                lw = 3
+            elif df.shape[0] < 200:
+                scatter_size = 3
+                edge_param = 0.45
+                lw = 2
+            elif df.shape[0] < 400:
+                scatter_size = 3
+                edge_param = 0.45
+                lw = 2
+            else:
+                scatter_size = 3
+                edge_param = 0.45
+                lw = 1
+
+            # Update scatter marker size
+            scatter_size_list += [scatter_size] * df.shape[0]
+            # Update line-width size
+            lw_list += [lw] * df.shape[0]
+
+            if ann <= 2 and qq >= 2:
+                color_temp = '#2b7bba'
+            else:
+                color_temp = '#585858'
+
+            # update color_list
+            color_list += [color_temp] * df.shape[0]
+
+            # num_sqrs = int(np.ceil(np.sqrt(df.shape[0])))
+            num_sqrs = np.max([int(np.ceil(np.sqrt(df.shape[0]))), 10])
+
+            xrange = np.linspace(ann - edge_param, ann + edge_param, num_sqrs)
+            yrange = np.linspace(qq + edge_param, qq - edge_param, num_sqrs)
+
+            coords = list(itertools.product(yrange, xrange))
+            coords = coords[:df.shape[0]]
+            x_coords = [c[1] for c in coords]
+            y_coords = [c[0] for c in coords]
+            # update coordinates
+            x_coords_list += x_coords
+            y_coords_list += y_coords
+
+    return x_coords_list, y_coords_list, color_list, rv_id_list, scatter_size_list, lw_list
 
 
+# def unknown_essential_xy(selected_data, rand_param=0.6):
+#     df_vis = selected_data.dropna(subset=['annotation_score'])
+#     df_vis = df_vis.reset_index(drop=True)
+
+#     # Get x-y datasets:
+#     rv_ids = df_vis.Rv_ID.values
+#     uk_list = np.array(df_vis.annotation_score)
+#     q_list = np.array(df_vis.q_val_D)
+
+#     # randomize:
+#     uk_rd = np.array([uk + rand_param * random() -
+#                       rand_param / 2 for uk in uk_list])
+#     q_rd = np.array([q + rand_param * random() -
+#                      rand_param / 2 for q in q_list])
+
+#     # color the unknown-essentials differently:
+#     color_list = np.array(['#585858'] * df_vis.shape[0])
+#     color_list[df_vis[(df_vis.q_val_D == 3) &
+#                       (df_vis.annotation_score == 4)].index] = '#2b7bba'
+#     return uk_rd, q_rd, color_list, rv_ids
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 navbar = dbc.NavbarSimple([
@@ -542,19 +611,21 @@ def update_bubble(sel_dataset, sel_standardized):
     if sel_standardized == 'Original':
         if dict_plot_si[dataset_name] == 'No':
             return (empty_plot('Not enough datapoints' + '\n' + 'for a meaningful plot'), config)
-    uk_rd, q_rd, color_list, rv_ids = unknown_essential_xy(
+    x_coords_list, y_coords_list, color_list, rv_id_list, scatter_size_list, lw_list = unknown_essential_xy(
         dff)
+    print(scatter_size_list)
     return ({
         'data': [
             go.Scatter(
-                x=uk_rd,
-                y=q_rd,
-                text=rv_ids,
+                x=x_coords_list,
+                y=y_coords_list,
+                text=rv_id_list,
                 mode='markers',
-                opacity=1,
+                # opacity=1,
                 hoverinfo='text',
+                marker_size=scatter_size_list,
                 marker={
-                    'size': 15,
+                    # 'size': 15,
                     'line': {'width': 1.5, 'color': 'black'},
                     'color': color_list
                 }
@@ -566,11 +637,12 @@ def update_bubble(sel_dataset, sel_standardized):
             # height=500,
             xaxis=go.layout.XAxis(
                 tickmode='array',
-                tickvals=[0, 1, 2, 3, 4],
+                tickvals=[1, 2, 3, 4, 5],
                 ticktext=['most well<br>characterized', '', '', '',
                           'least well<br>characterized'],
                 tickfont=dict(size=14),
-                title='Annotation'
+                title='Annotation',
+                showgrid=False
 
             ),
             yaxis=go.layout.YAxis(
@@ -579,7 +651,8 @@ def update_bubble(sel_dataset, sel_standardized):
                 ticktext=['non-essential', 'q-val < 0.05', 'q-val < 0.01'],
                 tickangle=270,
                 tickfont=dict(size=14),
-                title='Essentiality'
+                title='Essentiality',
+                showgrid=False
             ),
             margin={'l': 30, 'b': 100, 't': 10, 'r': 10},
             legend={'x': 0, 'y': 1},
