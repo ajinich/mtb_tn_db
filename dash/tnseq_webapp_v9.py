@@ -17,48 +17,53 @@ from dash.exceptions import PreventUpdate
 from numpy import inf
 import itertools
 
+# TODO: FIX BUBBLE PLOT FROM NOTEBOOK AND CHANGE XAXIS LABELS!!!
+
+#####
+# SECTION 1: Read in data, create static variables
+#####
 external_stylesheets = [dbc.themes.UNITED]
 path_data = '../data/'
 
+#read in data
 std_data = pd.read_csv(os.path.join(
     path_data, 'standardized_data_dash.tsv'), sep='\t', dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float, 'q-val': np.float})
 si_data = pd.read_csv(os.path.join(
     path_data, 'si_data_dash.tsv'), sep='\t', dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float, 'q-val': np.float})
-
 gene_metadata_df = pd.read_csv(os.path.join(
-    path_data, 'gene_metadata_dash.tsv'), sep='\t'
-)
-
-
+    path_data, 'gene_metadata_dash.tsv'), sep='\t')
 # TODO: make num_replicates into int
 # TODO: fill empty strings in meaning etc with ' ' instead of nan
 metadata = pd.read_csv(os.path.join(path_data, 'col_desc_dash.tsv'), sep='\t')
+
+# make dictionaries that lookup si_data from std_data and vice versa
 dict_std_to_si = dict(zip(metadata.column_ID_std, metadata.column_ID_SI))
 dict_si_to_std = dict(zip(metadata.column_ID_SI, metadata.column_ID_std))
+# make dictionary that tells you if SI data has enough datapoints to be plotted
 dict_plot_si = dict(zip(metadata.column_ID_SI, metadata.plot_SI_graph))
 
+# make lists of unique expts/rvids/genes for dropdown lists
 unique_expts = list(metadata['column_ID_std'].unique()) + \
     list(metadata['column_ID_SI'].unique())
 unique_expts = [x for x in unique_expts if str(x) != 'nan']
-
-
 unique_Rvs = sorted(gene_metadata_df.Rv_ID.to_list())
 unique_genes = sorted(gene_metadata_df.gene_name.to_list())
 unique_genes = [x for x in unique_genes if x != '-']
+
+# do data wrangling on si and std data for dash requirements
 std_data['id'] = std_data['Rv_ID']
 std_data.set_index('id', inplace=True, drop=False)
 si_data['id'] = si_data['Rv_ID']
 si_data.set_index('id', inplace=True, drop=False)
-# print("Main", main_data.head())
 
-
+# read in cog annotations, cogs_desc should be read as a pd.Series
 path_annotation = '../data/annotations/'
 cogs_df = pd.read_csv(os.path.join(path_annotation, 'all_cogs.csv'))
 cogs_desc = pd.read_csv(os.path.join(
     path_annotation, 'cog_names.csv'), header=0, index_col=0, squeeze=True)
 
 
-# which columns of dataset metadata to show in analyse genes table
+# select columns of dataset metadata to show in analyse genes table
 metadata_cols_display = [col for col in metadata.columns if col not in [
     'plot_SI_graph', 'column_ID_std', 'column_ID_SI', 'paper_title', 'paper_URL']]
 sel_gene_table_columns = [{"name": i,
@@ -66,18 +71,50 @@ sel_gene_table_columns = [{"name": i,
                            } for i in [
     'Rv_ID', 'gene_name', 'Expt', 'log2FC', 'q-val'] + metadata_cols_display]
 
-# show paper column in markdown so that links work
+# show paper column as markdown so that html links work
 sel_gene_table_columns.append(
     {"name": 'paper', "id": 'paper', "presentation": 'markdown'})
 
-
+# list plotly buttons to remove from all graphs
 plotly_buttons_remove = [
     'pan2d', 'lasso2d', 'select2d', 'hoverClosestCartesian', 'hoverCompareCartesian',
     'zoomIn2d', 'zoomOut2d', 'toggleSpikelines', 'autoScale2d', 'zoom2d'
 ]
 
 
+def empty_plot(label_annotation):
+    """Returns a dictionary with elements for an empty plot with centered text
+
+    Args:
+        label_annotation (str): Text to display
+
+    Returns:
+        dict: Elements for plotting
+    """
+    return {
+        "layout": {
+            "xaxis": {"visible": False},
+            "yaxis": {"visible": False},
+            "annotations": [
+                {"text": label_annotation,
+                    "xref": "paper",
+                    "yref": "paper",
+                    "showarrow": False,
+                    "font": {"size": 16}
+                 }]
+        }}
+
+
 def unknown_essential_xy(selected_data):
+    """Generate plotting data for bubble plot
+
+    Args:
+        selected_data (pd.DataFrame): Data filtered on selected experiment
+
+    Returns:
+        Multiple outputs required for plotting
+    """
+
     df_vis = selected_data.dropna(subset=['annotation_score'])
     df_vis = df_vis.reset_index(drop=True)
 
@@ -148,28 +185,76 @@ def unknown_essential_xy(selected_data):
     return x_coords_list, y_coords_list, color_list, rv_id_list, scatter_size_list, lw_list
 
 
-# def unknown_essential_xy(selected_data, rand_param=0.6):
-#     df_vis = selected_data.dropna(subset=['annotation_score'])
-#     df_vis = df_vis.reset_index(drop=True)
+def filter_dataset(sel_dataset, sel_standardized):
+    """Using outputs from sel_dataset and sel_standardized return appropriate data and name
 
-#     # Get x-y datasets:
-#     rv_ids = df_vis.Rv_ID.values
-#     uk_list = np.array(df_vis.annotation_score)
-#     q_list = np.array(df_vis.q_val_D)
+    Args:
+        sel_dataset (str): Selected dataset eg: griffin_glycerol_vs_mbio_H37Rv
+        sel_standardized (str): Selected standardized eg: 'Original'
 
-#     # randomize:
-#     uk_rd = np.array([uk + rand_param * random() -
-#                       rand_param / 2 for uk in uk_list])
-#     q_rd = np.array([q + rand_param * random() -
-#                      rand_param / 2 for q in q_list])
+    Returns:
+        pd.DataFrame: Filtered data
+        str: Dataset name.
+    """
+    if sel_standardized == 'Standardized':
+        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
+        dff = std_data[std_data['Expt'] == dataset_name]
+    else:
+        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
+        dff = si_data[si_data['Expt'] == dataset_name]
+    return dff, dataset_name
 
-#     # color the unknown-essentials differently:
-#     color_list = np.array(['#585858'] * df_vis.shape[0])
-#     color_list[df_vis[(df_vis.q_val_D == 3) &
-#                       (df_vis.annotation_score == 4)].index] = '#2b7bba'
-#     return uk_rd, q_rd, color_list, rv_ids
+
+def update_download_dataset(dff, dataset_name):
+    """Given data filtered by experiment, provide data for downloading
+
+    Args:
+        dff (pd.DataFrame): Data filtered by experiment
+        dataset_name (str): Dataset name
+
+    Returns:
+        str: download string
+        str: download file name
+    """
+    dff = dff.copy(deep=True)
+    dff.reset_index(inplace=True, drop=True)
+    dff = dff.drop(columns='id')
+    csv_string = dff.to_csv(encoding='utf-8', sep='\t', index=False)
+    csv_string = "data:text/plain;charset=utf-8," + \
+        urllib.parse.quote(csv_string)
+    download_string = dataset_name + '.tsv'
+    return csv_string, download_string
+
+
+# TODO: decide what to do with NAs
+def update_num_significant(dff, log2FC, qval):
+    """Given filtered data, log2FC and qval return text indicating num significant genes
+
+    Args:
+        dff (pd.DataFrame): Data filtered by expt
+        log2FC (float): log2FC cutoff
+        qval (float): qval cutoff
+
+    Returns:
+        list: List of html elements as text 
+    """
+    dff = dff.dropna(axis=0, subset=['log2FC', 'q-val'])
+    num_neg_sig = dff[(dff['q-val'] <= qval) &
+                      (dff['log2FC'] <= -log2FC)].shape[0]
+    num_pos_sig = dff[(dff['q-val'] <= qval) &
+                      (dff['log2FC'] >= log2FC)].shape[0]
+    text = [html.Span(f'Number of neg_sig : {num_neg_sig} ; Number of pos_sig : {num_pos_sig}'),
+            ]
+    return text
+
+
+#####
+# SECTION 2: LAYOUT
+#####
+# initialize app
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
+# create navbar
 navbar = dbc.NavbarSimple([
     dbc.NavItem(dbc.NavLink('Analyze datasets',
                             active=True, href=app.get_relative_path('/analyze_datasets'))),
@@ -179,6 +264,7 @@ navbar = dbc.NavbarSimple([
                             href=app.get_relative_path('/about')))
 ], brand="Mtb Tn-seq database", color='primary', light=True)
 
+# Layout for page analyze datasets
 analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                              dbc.Row([
                                  html.Br(),
@@ -308,6 +394,7 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
     ], justify='center')
 ])
 
+# Layout for page analyze genes
 analyze_genes = html.Div([
     dbc.Row([html.Label('Pick a gene')]),
     dbc.Row([
@@ -358,6 +445,7 @@ analyze_genes = html.Div([
 
 ])
 
+# Layout for page About
 about = html.Div([
     html.H5('Contact'),
     html.Span("For bug reports and data submissions, contact "),
@@ -373,6 +461,7 @@ about = html.Div([
     # html.Label('Download raw_data')
 ])
 
+# app.layout dynamically takes in different content based on the path. See next callback
 app.layout = html.Div(
     [
         dcc.Location(id="url", refresh=False),
@@ -383,12 +472,17 @@ app.layout = html.Div(
 app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
+#####
+# SECTION 3: CALLBACKS
+#####
 
-# @ app.callback(Output('loading_dataset_table', "children"))
-# @ app.callback(Output("loading_volcano", "children"))
+
 @ app.callback(Output("content", "children"),
                [Input("url", "pathname")])
 def display_content(path):
+    """
+    Takes in path from the URL and returns layout for one of three pages
+    """
     page_name = app.strip_relative_path(path)
     if page_name == 'analyze_datasets':
         return analyze_datasets
@@ -403,51 +497,29 @@ def display_content(path):
      Output('sel_standardized', 'value')],
     [Input('sel_dataset', 'value')])
 def update_standardized_dropdown(sel_dataset):
+    """Take in the dataset selected and update the sel_standardized dropdown
+
+    Args:
+        sel_dataset (str): Selected dataset eg: griffin_glycerol_vs_mbio_H37Rv
+
+    Returns:
+        list: List of options for sel_standardized
+        str: Default value to display from the options
+    """
+    # is it a std_dataset?
     if sel_dataset in dict_std_to_si:
+        # does a corresponding original (aka si) dataset exist?
         if pd.isna(dict_std_to_si[sel_dataset]):
             return [{'label': x, 'value': x} for x in ['Standardized']], 'Standardized'
         else:
             return [{'label': x, 'value': x} for x in ['Standardized', 'Original']], 'Standardized'
+    # is it an original dataset?
     else:
+        # does a corresponding std_dataset exist?
         if pd.isna(dict_si_to_std[sel_dataset]):
             return [{'label': x, 'value': x} for x in ['Original']], 'Original'
         else:
             return [{'label': x, 'value': x} for x in ['Standardized', 'Original']], 'Original'
-
-
-def filter_dataset(sel_dataset, sel_standardized):
-    if sel_standardized == 'Standardized':
-        dataset_name = dict_si_to_std.get(sel_dataset, sel_dataset)
-        dff = std_data[std_data['Expt'] == dataset_name]
-    else:
-        dataset_name = dict_std_to_si.get(sel_dataset, sel_dataset)
-        dff = si_data[si_data['Expt'] == dataset_name]
-    return dff, dataset_name
-
-
-def update_download_dataset(dff, dataset_name):
-    dff = dff.copy(deep=True)
-    dff.reset_index(inplace=True, drop=True)
-    dff = dff.drop(columns='id')
-    csv_string = dff.to_csv(encoding='utf-8', sep='\t', index=False)
-    csv_string = "data:text/plain;charset=utf-8," + \
-        urllib.parse.quote(csv_string)
-    download_string = dataset_name + '.tsv'
-    return csv_string, download_string
-
-
-# TODO: decide what to do with NAs
-def update_num_significant(dff, log2FC, qval):
-    dff = dff.dropna(axis=0, subset=['log2FC', 'q-val'])
-    num_neg_sig = dff[(dff['q-val'] <= qval) &
-                      (dff['log2FC'] <= -log2FC)].shape[0]
-    num_pos_sig = dff[(dff['q-val'] <= qval) &
-                      (dff['log2FC'] >= log2FC)].shape[0]
-    text = [html.Span(f'Number of neg_sig : {num_neg_sig} ; Number of pos_sig : {num_pos_sig}'),
-            # html.Br(),
-            # html.Span(f'#pos-significant:{num_pos_sig}')
-            ]
-    return text
 
 
 @ app.callback([
@@ -461,6 +533,20 @@ def update_num_significant(dff, log2FC, qval):
      Input('q-val', 'value'),
      ])
 def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2FC, qval):
+    """Using user inputs, update download dataset and num significant
+
+    Args:
+        sel_dataset (str): User selected dataset 
+        sel_standardized (str): User selected standardized/original
+        log2FC (float): User selected log2FC cutoff
+        qval (flaot): User selected qval cutoff
+
+    Returns:
+        str: href for download
+        str: file name for download
+        list: list of text for number of significant. 
+              ' ' is returned if not enough genes in experiment for this to be meaningful
+    """
     dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
     num_significant_text = update_num_significant(dff, log2FC, qval)
     if sel_standardized == 'Original':
@@ -469,33 +555,6 @@ def update_multiple_outputs_analyze_datasets(sel_dataset, sel_standardized, log2
     csv_string, download_string = update_download_dataset(dff, dataset_name)
 
     return csv_string, download_string, num_significant_text
-
-
-def empty_plot(label_annotation):
-    '''
-    Returns an empty plot with a centered text.
-    '''
-    return {
-        "layout": {
-            "xaxis": {
-                "visible": False
-            },
-            "yaxis": {
-                "visible": False
-            },
-            "annotations": [
-                {
-                    "text": label_annotation,
-                    "xref": "paper",
-                    "yref": "paper",
-                    "showarrow": False,
-                    "font": {
-                        "size": 16
-                    }
-                }
-            ]
-        }
-    }
 
 
 @app.callback([Output('volcano', 'figure'),
@@ -508,26 +567,37 @@ def empty_plot(label_annotation):
                ])
 def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids):
     dff, dataset_name = filter_dataset(sel_dataset, sel_standardized)
-    config = {'modeBarButtonsToRemove': plotly_buttons_remove, 'toImageButtonOptions': {
-        'height': 700,
-        'width': 700, 'scale': 5, 'filename': f'{dataset_name}_volcano.png'
-    }}
+    config = {
+        'modeBarButtonsToRemove': plotly_buttons_remove,
+        'toImageButtonOptions': {
+            'height': 700,
+            'width': 700,
+            'scale': 5,
+            'filename': f'{dataset_name}_volcano.png'
+        }
+    }
     if sel_standardized == 'Original':
+        # Is there enough data for a meaningful plot?
         if dict_plot_si[dataset_name] == 'No':
             return (empty_plot('Not enough datapoints' + '\n' + 'for a meaningful plot'), config)
+    # weird plotly requirement
     if selected_row_ids is None:
         selected_row_ids = []
     # TODO: Figure out NAs
     dff = dff.dropna(axis=0, subset=['log2FC', 'q-val'])
     # make qval ticks, replacing the np.nans with inf
+    # what is current second highest max log10 transformed qval?
+    # note that max will be inf
     max_log_qval = np.unique(-np.log10(dff['q-val']))[-2]
+    # create new column in dff with qval for plotting, replace inf values
     inf_repl = np.ceil(max_log_qval) + 1
     dff['qval_plotting'] = -np.log10(dff['q-val'])
     dff['qval_plotting'].replace(np.inf, inf_repl, inplace=True)
+
+    # create x and y tick vals and labels
     tickvals = list(np.arange(0, inf_repl + 0.5, 0.5))
     ticklab = tickvals.copy()
     ticklab[-1] = 'Inf'
-
     for_x_ticks = dff['log2FC']
     # TODO: WHAT is this? - commented for now
     # for_x_ticks = for_x_ticks.replace([np.inf, -np.inf], np.nan)
@@ -536,7 +606,7 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
                                 int(for_x_ticks.max() + 1), 1))
     ticklab_x = tickvals_x.copy()
 
-    # split data into tickeed,unticked_sig, unticked_non_sig
+    # split data into selected (ie ticked), unselected_sig, unselected_non_sig
     ticked = dff['id'].isin(selected_row_ids)
     ticked_data = dff[ticked]
     unticked_data = dff[~ticked]
@@ -545,6 +615,7 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
     sig_data = unticked_data[generated_filter]
     non_sig_data = unticked_data[~generated_filter]
 
+    # make traces for each kind of data
     traces = []
     traces.append(go.Scatter(x=sig_data['log2FC'],
                              y=sig_data['qval_plotting'],
@@ -579,19 +650,15 @@ def update_volcano(sel_dataset, sel_standardized, log2FC, qval, selected_row_ids
                                        'color': 'green'},
                              showlegend=False
                              ))
+    # return dict of plotting and config for plotly
     return ({'data': traces,
              'layout': go.Layout(
                  autosize=False,
-                 margin={
-                     'l': 45,
-                     'r': 15,
-                     'pad': 0,
-                     't': 30,
-                     'b': 90, },
+                 margin={'l': 45, 'r': 15, 'pad': 0, 't': 30, 'b': 90},
                  xaxis={'title': 'log2FC', 'ticktext': ticklab_x,
                         'tickvals': tickvals_x, 'fixedrange': True},
-                 yaxis={
-                     'title': '-log10(q-val)', 'ticktext': ticklab, 'tickvals': tickvals, 'fixedrange': True},
+                 yaxis={'title': '-log10(q-val)', 'ticktext': ticklab,
+                        'tickvals': tickvals, 'fixedrange': True},
                  hovermode='closest'
              )}, config)
 
