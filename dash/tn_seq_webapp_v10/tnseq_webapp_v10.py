@@ -16,7 +16,7 @@ from dash.exceptions import PreventUpdate
 from numpy import inf
 import itertools
 
-
+# TODO: reformat analyze genes to remove underscores in header, add ellipsis to overfloe, esp for paper
 #####
 # SECTION 1: Read in data, create static variables
 #####

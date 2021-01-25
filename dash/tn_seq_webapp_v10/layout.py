@@ -177,23 +177,25 @@ analyze_genes = html.Div([
                  columns=sel_gene_table_columns,
                  sort_action='native',
                  page_action='native',
-                 #  filter_action='native',
                  page_size=15,
                  page_current=0,
+                 style_cell={
+                     'font-family': 'ubuntu',
+                     'font-size': 14,
+                     'whiteSpace': 'normal',
+                     'height': 'auto',
+                     'maxWidth': '200px',
+                     # 'textOverFlow': 'ellipsis',
+                     'textAlign': 'center',
+                     #  'overflow': 'hidden'
+                 },
                  style_header={'color': '#e95420', 'font-weight': 'bold',
                                'textAlign': 'center'},
                  style_data_conditional=[
                      {'if': {'row_index': 'odd'},
                       'backgroundColor': 'rgb(248,248,248)'}
                  ],
-                 style_cell={
-                     'font-family': 'ubuntu',
-                     'font-size': 14,
-                     'height': '10px',
-                     # 'textOverFlow': 'ellipsis',
-                     'textAlign': 'center',
-                     'overflow': 'hidden'
-                 })
+                 )
 
 ])
 
