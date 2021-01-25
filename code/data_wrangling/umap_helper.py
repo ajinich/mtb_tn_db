@@ -57,7 +57,7 @@ def fisher_enrichment_test(df_annot, annotation, cluster, clus_col_name = 'clust
     M = df_test.shape[0]
 
     # Extract data for given cluster
-    df_clus = df_test[df_test[clus_col_name] == cluster]
+    df_clus = df_test[df_test[clus_col_name].values == cluster]
 
     # Get top 5 categories to test
     cats = df_clus[annotation].value_counts().head().index.tolist()
@@ -71,13 +71,13 @@ def fisher_enrichment_test(df_annot, annotation, cluster, clus_col_name = 'clust
     # Loop through the top categories
     for i, cat in enumerate(cats): 
         
-        df_cat = df_test[df_test[annotation] == cat]
+        df_cat = df_test[df_test[annotation].values == cat]
         
         # Total number of genes that map to given category (total number of white balls)
         n = df_cat.shape[0]
         
         # Number of genes inside cluster that map to given category (number of white balls in sample)
-        x = df_clus[df_clus[annotation] == cat].shape[0]
+        x = df_clus[df_clus[annotation].values == cat].shape[0]
         
         # Sweep through the probabilities from x to n 
         pmfs = st.hypergeom.pmf(k = np.arange(x, n + 1), N = N, n = n, M = M)
@@ -97,8 +97,8 @@ def fisher_enrichment_test(df_annot, annotation, cluster, clus_col_name = 'clust
 
 def shuffle_genes(df_not_shuffled):
     ### shuffling of genes with respect to UMAP coordinates:
-    cols_genes = df_not_shuffled.columns[:4]
-    cols_umap = df_not_shuffled.columns[4:]
+    cols_genes = df_not_shuffled.columns[:5]
+    cols_umap = df_not_shuffled.columns[5:]
 
     df_genes = df_not_shuffled[cols_genes].copy()
     df_umap = df_not_shuffled[cols_umap].copy()
