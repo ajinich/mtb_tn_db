@@ -16,8 +16,7 @@ from dash.exceptions import PreventUpdate
 from numpy import inf
 import itertools
 
-# TODO: FIX BUBBLE PLOT FROM NOTEBOOK AND CHANGE XAXIS LABELS!!!
-
+# TODO: reformat analyze genes to remove underscores in header, add ellipsis to overfloe, esp for paper
 #####
 # SECTION 1: Read in data, create static variables
 #####
@@ -258,9 +257,34 @@ def update_bubble(sel_dataset, sel_standardized):
     if sel_standardized == 'Original':
         if dict_plot_si[dataset_name] == 'No':
             return (empty_plot('Not enough datapoints' + '\n' + 'for a meaningful plot'), config)
-    x_coords_list, y_coords_list, color_list, rv_id_list, scatter_size_list, lw_list = unknown_essential_xy(
+    x_coords_list, y_coords_list, color_list, rv_id_list, scatter_size_list = unknown_essential_xy(
         dff)
-    print(scatter_size_list)
+
+    # make list of lines to add
+    lines_add = []
+    for x in [1.5, 2.5, 3.5, 4.5]:
+        lines_add.append({'type': 'line',
+                          'xref': 'x',
+                          'yref': 'y',
+                          'x0': x,
+                          'y0': 0.5,
+                          'x1': x,
+                          'y1': 3.5,
+                          'line': {'dash': 'dot',
+                                   'color': 'grey'}
+                          })
+    for y in [1.5, 2.5]:
+        lines_add.append({'type': 'line',
+                          'xref': 'x',
+                          'yref': 'y',
+                          'x0': 0.5,
+                          'y0': y,
+                          'x1': 5.5,
+                          'y1': y,
+                          'line': {'dash': 'dot',
+                                   'color': 'grey'}
+                          })
+    # print(scatter_size_list)
     return ({
         'data': [
             go.Scatter(
@@ -280,13 +304,14 @@ def update_bubble(sel_dataset, sel_standardized):
         ],
         'layout': go.Layout(
             autosize=True,
+            shapes=lines_add,
             # width=800,
             # height=500,
             xaxis=go.layout.XAxis(
                 tickmode='array',
                 tickvals=[1, 2, 3, 4, 5],
-                ticktext=['most well<br>characterized', '', '', '',
-                          'least well<br>characterized'],
+                ticktext=['least well<br>characterized', '', '', '',
+                          'most well<br>characterized'],
                 tickfont=dict(size=14),
                 title='Annotation',
                 showgrid=False
