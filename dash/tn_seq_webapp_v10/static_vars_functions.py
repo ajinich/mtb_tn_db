@@ -120,7 +120,6 @@ def unknown_essential_xy(selected_data):
     y_coords_list = []
     color_list = []
     scatter_size_list = []
-    lw_list = []
 
     for ann in [1, 2, 3, 4, 5]:
         for qq in [1, 2, 3]:
@@ -133,28 +132,21 @@ def unknown_essential_xy(selected_data):
             if df.shape[0] < 30:
                 scatter_size = 6
                 edge_param = 0.40
-                lw = 4
             elif df.shape[0] < 100:
                 scatter_size = 6
                 edge_param = 0.40
-                lw = 3
             elif df.shape[0] < 200:
                 scatter_size = 3
                 edge_param = 0.45
-                lw = 2
             elif df.shape[0] < 400:
                 scatter_size = 3
                 edge_param = 0.45
-                lw = 2
             else:
                 scatter_size = 3
                 edge_param = 0.45
-                lw = 1
 
             # Update scatter marker size
             scatter_size_list += [scatter_size] * df.shape[0]
-            # Update line-width size
-            lw_list += [lw] * df.shape[0]
 
             if ann <= 2 and qq >= 2:
                 color_temp = '#2b7bba'
@@ -178,7 +170,7 @@ def unknown_essential_xy(selected_data):
             x_coords_list += x_coords
             y_coords_list += y_coords
 
-    return x_coords_list, y_coords_list, color_list, rv_id_list, scatter_size_list, lw_list
+    return x_coords_list, y_coords_list, color_list, rv_id_list, scatter_size_list
 
 
 def filter_dataset(sel_dataset, sel_standardized):
