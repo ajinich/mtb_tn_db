@@ -28,7 +28,6 @@ si_data = pd.read_csv(os.path.join(
     path_data, 'si_data_dash.tsv'), sep='\t', dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float, 'q-val': np.float})
 gene_metadata_df = pd.read_csv(os.path.join(
     path_data, 'gene_metadata_dash.tsv'), sep='\t')
-# TODO: make num_replicates into int
 # TODO: fill empty strings in meaning etc with ' ' instead of nan
 metadata = pd.read_csv(os.path.join(path_data, 'col_desc_dash.tsv'), sep='\t')
 
@@ -99,6 +98,12 @@ def empty_plot(label_annotation):
                     "font": {"size": 16}
                  }]
         }}
+
+
+def split_expt_name(expt_name):
+    expt_name_split = expt_name.split('_vs_')
+    new_expt_name = expt_name_split[0] + '_vs_' + '\n' + expt_name_split[1]
+    return new_expt_name
 
 
 def unknown_essential_xy(selected_data):

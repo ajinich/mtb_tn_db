@@ -16,7 +16,7 @@ from dash.exceptions import PreventUpdate
 from numpy import inf
 import itertools
 
-# TODO: reformat analyze genes to remove underscores in header, add ellipsis to overfloe, esp for paper
+# TODO: reformat analyze genes to remove underscores in header, add ellipsis to overflow, esp for paper
 #####
 # SECTION 1: Read in data, create static variables
 #####
@@ -356,11 +356,11 @@ def print_dataset_metadata(sel_dataset, sel_standardized):
         html.Br(),
         html.Br(),
         html.Strong('No of control replicates'),
-        html.Span(': ' + str(dff['num_replicates_control'].values[0])),
+        html.Span(': ' + str(dff['num replicates control'].values[0])),
         html.Br(),
         html.Br(),
         html.Strong('No of experimental replicates'),
-        html.Span(': ' + str(dff['num_replicates_experimental'].values[0]))
+        html.Span(': ' + str(dff['num replicates experimental'].values[0]))
     ]
     return text
 
@@ -464,6 +464,8 @@ def update_genes_table(selected_gene, sel_standardized_gene_table):
     merged_data['q-val'] = np.round(merged_data['q-val'], 2)
     merged_data['log2FC'] = np.round(merged_data['log2FC'], 2)
     merged_data = merged_data.sort_values(by='q-val')
+    merged_data['Expt'] = merged_data['Expt'].apply(lambda x: split_expt_name(x))
+    print(merged_data)
     return merged_data.to_dict('records')
 
 
@@ -482,7 +484,10 @@ def print_gene_metadata(sel_gene):
         html.Span(list(sel_details['Description'])[0]),
         html.Br(),
         html.Strong('mBio Call: '),
-        html.Span(list(sel_details['Final Call'])[0])
+        html.Span(list(sel_details['Final Call'])[0]),
+        html.Br(),
+        html.Strong('Tuberculist functional category: '),
+        html.Span(list(sel_details['tuberculist_category'])[0])
     ]
     return text
 

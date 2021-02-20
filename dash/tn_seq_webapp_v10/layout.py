@@ -1,7 +1,6 @@
 import os
 from static_vars_functions import *
 
-
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
@@ -14,7 +13,6 @@ import plotly.graph_objs as go
 from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 from numpy import inf
-
 
 # Layout for page analyze datasets
 analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
@@ -47,104 +45,107 @@ analyze_datasets = html.Div([dbc.Row([html.Label('Pick a dataset')]),
                                         target="_blank"),
 
                              ], align='center',
-    style={'background-color': '#f5f5f5',
-                                 'padding': '30px',
-                                 'border-radius': '25px',
-                                 'border-color': '#dcdcdc',
-                                 'border-width': '2px',
-                                 'border-style': 'solid'}),
-    html.Br(),
-    html.Br(),
-    dbc.Row([
-        dbc.Col([
-            html.Div([
-                html.Label('About this dataset')
-            ], style={'textAlign': 'center', 'display': 'block'}),
-        ], align='center', width=3),
-        dbc.Col([
-            html.Div([
-                html.Label('Volcano plot')
-            ], style={'textAlign': 'center', 'display': 'block'}),
-            html.Div(id='num_significant', style={
-                     'textAlign': 'center', 'display': 'block'}),
-        ], align='center', width=5),
-        dbc.Col([
-            html.Div([
-                html.Label('Gene List')
-            ], style={'textAlign': 'center', 'display': 'block'}),
-        ], align='center', width=3),
-    ]),
-    dbc.Row([
-        dbc.Col([
-            html.Div(id='dataset_metadata')], width=3,
-            style={'background-color': '#f5f5f5',
-                   'padding': '30px',
-                   'border-radius': '25px',
-                   'border-color': '#dcdcdc',
-                   'border-width': '2px',
-                   'border-style': 'solid'}),
-        dbc.Col([dcc.Loading(id='loading_volcano', children=dcc.Graph(id='volcano')),
-                 ],
-                width=5, align='center'),
-        dbc.Col([dcc.Loading(id='loading_dataset_table', children=dt.DataTable(id='sel_dataset_table',
-                                                                               columns=[{"name": i, "id": i} for i in [
-                                                                                   'Rv_ID', 'gene_name', 'log2FC', 'q-val']],
-                                                                               sort_action='native',
-                                                                               row_selectable='multi',
-                                                                               selected_rows=[],
-                                                                               page_action='native',
-                                                                               page_size=15,
-                                                                               page_current=0,
-                                                                               style_header={'color': '#e95420', 'font-weight': 'bold',
-                                                                                             'text-align': 'center'},
-                                                                               style_cell_conditional=[
-                                                                                   {'if': {'column_id': 'q-val'},
-                                                                                    'width': '30%'}
-                                                                               ],
-                                                                               style_data_conditional=[
-                                                                                   {'if': {'row_index': 'odd'},
-                                                                                    'backgroundColor': 'rgb(248,248,248)'}
-                                                                               ],
-                                                                               style_cell={
-                                                                                   'font-family': 'ubuntu',
-                                                                                   'font-size': 14,
-                                                                                   'height': '10px',
-                                                                                   'textOverFlow': 'ellipsis',
-                                                                                   'text-align': 'center',
-                                                                                   'overflow': 'hidden'
-                                                                               },
-                                                                               #    style_as_list_view=True,
-                                                                               ))
-                 ], width=4, align='center')
-    ]),
-    html.Br(),
-    html.Br(),
-    html.Br(),
-    dbc.Row([
-        dbc.Col([
-            html.Div([
-                html.Label('COG Categories')
-            ], style={'textAlign': 'center', 'display': 'block'}),
-        ], align='center', width=6),
-        dbc.Col([
-            html.Div([
-                html.Label('Essentiality plot')
-            ], style={'textAlign': 'center', 'display': 'block'}),
-        ], align='center', width=6),
-    ]),
-    dbc.Row([
-        dbc.Col([
-            dcc.Dropdown(id='sel_cog',
-                         options=[{'label': x, 'value': x} for x in
-                                  ['Under-represented', 'Over-represented']],
-                         value='Under-represented'),
-            dcc.Graph(id='cog')
+                                 style={'background-color': '#f5f5f5',
+                                        'padding': '30px',
+                                        'border-radius': '25px',
+                                        'border-color': '#dcdcdc',
+                                        'border-width': '2px',
+                                        'border-style': 'solid'}),
+                             html.Br(),
+                             html.Br(),
+                             dbc.Row([
+                                 dbc.Col([
+                                     html.Div([
+                                         html.Label('About this dataset')
+                                     ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=3),
+                                 dbc.Col([
+                                     html.Div([
+                                         html.Label('Volcano plot')
+                                     ], style={'textAlign': 'center', 'display': 'block'}),
+                                     html.Div(id='num_significant', style={
+                                         'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=5),
+                                 dbc.Col([
+                                     html.Div([
+                                         html.Label('Gene List')
+                                     ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=3),
+                             ]),
+                             dbc.Row([
+                                 dbc.Col([
+                                     html.Div(id='dataset_metadata')], width=3,
+                                     style={'background-color': '#f5f5f5',
+                                            'padding': '30px',
+                                            'border-radius': '25px',
+                                            'border-color': '#dcdcdc',
+                                            'border-width': '2px',
+                                            'border-style': 'solid'}),
+                                 dbc.Col([dcc.Loading(id='loading_volcano', children=dcc.Graph(id='volcano')),
+                                          ],
+                                         width=5, align='center'),
+                                 dbc.Col([dcc.Loading(id='loading_dataset_table',
+                                                      children=dt.DataTable(id='sel_dataset_table',
+                                                                            columns=[{"name": i, "id": i} for i in [
+                                                                                'Rv_ID', 'gene_name', 'log2FC',
+                                                                                'q-val']],
+                                                                            sort_action='native',
+                                                                            row_selectable='multi',
+                                                                            selected_rows=[],
+                                                                            page_action='native',
+                                                                            page_size=15,
+                                                                            page_current=0,
+                                                                            style_header={'color': '#e95420',
+                                                                                          'font-weight': 'bold',
+                                                                                          'text-align': 'center'},
+                                                                            style_cell_conditional=[
+                                                                                {'if': {'column_id': 'q-val'},
+                                                                                 'width': '30%'}
+                                                                            ],
+                                                                            style_data_conditional=[
+                                                                                {'if': {'row_index': 'odd'},
+                                                                                 'backgroundColor': 'rgb(248,248,248)'}
+                                                                            ],
+                                                                            style_cell={
+                                                                                'font-family': 'ubuntu',
+                                                                                'font-size': 14,
+                                                                                'height': '10px',
+                                                                                'textOverFlow': 'ellipsis',
+                                                                                'text-align': 'center',
+                                                                                'overflow': 'hidden'
+                                                                            },
+                                                                            #    style_as_list_view=True,
+                                                                            ))
+                                          ], width=4, align='center')
+                             ]),
+                             html.Br(),
+                             html.Br(),
+                             html.Br(),
+                             dbc.Row([
+                                 dbc.Col([
+                                     html.Div([
+                                         html.Label('COG Categories')
+                                     ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=6),
+                                 dbc.Col([
+                                     html.Div([
+                                         html.Label('Essentiality plot')
+                                     ], style={'textAlign': 'center', 'display': 'block'}),
+                                 ], align='center', width=6),
+                             ]),
+                             dbc.Row([
+                                 dbc.Col([
+                                     dcc.Dropdown(id='sel_cog',
+                                                  options=[{'label': x, 'value': x} for x in
+                                                           ['Under-represented', 'Over-represented']],
+                                                  value='Under-represented'),
+                                     dcc.Graph(id='cog')
 
-        ], width=6, align='center'),
-        dbc.Col([dcc.Loading(id='loading_bubble', children=dcc.Graph(id='bubble_plot'))
-                 ], width=6, align='center')
-    ], justify='center')
-])
+                                 ], width=6, align='center'),
+                                 dbc.Col([dcc.Loading(id='loading_bubble', children=dcc.Graph(id='bubble_plot'))
+                                          ], width=6, align='center')
+                             ], justify='center')
+                             ])
 
 # Layout for page analyze genes
 analyze_genes = html.Div([
@@ -184,7 +185,7 @@ analyze_genes = html.Div([
                      'font-size': 14,
                      'whiteSpace': 'normal',
                      'height': 'auto',
-                     'maxWidth': '200px',
+                     'maxWidth': '120px',
                      # 'textOverFlow': 'ellipsis',
                      'textAlign': 'center',
                      #  'overflow': 'hidden'
@@ -193,7 +194,16 @@ analyze_genes = html.Div([
                                'textAlign': 'center'},
                  style_data_conditional=[
                      {'if': {'row_index': 'odd'},
-                      'backgroundColor': 'rgb(248,248,248)'}
+                      'backgroundColor': 'rgb(248,248,248)'},
+                     {'if': {'column_id': 'Expt'}, 'maxWidth': '300px'},
+                     {'if': {'column_id': 'meaning'}, 'width': '250px'},
+                     {'if': {'column_id': 'log2FC'}, 'width': '60px'},
+                     {'if': {'column_id': 'q-val'}, 'width': '60px'},
+                        {'if': {'column_id': 'gene_name'}, 'width': '100px'},
+                     {'if': {'column_id': 'num replicates control'}, 'width': '50px'},
+                     {'if': {'column_id': 'num replicates experimental'}, 'width': '50px'},
+                     {'if': {'column_id': 'Expt'}, 'whiteSpace': 'pre-line'},
+                     {'if': {'column_id': 'paper'}, 'width': '300px'},
                  ],
                  )
 
