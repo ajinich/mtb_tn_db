@@ -199,9 +199,10 @@ analyze_genes = html.Div([
                      {'if': {'column_id': 'meaning'}, 'width': '250px'},
                      {'if': {'column_id': 'log2FC'}, 'width': '60px'},
                      {'if': {'column_id': 'q-val'}, 'width': '60px'},
-                        {'if': {'column_id': 'gene_name'}, 'width': '100px'},
+                     {'if': {'column_id': 'gene_name'}, 'width': '100px'},
                      {'if': {'column_id': 'num replicates control'}, 'width': '50px'},
-                     {'if': {'column_id': 'num replicates experimental'}, 'width': '50px'},
+                     {'if': {'column_id': 'num replicates experimental'},
+                         'width': '50px'},
                      {'if': {'column_id': 'Expt'}, 'whiteSpace': 'pre-line'},
                      {'if': {'column_id': 'paper'}, 'width': '300px'},
                  ],
@@ -211,6 +212,14 @@ analyze_genes = html.Div([
 
 # Layout for page About
 about = html.Div([
+    html.Span('TnSeq has been used extensively in '),
+    html.Span('M. tuberculosis', style={'font-style': 'italic'}),
+    html.Span(' genetic research and identification of gene essentiality (TnSeq) profiles is important for predicting gene function. However, these profiles are buried across dozens of research papers within supplementary materials which makes querying them cumbersome. The MtbTnDB solves this problem by building a central repository of TnSeq screens performed in '),
+    html.Span('M. tuberculosis', style={'font-style': 'italic'}),
+    html.Span(
+        ', and allows users easy access to data through an interactive web-app.'),
+    html.Br(),
+    html.Br(),
     html.H5('Contact'),
     html.Span("For bug reports and data submissions, contact "),
     html.A('Adrian Jinich',
@@ -220,7 +229,7 @@ about = html.Div([
     html.H5('Raw data'),
     html.Span('Raw data is available '),
     html.A('here',
-           href='https://www.dropbox.com/s/ktx859tq73i8y9m/ORF_details_final.csv?dl=1'),
+           href='https://www.google.com'),
     # dbc.Button("Download raw data", href='https://www.dropbox.com/s/ktx859tq73i8y9m/ORF_details_final.csv?dl=1'),
     # html.Label('Download raw_data')
 ])

@@ -38,7 +38,7 @@ navbar = dbc.NavbarSimple([
                             href=app.get_relative_path('/analyze_genes'))),
     dbc.NavItem(dbc.NavLink('About', active=True,
                             href=app.get_relative_path('/about')))
-], brand="Mtb Tn-seq database", color='primary', light=True)
+], brand="MtbTnDB", color='primary', light=True)
 
 # app.layout dynamically takes in different content based on the path. See next callback
 app.layout = html.Div(
@@ -355,6 +355,10 @@ def print_dataset_metadata(sel_dataset, sel_standardized):
                href=dff['paper_URL'].values[0], target='_blank'),
         html.Br(),
         html.Br(),
+        html.Strong('Mtb strain'),
+        html.Span(': ' + dff['Mtb strain'].values[0]),
+        html.Br(),
+        html.Br(),
         html.Strong('No of control replicates'),
         html.Span(': ' + str(dff['num replicates control'].values[0])),
         html.Br(),
@@ -464,8 +468,8 @@ def update_genes_table(selected_gene, sel_standardized_gene_table):
     merged_data['q-val'] = np.round(merged_data['q-val'], 2)
     merged_data['log2FC'] = np.round(merged_data['log2FC'], 2)
     merged_data = merged_data.sort_values(by='q-val')
-    merged_data['Expt'] = merged_data['Expt'].apply(lambda x: split_expt_name(x))
-    print(merged_data)
+    merged_data['Expt'] = merged_data['Expt'].apply(
+        lambda x: split_expt_name(x))
     return merged_data.to_dict('records')
 
 
@@ -487,7 +491,10 @@ def print_gene_metadata(sel_gene):
         html.Span(list(sel_details['Final Call'])[0]),
         html.Br(),
         html.Strong('Tuberculist functional category: '),
-        html.Span(list(sel_details['tuberculist_category'])[0])
+        html.Span(list(sel_details['tuberculist_category'])[0]),
+        html.Br(),
+        html.Strong('Nearest annotated neighbours: '),
+        html.Span(list(sel_details['NN_joined'])[0])
     ]
     return text
 

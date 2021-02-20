@@ -28,12 +28,13 @@ si_data = pd.read_csv(os.path.join(
     path_data, 'si_data_dash.tsv'), sep='\t', dtype={'Rv_ID': str, 'gene_name': str, 'Description': str, 'Expt': str, 'log2FC': np.float, 'q-val': np.float})
 gene_metadata_df = pd.read_csv(os.path.join(
     path_data, 'gene_metadata_dash.tsv'), sep='\t')
-# TODO: fill empty strings in meaning etc with ' ' instead of nan
+
 metadata = pd.read_csv(os.path.join(path_data, 'col_desc_dash.tsv'), sep='\t')
 
 # make dictionaries that lookup si_data from std_data and vice versa
 dict_std_to_si = dict(zip(metadata.column_ID_std, metadata.column_ID_SI))
 dict_si_to_std = dict(zip(metadata.column_ID_SI, metadata.column_ID_std))
+
 # make dictionary that tells you if SI data has enough datapoints to be plotted
 dict_plot_si = dict(zip(metadata.column_ID_SI, metadata.plot_SI_graph))
 
@@ -236,6 +237,6 @@ def update_num_significant(dff, log2FC, qval):
                       (dff['log2FC'] <= -log2FC)].shape[0]
     num_pos_sig = dff[(dff['q-val'] <= qval) &
                       (dff['log2FC'] >= log2FC)].shape[0]
-    text = [html.Span(f'Number of neg_sig : {num_neg_sig} ; Number of pos_sig : {num_pos_sig}'),
+    text = [html.Span(f'Number of neg sig : {num_neg_sig} ; Number of pos sig : {num_pos_sig}'),
             ]
     return text
