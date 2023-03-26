@@ -3,4 +3,4 @@ ml-SEDS_lab/
 ml-standardised_data/UP_Rhea_to_smiles-Sakila.ipynb
 ml-standardised_data/EDA_rhea-Sakila.ipynb
 ml-standardised_data/smiles_clustering_vis-Sakila.ipynb
-
+.DS_Store
