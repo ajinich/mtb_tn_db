@@ -21,7 +21,7 @@ def import_interact_lfc_uniprot(norm):
     df_interact = pd.read_excel(fn_path)
 
     # LFC dataset
-    fn_lfc_basis = '../data/standardized_data/result_logfc_matrix_2021_11_15_BASIS_invitro.csv'
+    fn_lfc_basis = '../data/standardized_data/old_std_data/result_logfc_matrix_2021_11_15_BASIS_invitro.csv'
     df_lfc_basis = pd.read_csv(fn_lfc_basis)
     df_lfc_basis.dropna(axis=0, inplace=True)
 
@@ -86,8 +86,8 @@ def get_NN12(rvid_query, df_interact):
 def correlation_tile_plot(df_lfc, list_rvid_x, list_rvid_y, fig_size, cols, dict_rvid_to_name, list_subset=[], gene_names = True ):
     
     if gene_names:
-        list_gene_names_x = [dict_rvid_to_name[rvid] for rvid in list_rvid_x]
-        list_gene_names_y = [dict_rvid_to_name[rvid] for rvid in list_rvid_y]
+        list_gene_names_x = [dict_rvid_to_name[rvid] if rvid in dict_rvid_to_name.keys() else rvid for rvid in list_rvid_x]
+        list_gene_names_y = [dict_rvid_to_name[rvid] if rvid in dict_rvid_to_name.keys() else rvid for rvid in list_rvid_y]
     else:
         list_gene_names_x = list_rvid_x
         list_gene_names_y = list_rvid_y
