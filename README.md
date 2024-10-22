@@ -5,7 +5,7 @@ This repository contains code and data for analyzing TnSeq data, including pre-p
 
 ## Data Standardization and Pre-processing
 
-The initial standardization of TnSeq data is based on analysis performed using the TRANSIT tool by M. deJesus. Output files from TRANSIT, some of which are available on Zenodo, have been processed into single q-value and log2 fold change tables:
+The initial standardization of TnSeq data is based on analysis performed using the TRANSIT tool by M. deJesus. The raw output files from TRANSIT can be found in Zenodo at Jinich, A., & DeJesus, M. (2024). Mycobacterium tuberculosis transposon sequencing database (MtbTnSeq) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.13937394. These have been processed into single q-value and log2 fold change tables:
 
 - **Starting Data**: `result_logfc_matrix_2021_05_18.csv`, generated and provided by M. deJesus.
 - **Additional Data Stages**:
@@ -80,10 +80,6 @@ These processed files serve as inputs for the subsequent analysis.
 - **notebooks/**: Jupyter notebooks for analysis and visualization.
 - **figures/**: Output figures from various analyses.
 - **dash_app/**: Code and resources for the Dash app interface.
-
-## Credits
-
-Initial data processing was performed by M. deJesus using TRANSIT. Additional data integration and analysis were conducted by our team, including contributions from Clare (CC panel data) and others.
 
 ## License
 
