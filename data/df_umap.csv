@@ -1,0 +1,1772 @@
+Rv_ID,gene_name,Annotation,func_tuberculist,COG,u1,u2,cluster_labels
+Rv0003,recF,2.0,information pathways,L,-17.735023,14.495029,15
+Rv0006,gyrA,5.0,information pathways,L,-27.707169,27.708073,10
+Rv0007,-,1.0,cell wall and cell processes,S,-24.125223,27.623251,4
+Rv0009,ppiA,4.0,information pathways,O,-17.27498,29.045324,18
+Rv0012,-,1.0,cell wall and cell processes,S,-14.3810425,29.086258,14
+Rv0013,trpG,3.0,intermediary metabolism and respiration,EH,-13.796715,38.21063,0
+Rv0016c,pbpA,4.0,cell wall and cell processes,M,-24.693277,27.436907,4
+Rv0017c,rodA,2.0,cell wall and cell processes,D,-24.635294,27.50025,4
+Rv0018c,ppp,5.0,regulatory proteins,T,-25.127272,27.528545,4
+Rv0019c,-,5.0,regulatory proteins,T,-24.741482,27.49911,4
+Rv0020c,TB39.8,5.0,regulatory proteins,T,-17.347366,28.902754,18
+Rv0029,-,1.0,conserved hypotheticals,S,-13.618233,25.139063,9
+Rv0038,-,1.0,conserved hypotheticals,K,-13.84627,26.659637,9
+Rv0039c,-,1.0,cell wall and cell processes,S,-9.492684,44.852264,19
+Rv0040c,mtc28,1.0,cell wall and cell processes,S,-9.588927,31.990353,11
+Rv0043c,-,1.0,regulatory proteins,K,-14.167828,28.982517,14
+Rv0047c,-,1.0,conserved hypotheticals,K,-14.372353,29.200912,14
+Rv0049,-,1.0,conserved hypotheticals,S,-24.37176,27.837906,4
+Rv0050,ponA1,5.0,cell wall and cell processes,M,-16.018593,30.886581,13
+Rv0051,-,1.0,cell wall and cell processes,S,-16.918903,15.267956,15
+Rv0056,rplI,2.0,information pathways,J,-15.517258,31.064295,13
+Rv0062,celA1,3.0,intermediary metabolism and respiration,G,-14.167882,28.920471,14
+Rv0064,-,2.0,cell wall and cell processes,S,-8.762543,45.959915,5
+Rv0066c,icd2,5.0,intermediary metabolism and respiration,C,-9.831157,-1.7318262,2
+Rv0067c,-,1.0,regulatory proteins,K,-15.537429,31.094658,13
+Rv0072,-,2.0,cell wall and cell processes,V,-14.430204,33.378796,7
+Rv0073,-,3.0,cell wall and cell processes,V,-10.420732,-1.4737873,2
+Rv0075,-,1.0,intermediary metabolism and respiration,E,-13.619007,25.158764,9
+Rv0078,-,1.0,regulatory proteins,K,-18.086477,12.605539,3
+Rv0081,-,2.0,regulatory proteins,K,-12.015302,26.34582,20
+Rv0082,-,1.0,intermediary metabolism and respiration,C,-27.721478,27.707846,10
+Rv0087,hycE,2.0,intermediary metabolism and respiration,C,-13.781521,26.107908,9
+Rv0088,-,1.0,lipid metabolism,J,-8.5012665,45.647293,5
+Rv0092,ctpA,5.0,cell wall and cell processes,P,-10.684828,27.440542,20
+Rv0096,PPE1,2.0,PE/PPE,S,-8.805913,18.451788,6
+Rv0097,-,2.0,intermediary metabolism and respiration,Q,-8.835699,18.448439,6
+Rv0098,-,2.0,lipid metabolism,S,-9.287122,44.324543,19
+Rv0099,fadD10,2.0,lipid metabolism,IQ,-18.34745,13.599025,3
+Rv0101,nrp,2.0,lipid metabolism,Q,-8.866028,18.429764,6
+Rv0102,-,1.0,cell wall and cell processes,S,-13.7922,38.23009,0
+Rv0103c,ctpB,3.0,cell wall and cell processes,P,-14.327877,33.918266,7
+Rv0106,-,1.0,conserved hypotheticals,R,-18.373814,13.706926,3
+Rv0108c,-,1.0,conserved hypotheticals,S,-27.297083,27.79249,10
+Rv0111,-,1.0,intermediary metabolism and respiration,I,-8.831448,45.563255,5
+Rv0112,gca,1.0,cell wall and cell processes,MG,-13.601973,25.169712,9
+Rv0113,gmhA,3.0,cell wall and cell processes,G,-8.736453,45.954353,5
+Rv0116c,-,5.0,cell wall and cell processes,S,-15.112974,33.212593,7
+Rv0121c,-,1.0,conserved hypotheticals,R,-8.773811,45.994358,5
+Rv0122,-,1.0,conserved hypotheticals,S,-13.369314,32.54499,7
+Rv0123,-,1.0,conserved hypotheticals,S,-9.583282,32.011475,11
+Rv0125,pepA,1.0,intermediary metabolism and respiration,O,-9.073356,45.71305,5
+Rv0126,treS,5.0,"virulence, detoxification, adaptation",G,-9.8753605,-1.677361,2
+Rv0127,-,3.0,"virulence, detoxification, adaptation",G,-9.874153,-1.6950117,2
+Rv0129c,fbpC,5.0,lipid metabolism,R,-13.759836,26.685793,9
+Rv0135c,-,1.0,regulatory proteins,K,-17.506014,28.982016,18
+Rv0138,-,1.0,conserved hypotheticals,S,-17.040697,15.018809,15
+Rv0140,-,1.0,conserved hypotheticals,S,-13.609805,25.187769,9
+Rv0153c,ptbB,1.0,regulatory proteins,T,-15.835984,30.881462,13
+Rv0154c,fadE2,1.0,lipid metabolism,I,-15.848151,31.059498,13
+Rv0155,pntAa,1.0,intermediary metabolism and respiration,C,-16.07025,30.877533,13
+Rv0157,pntB,2.0,intermediary metabolism and respiration,C,-16.215004,30.782427,13
+Rv0158,-,1.0,regulatory proteins,K,-15.467804,31.087126,13
+Rv0161,-,1.0,intermediary metabolism and respiration,C,-14.045034,26.567719,9
+Rv0168,yrbE1B,1.0,"virulence, detoxification, adaptation",Q,-12.652875,30.331682,16
+Rv0169,mce1A,4.0,"virulence, detoxification, adaptation",NT,-12.664967,30.32098,16
+Rv0170,mce1B,2.0,"virulence, detoxification, adaptation",Q,-12.637216,30.3307,16
+Rv0171,mce1C,1.0,"virulence, detoxification, adaptation",NT,-12.63555,30.338234,16
+Rv0172,mce1D,2.0,"virulence, detoxification, adaptation",Q,-12.67304,30.305195,16
+Rv0173,lprK,1.0,cell wall and cell processes,Q,-12.583983,30.380571,16
+Rv0174,mce1F,2.0,"virulence, detoxification, adaptation",Q,-12.680017,30.320314,16
+Rv0175,-,2.0,cell wall and cell processes,S,-15.894982,27.75209,1
+Rv0176,-,1.0,cell wall and cell processes,S,-12.647355,30.318329,16
+Rv0177,-,1.0,conserved hypotheticals,S,-27.216618,27.801807,10
+Rv0178,-,2.0,cell wall and cell processes,S,-13.713897,31.900127,7
+Rv0179c,lprO,1.0,cell wall and cell processes,S,-13.510935,31.064175,16
+Rv0180c,-,1.0,cell wall and cell processes,S,-24.79629,27.39049,4
+Rv0181c,-,2.0,conserved hypotheticals,R,-13.754489,32.758884,7
+Rv0183,-,5.0,intermediary metabolism and respiration,I,-17.182482,28.93626,18
+Rv0189c,ilvD,3.0,intermediary metabolism and respiration,EG,-13.886258,37.625896,0
+Rv0190,-,5.0,conserved hypotheticals,S,-15.154454,30.991957,13
+Rv0191,-,3.0,cell wall and cell processes,G,-9.58138,32.00833,11
+Rv0198c,-,1.0,intermediary metabolism and respiration,O,-27.625648,27.762682,10
+Rv0199,-,1.0,cell wall and cell processes,S,-12.753117,30.274057,16
+Rv0200,-,1.0,cell wall and cell processes,S,-17.484928,29.009941,18
+Rv0201c,-,1.0,conserved hypotheticals,K,-9.570018,32.010567,11
+Rv0202c,mmpL11,3.0,cell wall and cell processes,R,-9.230204,18.407402,6
+Rv0203,-,4.0,cell wall and cell processes,S,-27.555092,27.831022,10
+Rv0204c,-,1.0,cell wall and cell processes,S,-24.387968,27.69497,4
+Rv0205,-,1.0,cell wall and cell processes,R,-14.147178,32.467945,7
+Rv0206c,mmpL3,5.0,cell wall and cell processes,R,-14.190463,28.926065,14
+Rv0207c,-,1.0,conserved hypotheticals,S,-8.85849,44.42319,19
+Rv0208c,trmB,3.0,intermediary metabolism and respiration,R,-26.161795,27.485891,4
+Rv0211,pckA,5.0,intermediary metabolism and respiration,C,-16.134142,30.936014,13
+Rv0216,-,1.0,intermediary metabolism and respiration,I,-9.877295,31.931284,11
+Rv0220,lipC,1.0,intermediary metabolism and respiration,I,-13.619935,25.14277,9
+Rv0221,-,3.0,lipid metabolism,Q,-8.780287,46.03728,5
+Rv0222,echA1,1.0,lipid metabolism,I,-9.283668,44.315556,19
+Rv0223c,-,1.0,intermediary metabolism and respiration,C,-18.075697,12.630797,3
+Rv0228,-,1.0,intermediary metabolism and respiration,I,-27.67311,27.724293,10
+Rv0230c,php,3.0,lipid metabolism,R,-18.352112,13.7738,3
+Rv0237,lpqI,4.0,cell wall and cell processes,G,-8.769096,46.004856,5
+Rv0238,-,1.0,regulatory proteins,K,-24.671741,27.502909,4
+Rv0240,-,2.0,"virulence, detoxification, adaptation",R,-16.944979,15.184411,15
+Rv0241c,-,2.0,intermediary metabolism and respiration,I,-18.315243,13.59244,3
+Rv0242c,fabG,1.0,lipid metabolism,IQR,-18.479294,14.054754,3
+Rv0243,fadA2,2.0,lipid metabolism,I,-9.92062,32.005344,11
+Rv0244c,fadE5,2.0,lipid metabolism,I,-10.297533,32.143303,11
+Rv0245,-,1.0,intermediary metabolism and respiration,R,-18.485895,14.396272,15
+Rv0247c,-,1.0,intermediary metabolism and respiration,C,-17.119331,28.922781,18
+Rv0248c,sdhA,1.0,intermediary metabolism and respiration,C,-8.80335,18.396471,6
+Rv0249c,-,1.0,intermediary metabolism and respiration,S,-8.792302,18.384808,6
+Rv0250c,-,1.0,conserved hypotheticals,S,-8.779837,46.03905,5
+Rv0254c,cobU,2.0,intermediary metabolism and respiration,H,-9.272631,44.308544,19
+Rv0256c,PPE2,1.0,PE/PPE,S,-13.5667305,31.867783,7
+Rv0260c,-,1.0,regulatory proteins,TK,-9.419732,44.40438,19
+Rv0261c,narK3,1.0,cell wall and cell processes,P,-14.364193,33.898544,7
+Rv0263c,-,1.0,conserved hypotheticals,E,-22.135014,25.796108,17
+Rv0265c,-,1.0,cell wall and cell processes,P,-18.082016,12.613536,3
+Rv0270,fadD2,1.0,lipid metabolism,IQ,-10.07552,18.74138,6
+Rv0272c,-,1.0,conserved hypotheticals,S,-8.705358,46.021248,5
+Rv0273c,-,1.0,regulatory proteins,K,-13.588891,25.770243,9
+Rv0275c,-,1.0,regulatory proteins,K,-8.745813,46.03479,5
+Rv0280,PPE3,1.0,PE/PPE,S,-13.218942,31.684303,16
+Rv0289,-,2.0,cell wall and cell processes,S,-14.165396,28.912683,14
+Rv0290,-,3.0,cell wall and cell processes,S,-14.172683,28.913649,14
+Rv0291,mycP3,3.0,intermediary metabolism and respiration,O,-14.163002,28.915722,14
+Rv0292,-,3.0,cell wall and cell processes,S,-14.649671,35.685265,0
+Rv0293c,-,1.0,conserved hypotheticals,R,-8.781087,45.961754,5
+Rv0296c,-,2.0,intermediary metabolism and respiration,P,-9.994726,18.690529,6
+Rv0306,-,1.0,intermediary metabolism and respiration,C,-8.777316,46.006916,5
+Rv0309,-,1.0,cell wall and cell processes,S,-14.18022,28.933985,14
+Rv0310c,-,1.0,conserved hypotheticals,S,-8.777333,45.992176,5
+Rv0312,-,1.0,conserved hypotheticals,O,-8.536831,44.853916,19
+Rv0314c,-,1.0,cell wall and cell processes,S,-8.76844,45.98579,5
+Rv0315,-,1.0,intermediary metabolism and respiration,G,-18.031183,12.563866,3
+Rv0321,dcd,5.0,intermediary metabolism and respiration,F,-9.482692,26.346315,12
+Rv0324,-,1.0,regulatory proteins,P,-16.31171,30.367855,13
+Rv0326,-,1.0,unknown,QR,-8.745075,45.96583,5
+Rv0328,-,1.0,regulatory proteins,K,-8.786758,45.966156,5
+Rv0331,-,1.0,intermediary metabolism and respiration,R,-14.087521,26.504375,9
+Rv0333,-,1.0,conserved hypotheticals,S,-13.877002,26.228422,9
+Rv0335c,PE6,1.0,PE/PPE,S,-27.706047,27.635275,10
+Rv0337c,aspC,3.0,intermediary metabolism and respiration,E,-9.612263,-1.4158,2
+Rv0338c,-,2.0,intermediary metabolism and respiration,C,-13.777503,38.19774,0
+Rv0339c,-,1.0,regulatory proteins,TK,-14.899332,30.600754,13
+Rv0343,iniC,1.0,cell wall and cell processes,R,-14.888905,30.585062,13
+Rv0344c,lpqJ,1.0,cell wall and cell processes,S,-17.509329,28.904585,18
+Rv0346c,ansP2,2.0,cell wall and cell processes,E,-22.202372,25.707937,17
+Rv0353,hspR,1.0,"virulence, detoxification, adaptation",K,-14.132415,26.80012,9
+Rv0356c,-,1.0,conserved hypotheticals,Q,-22.106398,25.805668,17
+Rv0359,-,2.0,cell wall and cell processes,R,-22.10364,25.80371,17
+Rv0361,-,1.0,cell wall and cell processes,S,-24.311024,27.549046,4
+Rv0362,mgtE,2.0,cell wall and cell processes,P,-15.5334,31.027494,13
+Rv0363c,fba,4.0,intermediary metabolism and respiration,G,-9.683531,-1.3453137,2
+Rv0367c,-,1.0,conserved hypotheticals,S,-8.844891,45.94256,5
+Rv0368c,-,1.0,conserved hypotheticals,R,-12.77121,26.31207,9
+Rv0380c,-,1.0,intermediary metabolism and respiration,J,-13.791205,26.140774,9
+Rv0381c,-,1.0,conserved hypotheticals,S,-9.994223,18.696125,6
+Rv0384c,clpB,3.0,"virulence, detoxification, adaptation",O,-9.984136,-1.5032082,2
+Rv0385,-,1.0,intermediary metabolism and respiration,HC,-18.118484,12.650586,3
+Rv0388c,PPE9,1.0,PE/PPE,S,-13.401902,32.47595,7
+Rv0390,-,1.0,conserved hypotheticals,P,-9.314177,44.143276,19
+Rv0391,metZ,3.0,intermediary metabolism and respiration,E,-27.280216,27.275904,10
+Rv0392c,ndhA,2.0,intermediary metabolism and respiration,C,-17.046585,15.005234,15
+Rv0394c,-,1.0,cell wall and cell processes,S,-18.365278,13.681895,3
+Rv0395,-,1.0,conserved hypotheticals,S,-12.193214,26.35069,20
+Rv0396,-,1.0,conserved hypotheticals,S,-27.679388,27.72006,10
+Rv0398c,-,1.0,cell wall and cell processes,S,-8.847794,45.78921,5
+Rv0404,fadD30,3.0,lipid metabolism,IQ,-13.816871,38.274006,0
+Rv0406c,-,1.0,conserved hypotheticals,R,-18.300013,13.558045,3
+Rv0407,fgd1,5.0,intermediary metabolism and respiration,C,-18.47581,13.832178,3
+Rv0409,ackA,4.0,intermediary metabolism and respiration,C,-12.6238785,30.503443,16
+Rv0410c,pknG,5.0,regulatory proteins,RTKL,-24.666056,27.788345,4
+Rv0411c,glnH,1.0,cell wall and cell processes,ET,-25.311989,27.77341,4
+Rv0412c,-,1.0,cell wall and cell processes,S,-25.115622,27.409632,4
+Rv0413,mutT3,3.0,information pathways,LR,-18.04919,12.613822,3
+Rv0418,lpqL,4.0,cell wall and cell processes,R,-14.1524935,28.899897,14
+Rv0420c,-,1.0,cell wall and cell processes,S,-8.780833,46.00895,5
+Rv0424c,-,1.0,conserved hypotheticals,S,-13.789909,26.094542,9
+Rv0425c,ctpH,2.0,cell wall and cell processes,P,-18.047853,12.634162,3
+Rv0426c,-,1.0,cell wall and cell processes,S,-8.937125,46.020027,5
+Rv0431,-,1.0,cell wall and cell processes,S,-25.512815,27.754137,4
+Rv0432,sodC,5.0,"virulence, detoxification, adaptation",P,-13.801016,38.20641,0
+Rv0433,-,2.0,conserved hypotheticals,S,-27.590784,27.825302,10
+Rv0435c,-,1.0,cell wall and cell processes,O,-10.6273985,27.35087,20
+Rv0436c,pssA,2.0,lipid metabolism,I,-24.27583,27.629091,4
+Rv0437c,psd,3.0,lipid metabolism,I,-25.369442,27.133278,4
+Rv0438c,moeA2,3.0,intermediary metabolism and respiration,H,-18.447945,14.040407,3
+Rv0445c,sigK,4.0,information pathways,K,-8.6289015,46.003,5
+Rv0450c,mmpL4,4.0,cell wall and cell processes,R,-9.136646,18.365505,6
+Rv0451c,mmpS4,4.0,cell wall and cell processes,S,-9.063996,45.23769,19
+Rv0452,-,1.0,regulatory proteins,K,-9.295792,44.31081,19
+Rv0455c,-,1.0,conserved hypotheticals,S,-24.823765,27.376225,4
+Rv0456A,-,2.0,"virulence, detoxification, adaptation",T,-18.063124,12.623091,3
+Rv0459,-,1.0,conserved hypotheticals,S,-8.569637,46.069904,5
+Rv0461,-,1.0,cell wall and cell processes,S,-8.634462,45.98972,5
+Rv0462,lpd,5.0,intermediary metabolism and respiration,C,-26.004961,27.511726,4
+Rv0463,-,1.0,cell wall and cell processes,S,-8.448004,45.987198,5
+Rv0464c,-,1.0,conserved hypotheticals,S,-14.528747,31.372295,13
+Rv0465c,-,4.0,regulatory proteins,K,-10.036724,18.727253,6
+Rv0466,-,1.0,conserved hypotheticals,I,-17.42237,28.959684,18
+Rv0467,icl,5.0,intermediary metabolism and respiration,C,-9.998051,-1.4235954,2
+Rv0468,fadB2,5.0,lipid metabolism,I,-14.901158,30.598303,13
+Rv0469,umaA,3.0,lipid metabolism,M,-13.777043,38.23157,0
+Rv0470A,-,1.0,conserved hypotheticals,H,-8.48643,46.02618,5
+Rv0470c,pcaA,5.0,lipid metabolism,M,-24.469603,26.974424,4
+Rv0472c,-,2.0,regulatory proteins,K,-15.486017,30.838194,13
+Rv0473,-,1.0,cell wall and cell processes,S,-9.083515,45.47726,5
+Rv0475,hbhA,4.0,cell wall and cell processes,S,-13.726191,32.71442,7
+Rv0476,-,1.0,cell wall and cell processes,S,-13.604565,25.159307,9
+Rv0480c,-,2.0,intermediary metabolism and respiration,R,-8.570714,45.948208,5
+Rv0481c,-,1.0,conserved hypotheticals,S,-10.625704,27.346394,20
+Rv0483,lprQ,4.0,cell wall and cell processes,S,-14.163084,37.7775,0
+Rv0485,-,3.0,regulatory proteins,KG,-9.159494,18.379587,6
+Rv0486,-,4.0,intermediary metabolism and respiration,M,-15.836818,31.06882,13
+Rv0487,-,1.0,conserved hypotheticals,S,-13.471684,32.382233,7
+Rv0489,gpm1,5.0,intermediary metabolism and respiration,G,-25.426678,27.485558,4
+Rv0490,senX3,3.0,regulatory proteins,T,-9.339415,44.149967,19
+Rv0492A,-,1.0,conserved hypotheticals,S,-14.061914,26.478148,9
+Rv0492c,-,2.0,intermediary metabolism and respiration,E,-14.047804,26.481632,9
+Rv0494,-,1.0,regulatory proteins,K,-15.3433895,31.047537,13
+Rv0495c,-,1.0,conserved hypotheticals,S,-16.088284,30.947613,13
+Rv0496,-,4.0,conserved hypotheticals,FP,-17.032928,15.037366,15
+Rv0497,-,2.0,cell wall and cell processes,S,-25.77548,27.621967,4
+Rv0498,-,1.0,conserved hypotheticals,G,-9.572961,32.022404,11
+Rv0499,-,1.0,conserved hypotheticals,C,-8.663594,46.071457,5
+Rv0501,galE2,2.0,intermediary metabolism and respiration,MG,-9.479488,26.381516,12
+Rv0502,-,1.0,conserved hypotheticals,I,-10.269108,18.931438,6
+Rv0503c,cmaA2,5.0,lipid metabolism,M,-13.161054,30.236984,16
+Rv0504c,-,2.0,conserved hypotheticals,S,-9.914264,32.414276,11
+Rv0505c,serB1,4.0,intermediary metabolism and respiration,E,-25.306866,27.470985,4
+Rv0507,mmpL2,2.0,cell wall and cell processes,R,-17.017435,15.043842,15
+Rv0513,-,1.0,cell wall and cell processes,S,-8.770381,46.011684,5
+Rv0517,-,1.0,intermediary metabolism and respiration,I,-14.908104,30.562872,13
+Rv0519c,-,1.0,cell wall and cell processes,R,-14.159061,32.469772,7
+Rv0521,-,1.0,intermediary metabolism and respiration,S,-8.51745,44.870865,19
+Rv0532,PE_PGRS6,1.0,PE/PPE,S,-8.941253,45.870785,5
+Rv0536,galE3,1.0,intermediary metabolism and respiration,MG,-27.527063,27.89149,10
+Rv0537c,-,1.0,cell wall and cell processes,S,-14.134454,28.81183,14
+Rv0538,-,1.0,cell wall and cell processes,S,-14.451611,29.207298,14
+Rv0541c,-,1.0,cell wall and cell processes,S,-25.56726,27.179598,4
+Rv0545c,pitA,2.0,cell wall and cell processes,P,-17.509739,29.044815,18
+Rv0549c,-,3.0,"virulence, detoxification, adaptation",R,-18.076832,12.609007,3
+Rv0551c,fadD8,1.0,lipid metabolism,IQ,-12.009114,26.349062,20
+Rv0553,menC,3.0,intermediary metabolism and respiration,MR,-27.631874,27.772617,10
+Rv0554,bpoC,3.0,"virulence, detoxification, adaptation",R,-9.084746,18.233614,6
+Rv0557,pimB,3.0,lipid metabolism,M,-9.026192,45.806847,5
+Rv0558,ubiE,3.0,intermediary metabolism and respiration,H,-15.568092,33.682545,7
+Rv0559c,-,1.0,cell wall and cell processes,S,-8.527255,44.840218,19
+Rv0561c,-,4.0,intermediary metabolism and respiration,C,-14.04774,27.983057,14
+Rv0563,htpX,2.0,"virulence, detoxification, adaptation",O,-15.922302,30.98281,13
+Rv0566c,-,1.0,conserved hypotheticals,S,-14.169123,28.908627,14
+Rv0567,-,1.0,intermediary metabolism and respiration,QR,-9.021188,45.763855,5
+Rv0569,-,2.0,conserved hypotheticals,S,-27.56027,27.882359,10
+Rv0574c,-,2.0,conserved hypotheticals,M,-15.80548,27.690344,1
+Rv0583c,lpqN,1.0,cell wall and cell processes,S,-8.977253,45.826855,5
+Rv0586,-,3.0,regulatory proteins,K,-17.95023,12.68495,3
+Rv0587,yrbE2A,1.0,"virulence, detoxification, adaptation",Q,-13.630805,25.157534,9
+Rv0589,mce2A,1.0,"virulence, detoxification, adaptation",Q,-9.30003,44.23707,19
+Rv0590A,-,1.0,"virulence, detoxification, adaptation",S,-9.187843,45.508305,5
+Rv0591,mce2C,1.0,"virulence, detoxification, adaptation",Q,-9.213818,45.50062,5
+Rv0593,lprL,1.0,cell wall and cell processes,Q,-9.159339,45.561237,5
+Rv0599c,-,2.0,"virulence, detoxification, adaptation",K,-15.11202,33.214428,7
+Rv0606,-,1.0,insertion seqs and phages,L,-9.011504,45.744907,5
+Rv0610c,-,1.0,conserved hypotheticals,S,-13.570607,25.096334,9
+Rv0611c,-,1.0,conserved hypotheticals,S,-18.124128,12.695023,3
+Rv0614,-,1.0,conserved hypotheticals,S,-22.102638,25.807497,17
+Rv0615,-,1.0,cell wall and cell processes,S,-27.698267,27.729399,10
+Rv0617,-,3.0,"virulence, detoxification, adaptation",R,-9.490592,26.319519,12
+Rv0619,galTb,1.0,intermediary metabolism and respiration,C,-9.584775,32.00329,11
+Rv0622,-,1.0,cell wall and cell processes,S,-8.874069,45.906574,5
+Rv0629c,recD,4.0,information pathways,L,-10.624939,27.34814,20
+Rv0631c,recC,3.0,information pathways,L,-18.132002,12.660881,3
+Rv0632c,echA3,1.0,lipid metabolism,I,-17.48648,29.008095,18
+Rv0634A,-,1.0,conserved hypotheticals,S,-18.343262,13.63627,3
+Rv0634c,-,1.0,"virulence, detoxification, adaptation",R,-15.886365,27.74351,1
+Rv0642c,mmaA4,5.0,lipid metabolism,M,-24.648666,27.56826,4
+Rv0643c,mmaA3,3.0,lipid metabolism,M,-17.345425,14.850961,15
+Rv0644c,mmaA2,5.0,lipid metabolism,M,-8.998852,45.36111,5
+Rv0645c,mmaA1,4.0,lipid metabolism,M,-14.094001,28.121319,14
+Rv0650,-,1.0,intermediary metabolism and respiration,KG,-9.637515,26.493774,12
+Rv0655,mkl,3.0,cell wall and cell processes,Q,-16.05127,27.91125,1
+Rv0658c,-,1.0,cell wall and cell processes,R,-8.940405,46.008503,5
+Rv0661c,-,2.0,"virulence, detoxification, adaptation",S,-15.91253,26.958958,1
+Rv0664,-,1.0,"virulence, detoxification, adaptation",S,-27.586634,27.677431,10
+Rv0667,rpoB,5.0,information pathways,K,-13.824165,29.107761,14
+Rv0668,rpoC,4.0,information pathways,K,-12.023188,26.339083,20
+Rv0670,end,3.0,information pathways,L,-8.851897,45.928707,5
+Rv0671,lpqP,1.0,cell wall and cell processes,Q,-9.4983015,26.353928,12
+Rv0686,-,1.0,cell wall and cell processes,S,-14.115475,26.524626,9
+Rv0693,pqqE,2.0,intermediary metabolism and respiration,R,-27.354132,27.340477,10
+Rv0694,lldD1,3.0,intermediary metabolism and respiration,C,-12.531557,28.455923,14
+Rv0695,-,2.0,conserved hypotheticals,R,-8.877978,45.914883,5
+Rv0696,-,2.0,intermediary metabolism and respiration,M,-13.646618,31.986294,7
+Rv0698,-,1.0,conserved hypotheticals,S,-8.853978,45.994907,5
+Rv0711,atsA,1.0,intermediary metabolism and respiration,P,-12.020106,26.345373,20
+Rv0712,-,4.0,conserved hypotheticals,S,-16.741552,28.974627,18
+Rv0724,sppA,2.0,cell wall and cell processes,OU,-14.162225,28.905481,14
+Rv0726c,-,2.0,lipid metabolism,Q,-13.577039,25.113363,9
+Rv0727c,fucA,1.0,intermediary metabolism and respiration,G,-13.918372,32.495544,7
+Rv0736,-,5.0,information pathways,K,-9.659051,-1.1304274,2
+Rv0740,-,1.0,conserved hypotheticals,S,-9.502105,26.361717,12
+Rv0741,-,1.0,insertion seqs and phages,L,-9.461546,26.328718,12
+Rv0746,PE_PGRS9,1.0,PE/PPE,S,-18.067879,12.607164,3
+Rv0747,PE_PGRS10,1.0,PE/PPE,S,-14.050279,32.969154,7
+Rv0751c,mmsB,3.0,intermediary metabolism and respiration,I,-8.788189,45.956005,5
+Rv0753c,mmsA,2.0,intermediary metabolism and respiration,C,-18.149235,12.692037,3
+Rv0757,phoP,4.0,regulatory proteins,TK,-16.531322,28.613428,18
+Rv0758,phoR,2.0,regulatory proteins,T,-8.973392,18.401627,6
+Rv0759c,-,1.0,conserved hypotheticals,FGR,-27.646479,27.689358,10
+Rv0761c,adhB,3.0,intermediary metabolism and respiration,C,-12.572397,28.408545,14
+Rv0763c,-,1.0,intermediary metabolism and respiration,C,-13.550392,32.49126,7
+Rv0766c,cyp123,2.0,intermediary metabolism and respiration,Q,-13.981621,31.945316,7
+Rv0767c,-,1.0,conserved hypotheticals,S,-22.27006,25.655054,17
+Rv0769,-,2.0,intermediary metabolism and respiration,IQR,-13.619559,25.143074,9
+Rv0770,-,2.0,intermediary metabolism and respiration,I,-11.637793,30.082865,16
+Rv0772,purD,3.0,intermediary metabolism and respiration,F,-13.775305,38.230724,0
+Rv0775,-,1.0,conserved hypotheticals,S,-8.825277,46.019062,5
+Rv0776c,-,1.0,conserved hypotheticals,S,-9.486722,26.356043,12
+Rv0779c,-,1.0,cell wall and cell processes,V,-9.56312,32.0273,11
+Rv0781,ptrBa,1.0,intermediary metabolism and respiration,E,-16.913553,15.197935,15
+Rv0784,-,1.0,conserved hypotheticals,R,-14.157934,32.471516,7
+Rv0787,-,1.0,conserved hypotheticals,EF,-8.770361,46.03488,5
+Rv0791c,-,1.0,conserved hypotheticals,C,-9.497811,26.351097,12
+Rv0793,-,2.0,intermediary metabolism and respiration,S,-14.087914,26.511353,9
+Rv0795,-,1.0,insertion seqs and phages,L,-13.678901,32.210262,7
+Rv0796,-,2.0,insertion seqs and phages,L,7.5153904,7.4590287,8
+Rv0799c,-,1.0,conserved hypotheticals,P,-8.827858,45.96393,5
+Rv0805,-,5.0,intermediary metabolism and respiration,R,-9.862128,18.441208,6
+Rv0806c,cpsY,2.0,cell wall and cell processes,S,-9.222371,18.39026,6
+Rv0808,purF,3.0,intermediary metabolism and respiration,F,-13.790283,38.23146,0
+Rv0809,purM,3.0,intermediary metabolism and respiration,F,-13.7968,38.244316,0
+Rv0812,-,1.0,intermediary metabolism and respiration,EH,-14.159987,37.78359,0
+Rv0813c,-,3.0,conserved hypotheticals,S,-8.633392,45.759563,5
+Rv0815c,cysA2,,intermediary metabolism and respiration,P,-13.791583,38.239372,0
+Rv0817c,-,1.0,cell wall and cell processes,S,-9.4844475,26.349382,12
+Rv0818,-,2.0,regulatory proteins,TK,-10.03638,18.676039,6
+Rv0819,-,5.0,intermediary metabolism and respiration,R,-15.854953,31.070969,13
+Rv0820,phoT,4.0,cell wall and cell processes,P,-10.009753,18.654158,6
+Rv0821c,phoY2,4.0,cell wall and cell processes,P,-15.590655,30.933542,13
+Rv0822c,-,1.0,conserved hypotheticals,K,-18.054636,12.631498,3
+Rv0827c,-,4.0,regulatory proteins,K,-8.386492,45.98998,5
+Rv0829,-,1.0,insertion seqs and phages,L,-17.031292,15.02552,15
+Rv0831c,-,1.0,conserved hypotheticals,S,-8.807574,45.49819,5
+Rv0833,PE_PGRS13,1.0,PE/PPE,S,-9.5901,32.031998,11
+Rv0839,-,1.0,conserved hypotheticals,QR,-8.544729,44.845795,19
+Rv0842,-,1.0,cell wall and cell processes,S,-12.067952,26.338314,20
+Rv0846c,-,4.0,intermediary metabolism and respiration,Q,-13.8189125,38.216988,0
+Rv0848,cysK2,5.0,intermediary metabolism and respiration,E,-13.81317,38.239864,0
+Rv0849,-,1.0,cell wall and cell processes,GEPR,-13.849387,38.187355,0
+Rv0850,-,1.0,insertion seqs and phages,L,-22.106335,25.805275,17
+Rv0851c,-,1.0,intermediary metabolism and respiration,IQR,-9.2665205,44.319515,19
+Rv0859,fadA,3.0,lipid metabolism,I,-15.544085,31.085192,13
+Rv0860,fadB,2.0,lipid metabolism,I,-16.013594,30.708649,13
+Rv0861c,ercc3,1.0,information pathways,KL,-8.992864,45.253014,19
+Rv0862c,-,1.0,conserved hypotheticals,S,-9.4702,26.358892,12
+Rv0866,moaE2,3.0,intermediary metabolism and respiration,H,-15.112649,33.21503,7
+Rv0867c,rpfA,4.0,cell wall and cell processes,S,-14.167546,28.90668,14
+Rv0869c,moaA,3.0,intermediary metabolism and respiration,H,-18.013084,12.672672,3
+Rv0871,cspB,1.0,"virulence, detoxification, adaptation",K,-27.680117,27.742914,10
+Rv0874c,-,1.0,conserved hypotheticals,S,-8.750746,45.786015,5
+Rv0875c,-,1.0,cell wall and cell processes,S,-9.976692,32.439594,11
+Rv0876c,-,2.0,cell wall and cell processes,GEPR,-24.685658,27.562828,4
+Rv0877,-,1.0,conserved hypotheticals,S,-15.678151,30.858335,13
+Rv0878c,PPE13,2.0,PE/PPE,S,-18.217896,12.897231,3
+Rv0881,-,2.0,intermediary metabolism and respiration,J,-18.044935,12.665262,3
+Rv0884c,serC,5.0,intermediary metabolism and respiration,HE,-15.558147,33.68407,7
+Rv0886,fprB,3.0,intermediary metabolism and respiration,ER,-8.800532,45.85776,5
+Rv0888,-,5.0,cell wall and cell processes,S,-13.540598,32.37536,7
+Rv0889c,citA,3.0,intermediary metabolism and respiration,C,-22.10825,25.807854,17
+Rv0890c,-,2.0,regulatory proteins,K,-8.438853,45.612373,5
+Rv0892,-,2.0,intermediary metabolism and respiration,P,-13.777296,38.223732,0
+Rv0893c,-,2.0,lipid metabolism,Q,-8.424992,45.573273,5
+Rv0896,gltA,3.0,intermediary metabolism and respiration,C,-10.011441,32.48014,11
+Rv0900,-,3.0,cell wall and cell processes,S,-8.773943,45.875305,5
+Rv0901,-,3.0,cell wall and cell processes,S,-10.619457,27.333572,20
+Rv0904c,accD3,3.0,lipid metabolism,I,-27.68158,27.714083,10
+Rv0905,echA6,2.0,lipid metabolism,I,-27.718592,27.730877,10
+Rv0908,ctpE,3.0,cell wall and cell processes,P,-18.297283,12.838578,3
+Rv0909,-,2.0,conserved hypotheticals,S,-14.081987,32.952343,7
+Rv0910,-,2.0,conserved hypotheticals,S,-9.236171,44.32195,19
+Rv0914c,-,1.0,lipid metabolism,I,-27.440475,27.69408,10
+Rv0916c,PE7,1.0,PE/PPE,S,-8.848843,46.006733,5
+Rv0922,-,1.0,insertion seqs and phages,L,-13.599875,25.119408,9
+Rv0923c,-,1.0,conserved hypotheticals,S,-8.952626,46.021824,5
+Rv0924c,mntH,4.0,cell wall and cell processes,P,-10.125926,18.801033,6
+Rv0926c,-,1.0,conserved hypotheticals,S,-15.860875,27.720846,1
+Rv0928,pstS3,5.0,cell wall and cell processes,P,-10.001998,18.649714,6
+Rv0929,pstC2,3.0,cell wall and cell processes,P,-9.984859,18.638905,6
+Rv0930,pstA1,3.0,cell wall and cell processes,P,-9.967812,18.62879,6
+Rv0931c,pknD,5.0,regulatory proteins,RTKL,-18.085964,12.62499,3
+Rv0934,pstS1,5.0,cell wall and cell processes,P,-13.600238,25.12373,9
+Rv0939,-,1.0,intermediary metabolism and respiration,Q,-8.785841,45.880573,5
+Rv0942,-,1.0,conserved hypotheticals,S,-9.563923,32.01609,11
+Rv0944,-,2.0,information pathways,L,-13.603585,25.119312,9
+Rv0945,-,2.0,intermediary metabolism and respiration,IQR,-8.342632,45.99374,5
+Rv0946c,pgi,4.0,intermediary metabolism and respiration,G,-16.42795,30.414669,13
+Rv0949,uvrD1,5.0,information pathways,L,-25.447275,27.329128,4
+Rv0950c,-,1.0,conserved hypotheticals,M,-25.352972,27.409086,4
+Rv0954,-,2.0,cell wall and cell processes,S,-14.512781,37.369972,0
+Rv0955,-,1.0,cell wall and cell processes,S,-24.50757,27.634893,4
+Rv0956,purN,4.0,intermediary metabolism and respiration,F,-13.778339,38.21977,0
+Rv0961,-,1.0,cell wall and cell processes,S,-8.865189,46.002098,5
+Rv0963c,-,1.0,conserved hypotheticals,S,-18.05335,12.581101,3
+Rv0964c,-,1.0,conserved hypotheticals,S,-9.437806,44.43656,19
+Rv0969,ctpV,4.0,cell wall and cell processes,P,-14.054998,26.539095,9
+Rv0970,-,1.0,cell wall and cell processes,S,-9.489385,26.357937,12
+Rv0972c,fadE12,2.0,lipid metabolism,I,-8.795259,45.942295,5
+Rv0973c,accA2,1.0,lipid metabolism,I,-14.164259,32.46746,7
+Rv0974c,accD2,1.0,lipid metabolism,I,-8.927218,45.997734,5
+Rv0976c,-,1.0,conserved hypotheticals,S,-10.613629,27.33317,20
+Rv0981,mprA,5.0,regulatory proteins,TK,-14.129727,28.887281,14
+Rv0983,pepD,3.0,intermediary metabolism and respiration,O,-14.007078,27.91509,14
+Rv0987,-,1.0,cell wall and cell processes,V,-18.113363,12.601431,3
+Rv0988,-,1.0,cell wall and cell processes,R,-24.811556,27.310953,4
+Rv0989c,grcC2,1.0,intermediary metabolism and respiration,H,-25.902435,27.700256,4
+Rv0991c,-,1.0,conserved hypotheticals,S,-27.242088,27.623108,10
+Rv0992c,-,2.0,conserved hypotheticals,H,-17.486666,29.002588,18
+Rv0994,moeA1,3.0,intermediary metabolism and respiration,H,-16.583447,29.167646,18
+Rv0995,rimJ,1.0,information pathways,J,-9.366817,43.961452,19
+Rv0996,-,1.0,cell wall and cell processes,S,-14.541235,29.26176,14
+Rv0998,-,5.0,conserved hypotheticals,KR,-24.972952,27.136614,4
+Rv0999,-,1.0,conserved hypotheticals,S,-27.488863,27.52916,10
+Rv1002c,-,4.0,cell wall and cell processes,O,-26.108694,27.498453,4
+Rv1006,-,1.0,conserved hypotheticals,S,-24.133453,27.620415,4
+Rv1008,tatD,2.0,cell wall and cell processes,L,-27.45494,27.725508,10
+Rv1009,rpfB,5.0,cell wall and cell processes,S,-9.497744,44.858395,19
+Rv1010,ksgA,3.0,information pathways,J,-24.887463,27.824991,4
+Rv1013,pks16,3.0,lipid metabolism,IQ,-25.900803,27.756556,4
+Rv1019,-,1.0,regulatory proteins,K,-9.480162,44.357864,19
+Rv1020,mfd,3.0,information pathways,LK,-27.685192,27.682878,10
+Rv1021,-,5.0,conserved hypotheticals,R,-12.019167,26.344955,20
+Rv1027c,kdpE,3.0,regulatory proteins,TK,-8.921189,45.97739,5
+Rv1030,kdpB,3.0,cell wall and cell processes,P,-18.070034,12.590489,3
+Rv1046c,-,1.0,unknown,S,-14.031823,26.558187,9
+Rv1047,-,1.0,insertion seqs and phages,L,-12.856832,30.57495,16
+Rv1051c,-,1.0,conserved hypotheticals,S,-8.962381,46.004894,5
+Rv1052,-,1.0,conserved hypotheticals,S,-17.687817,14.495685,15
+Rv1057,-,1.0,conserved hypotheticals,S,-15.859623,27.726093,1
+Rv1058,fadD14,1.0,lipid metabolism,IQ,-25.332697,27.056768,4
+Rv1059,-,1.0,conserved hypotheticals,E,-25.269522,27.146374,4
+Rv1060,-,1.0,conserved hypotheticals,S,-8.863891,45.83325,5
+Rv1065,-,1.0,conserved hypotheticals,S,-9.563606,32.020367,11
+Rv1066,-,1.0,conserved hypotheticals,P,-10.662406,27.376907,20
+Rv1069c,-,1.0,conserved hypotheticals,S,-17.5165,28.865534,18
+Rv1070c,echA8,2.0,lipid metabolism,I,-17.47376,28.706877,18
+Rv1071c,echA9,1.0,lipid metabolism,I,-14.837043,30.738012,13
+Rv1072,-,1.0,cell wall and cell processes,S,-10.088588,18.695885,6
+Rv1077,cbs,4.0,intermediary metabolism and respiration,E,-15.34413,31.033737,13
+Rv1078,pra,1.0,conserved hypotheticals,S,-8.759868,44.53495,19
+Rv1079,metB,5.0,intermediary metabolism and respiration,E,-15.342912,31.020575,13
+Rv1080c,greA,3.0,information pathways,K,-14.178167,28.929773,14
+Rv1081c,-,1.0,cell wall and cell processes,S,-25.474413,27.204033,4
+Rv1083,-,1.0,conserved hypotheticals,S,-15.578027,33.69192,7
+Rv1085c,-,2.0,"virulence, detoxification, adaptation",R,-14.006878,37.82262,0
+Rv1086,-,5.0,cell wall and cell processes,I,-24.490967,27.615814,4
+Rv1089A,celA2a,1.0,intermediary metabolism and respiration,S,-14.50225,31.398548,13
+Rv1093,glyA,5.0,intermediary metabolism and respiration,E,-9.576675,-1.4052927,2
+Rv1096,-,2.0,intermediary metabolism and respiration,G,-14.189726,32.434048,7
+Rv1099c,glpX,5.0,intermediary metabolism and respiration,G,-25.328247,27.190834,4
+Rv1100,-,1.0,conserved hypotheticals,S,-15.817196,30.78646,13
+Rv1101c,-,1.0,cell wall and cell processes,R,-18.018663,12.696311,3
+Rv1105,-,1.0,intermediary metabolism and respiration,I,-8.783121,45.806664,5
+Rv1106c,-,5.0,intermediary metabolism and respiration,MG,-14.100497,26.530804,9
+Rv1107c,xseB,2.0,information pathways,L,-8.880722,45.878624,5
+Rv1111c,-,1.0,conserved hypotheticals,S,-14.143086,26.84706,9
+Rv1112,-,2.0,conserved hypotheticals,J,-16.225698,30.654257,13
+Rv1114,-,3.0,"virulence, detoxification, adaptation",R,-8.658271,46.04332,5
+Rv1117,-,1.0,conserved hypotheticals,S,-13.451588,32.526226,7
+Rv1121,zwf1,3.0,intermediary metabolism and respiration,G,-8.39897,45.50443,5
+Rv1122,gnd2,1.0,intermediary metabolism and respiration,G,-9.592354,-1.5073034,2
+Rv1123c,bpoB,1.0,"virulence, detoxification, adaptation",R,-8.804751,45.95808,5
+Rv1125,-,1.0,conserved hypotheticals,E,-10.643559,27.359167,20
+Rv1127c,ppdK,1.0,intermediary metabolism and respiration,G,-8.863923,45.168335,19
+Rv1128c,-,1.0,insertion seqs and phages,S,-13.773499,31.893427,7
+Rv1129c,-,4.0,regulatory proteins,K,-27.614588,27.574339,10
+Rv1130,-,5.0,intermediary metabolism and respiration,R,-9.06276,45.36693,5
+Rv1131,gltA1,5.0,intermediary metabolism and respiration,C,-12.539439,28.440014,14
+Rv1132,-,1.0,cell wall and cell processes,S,-13.589942,25.775839,9
+Rv1133c,metE,3.0,intermediary metabolism and respiration,E,-13.797047,38.24994,0
+Rv1134,-,1.0,conserved hypotheticals,S,-14.133225,26.522057,9
+Rv1140,-,1.0,cell wall and cell processes,R,-15.367315,31.056814,13
+Rv1144,-,2.0,intermediary metabolism and respiration,IQR,-15.88506,27.742718,1
+Rv1145,mmpL13a,1.0,cell wall and cell processes,R,-18.115286,12.699187,3
+Rv1151c,-,5.0,regulatory proteins,K,-14.000467,32.948383,7
+Rv1156,-,1.0,conserved hypotheticals,L,-27.73759,27.704165,10
+Rv1157c,-,1.0,conserved hypotheticals,S,-9.527042,44.829227,19
+Rv1158c,-,1.0,conserved hypotheticals,S,-14.095883,26.546043,9
+Rv1159,pimE,2.0,cell wall and cell processes,S,-9.971536,-1.5075569,2
+Rv1159,pimE,4.0,cell wall and cell processes,S,-9.9801655,-1.4933872,2
+Rv1159A,phhB,,conserved hypotheticals,H,-8.715739,45.803738,5
+Rv1160,mutT2,4.0,information pathways,LR,-12.603488,30.505024,16
+Rv1165,typA,2.0,information pathways,T,-14.109418,26.523117,9
+Rv1166,lpqW,2.0,cell wall and cell processes,E,-13.821665,29.107073,14
+Rv1170,mshB,5.0,intermediary metabolism and respiration,S,-10.096403,18.750916,6
+Rv1173,fbiC,4.0,intermediary metabolism and respiration,HR,-16.028627,30.934538,13
+Rv1174c,TB8.4,2.0,cell wall and cell processes,S,-18.348148,13.622899,3
+Rv1178,-,2.0,intermediary metabolism and respiration,E,-16.162317,30.952496,13
+Rv1180,pks3,5.0,lipid metabolism,Q,-22.112513,25.80912,17
+Rv1181,pks4,,lipid metabolism,Q,-22.110323,25.806463,17
+Rv1182,papA3,4.0,lipid metabolism,Q,-27.640905,27.671238,10
+Rv1183,mmpL10,3.0,cell wall and cell processes,R,-9.530544,18.495087,6
+Rv1184c,-,4.0,cell wall and cell processes,R,-10.051274,18.721968,6
+Rv1185c,fadD21,3.0,lipid metabolism,IQ,-22.108051,25.808704,17
+Rv1187,rocA,2.0,intermediary metabolism and respiration,C,-8.830349,45.76923,5
+Rv1192,-,1.0,conserved hypotheticals,R,-16.924236,15.259121,15
+Rv1193,fadD36,1.0,lipid metabolism,IQ,-10.048887,32.12359,11
+Rv1194c,-,1.0,conserved hypotheticals,TQ,-13.18937,30.871483,16
+Rv1195,PE13,2.0,PE/PPE,S,-9.513154,44.841694,19
+Rv1196,PPE18,4.0,PE/PPE,S,-9.555068,44.799614,19
+Rv1199c,-,2.0,insertion seqs and phages,L,-12.72342,30.470098,16
+Rv1204c,-,1.0,conserved hypotheticals,R,-13.379604,32.575085,7
+Rv1205,-,5.0,conserved hypotheticals,R,-15.474617,31.074589,13
+Rv1206,fadD6,1.0,lipid metabolism,IQ,-16.99391,15.344463,15
+Rv1208,-,5.0,intermediary metabolism and respiration,M,-13.735449,38.20372,0
+Rv1209,-,1.0,conserved hypotheticals,S,-14.64565,29.717205,14
+Rv1210,tagA,1.0,information pathways,L,-27.674732,27.923216,10
+Rv1211,-,1.0,conserved hypotheticals,S,-14.141099,28.955027,14
+Rv1212c,-,5.0,intermediary metabolism and respiration,M,-17.511665,29.050867,18
+Rv1213,glgC,4.0,intermediary metabolism and respiration,G,-15.845612,31.038124,13
+Rv1214c,PE14,1.0,PE/PPE,S,-15.11277,33.207867,7
+Rv1217c,-,2.0,cell wall and cell processes,M,-13.393746,32.470074,7
+Rv1218c,-,3.0,cell wall and cell processes,V,-13.34545,32.585674,7
+Rv1220c,-,2.0,intermediary metabolism and respiration,R,-16.741562,29.102568,18
+Rv1226c,-,1.0,cell wall and cell processes,S,-13.596676,25.768105,9
+Rv1235,lpqY,3.0,cell wall and cell processes,G,-10.018081,18.69989,6
+Rv1236,sugA,3.0,cell wall and cell processes,G,-13.207161,31.271519,16
+Rv1237,sugB,3.0,cell wall and cell processes,G,-14.096418,26.54472,9
+Rv1238,sugC,4.0,cell wall and cell processes,G,-10.068728,18.743065,6
+Rv1239c,corA,3.0,cell wall and cell processes,P,-10.044073,18.715422,6
+Rv1241,-,2.0,"virulence, detoxification, adaptation",S,-27.68107,27.767492,10
+Rv1244,lpqZ,1.0,cell wall and cell processes,M,-24.573599,27.024466,4
+Rv1248c,kgd,5.0,intermediary metabolism and respiration,C,-16.277716,30.926884,13
+Rv1250,-,2.0,cell wall and cell processes,GEPR,-15.9349,26.953949,1
+Rv1251c,-,1.0,conserved hypotheticals,L,-8.896162,45.880875,5
+Rv1252c,lprE,2.0,cell wall and cell processes,S,-14.183941,28.950993,14
+Rv1253,deaD,3.0,information pathways,LKJ,-18.333076,13.714898,3
+Rv1255c,-,1.0,regulatory proteins,K,-14.084375,26.50865,9
+Rv1261c,-,3.0,conserved hypotheticals,S,-8.937086,45.965122,5
+Rv1263,amiB2,2.0,intermediary metabolism and respiration,J,-13.836493,38.183853,0
+Rv1264,-,5.0,intermediary metabolism and respiration,T,-13.6173935,25.136858,9
+Rv1270c,lprA,3.0,cell wall and cell processes,S,-9.49498,44.827744,19
+Rv1272c,-,3.0,cell wall and cell processes,V,-10.303926,32.18311,11
+Rv1273c,-,2.0,cell wall and cell processes,V,-10.493793,32.18847,11
+Rv1276c,-,1.0,conserved hypotheticals,T,-27.722553,27.721315,10
+Rv1278,-,1.0,conserved hypotheticals,L,-9.577668,44.24502,19
+Rv1280c,oppA,3.0,cell wall and cell processes,E,-18.357258,13.592368,3
+Rv1281c,oppD,2.0,cell wall and cell processes,R,-9.500478,44.86455,19
+Rv1282c,oppC,2.0,cell wall and cell processes,EP,-14.128897,26.814278,9
+Rv1283c,oppB,2.0,cell wall and cell processes,EP,-10.781976,27.453053,20
+Rv1285,cysD,4.0,intermediary metabolism and respiration,EH,-27.353952,27.924795,10
+Rv1286,cysN,5.0,intermediary metabolism and respiration,P,-25.372791,27.402456,4
+Rv1287,-,2.0,conserved hypotheticals,K,-17.341688,28.788729,18
+Rv1288,-,1.0,conserved hypotheticals,R,-18.05332,12.587902,3
+Rv1290A,-,1.0,conserved hypotheticals,S,-8.900579,45.880745,5
+Rv1291c,-,1.0,cell wall and cell processes,S,-27.70326,27.753555,10
+Rv1298,rpmE,2.0,information pathways,J,-24.58661,27.507519,4
+Rv1300,hemK,3.0,intermediary metabolism and respiration,J,-14.837423,33.979958,7
+Rv1301,-,3.0,conserved hypotheticals,J,-9.868539,32.310432,11
+Rv1312,-,1.0,cell wall and cell processes,S,-24.887337,27.345741,4
+Rv1314c,-,3.0,conserved hypotheticals,S,-14.945614,32.881508,7
+Rv1321,-,2.0,conserved hypotheticals,L,-8.762912,45.82067,5
+Rv1322,-,1.0,conserved hypotheticals,S,-8.848937,45.76349,5
+Rv1323,fadA4,2.0,lipid metabolism,I,-22.10413,25.79937,17
+Rv1324,-,2.0,intermediary metabolism and respiration,O,-15.471651,31.062347,13
+Rv1328,glgP,3.0,intermediary metabolism and respiration,G,-10.290284,18.956596,6
+Rv1331,clpS,2.0,conserved hypotheticals,S,-8.730118,45.77468,5
+Rv1332,-,1.0,regulatory proteins,S,-18.073792,12.599073,3
+Rv1333,-,2.0,intermediary metabolism and respiration,EQ,-9.020049,45.64261,5
+Rv1334,-,5.0,intermediary metabolism and respiration,R,-15.524585,31.052725,13
+Rv1335,-,4.0,intermediary metabolism and respiration,H,-17.49361,29.018534,18
+Rv1336,cysM,5.0,intermediary metabolism and respiration,E,-15.3532505,31.08429,13
+Rv1337,-,1.0,cell wall and cell processes,R,-12.8829365,30.175297,16
+Rv1338,murI,3.0,cell wall and cell processes,M,-9.565229,-1.258671,2
+Rv1339,-,1.0,conserved hypotheticals,R,-25.456406,27.141615,4
+Rv1340,rph,3.0,information pathways,J,-25.59041,27.51884,4
+Rv1341,-,4.0,conserved hypotheticals,F,-14.185285,33.024635,7
+Rv1342c,-,2.0,cell wall and cell processes,S,-13.80549,38.23845,0
+Rv1343c,lprD,2.0,cell wall and cell processes,K,-9.568714,32.01121,11
+Rv1345,fadD33,3.0,lipid metabolism,IQ,-17.501839,29.015636,18
+Rv1346,fadE14,3.0,lipid metabolism,I,-12.709247,26.356188,9
+Rv1347c,-,4.0,lipid metabolism,J,-13.880566,32.01564,7
+Rv1348,-,5.0,cell wall and cell processes,V,-9.813057,31.978708,11
+Rv1349,-,5.0,cell wall and cell processes,V,-9.910924,32.352932,11
+Rv1352,-,1.0,conserved hypotheticals,S,-16.98807,15.132404,15
+Rv1357c,-,2.0,conserved hypotheticals,T,-8.976828,45.78111,5
+Rv1359,-,1.0,regulatory proteins,T,-14.373078,33.293896,7
+Rv1360,-,1.0,intermediary metabolism and respiration,C,-9.450125,26.38633,12
+Rv1364c,-,3.0,information pathways,T,-22.408895,25.88477,17
+Rv1366,-,1.0,conserved hypotheticals,S,-12.213714,26.349371,20
+Rv1369c,-,,insertion seqs and phages,L,7.5025215,7.4721,8
+Rv1371,-,1.0,cell wall and cell processes,S,-17.029383,15.02632,15
+Rv1372,-,5.0,conserved hypotheticals,Q,-18.109463,12.623201,3
+Rv1386,PE15,3.0,PE/PPE,S,-14.185568,28.926056,14
+Rv1387,PPE20,2.0,PE/PPE,S,-13.500967,32.451744,7
+Rv1395,-,2.0,regulatory proteins,K,-13.641537,25.165106,9
+Rv1398c,-,1.0,"virulence, detoxification, adaptation",S,-18.070257,12.582557,3
+Rv1400c,lipI,1.0,intermediary metabolism and respiration,I,-13.619993,25.139921,9
+Rv1401,-,2.0,cell wall and cell processes,S,-9.499121,44.84185,19
+Rv1402,priA,3.0,information pathways,L,-10.617991,-1.5673244,2
+Rv1405c,-,1.0,intermediary metabolism and respiration,QR,-8.805245,18.457207,6
+Rv1406,fmt,2.0,information pathways,J,-14.134044,37.812683,0
+Rv1407,fmu,2.0,information pathways,J,-8.925194,45.317177,5
+Rv1409,ribG,4.0,intermediary metabolism and respiration,H,-13.756717,38.21838,0
+Rv1410c,-,4.0,cell wall and cell processes,GEPR,-24.408373,27.727179,4
+Rv1411c,lprG,5.0,cell wall and cell processes,S,-24.536545,27.671206,4
+Rv1412,ribC,3.0,intermediary metabolism and respiration,H,-13.762748,38.26037,0
+Rv1413,-,1.0,conserved hypotheticals,E,-15.888373,27.743399,1
+Rv1415,ribA2,5.0,intermediary metabolism and respiration,H,-13.763979,38.269257,0
+Rv1418,lprH,2.0,cell wall and cell processes,S,-8.871753,45.870953,5
+Rv1420,uvrC,3.0,information pathways,L,-25.127707,27.607817,4
+Rv1421,-,2.0,conserved hypotheticals,R,-10.097968,18.761057,6
+Rv1422,-,2.0,conserved hypotheticals,S,-14.372256,37.512814,0
+Rv1426c,lipO,1.0,intermediary metabolism and respiration,I,-27.696459,27.70795,10
+Rv1427c,fadD12,1.0,lipid metabolism,IQ,-17.999882,12.65759,3
+Rv1428c,-,1.0,conserved hypotheticals,I,-12.516402,28.4489,14
+Rv1429,-,1.0,conserved hypotheticals,TQ,-9.495291,26.370956,12
+Rv1431,-,1.0,cell wall and cell processes,S,-13.626174,25.140465,9
+Rv1432,-,1.0,intermediary metabolism and respiration,Q,-24.7254,27.299507,4
+Rv1433,-,3.0,cell wall and cell processes,S,-17.487757,28.984606,18
+Rv1435c,-,1.0,cell wall and cell processes,S,-17.496496,29.01314,18
+Rv1436,gap,5.0,intermediary metabolism and respiration,G,-14.155255,37.792988,0
+Rv1437,pgk,3.0,intermediary metabolism and respiration,G,-25.831455,27.641863,4
+Rv1439c,-,1.0,conserved hypotheticals,S,-9.280992,44.30964,19
+Rv1445c,devB,2.0,intermediary metabolism and respiration,G,-13.704754,26.693659,9
+Rv1447c,zwf2,3.0,intermediary metabolism and respiration,G,-18.34238,13.614385,3
+Rv1448c,tal,3.0,intermediary metabolism and respiration,G,-14.15232,32.47638,7
+Rv1453,-,1.0,regulatory proteins,TQ,-27.676603,27.719446,10
+Rv1457c,-,1.0,cell wall and cell processes,V,-26.148273,27.463364,4
+Rv1458c,-,1.0,cell wall and cell processes,V,-25.000536,27.742027,4
+Rv1460,-,1.0,regulatory proteins,K,-8.915747,45.927658,5
+Rv1464,csd,3.0,intermediary metabolism and respiration,E,-14.0154295,38.000805,0
+Rv1467c,fadE15,1.0,lipid metabolism,I,-27.69583,27.708553,10
+Rv1468c,PE_PGRS29,1.0,PE/PPE,S,-13.404917,32.442314,7
+Rv1470,trxA,1.0,intermediary metabolism and respiration,OC,-17.022076,15.027526,15
+Rv1471,trxB1,2.0,intermediary metabolism and respiration,OC,-9.293575,44.257896,19
+Rv1473,-,2.0,cell wall and cell processes,R,-18.496855,14.224231,3
+Rv1473A,-,1.0,regulatory proteins,S,-8.908527,45.92751,5
+Rv1477,-,5.0,"virulence, detoxification, adaptation",M,-14.210902,32.36673,7
+Rv1478,-,4.0,"virulence, detoxification, adaptation",M,-9.056939,45.429523,5
+Rv1489A,-,1.0,conserved hypotheticals,I,-13.724477,26.692968,9
+Rv1492,mutA,3.0,lipid metabolism,I,-8.824527,45.170143,19
+Rv1493,mutB,3.0,lipid metabolism,I,-13.622414,31.94266,7
+Rv1494,-,2.0,"virulence, detoxification, adaptation",S,-17.726498,14.430713,15
+Rv1496,-,3.0,cell wall and cell processes,E,-9.4859495,44.822147,19
+Rv1498A,-,1.0,conserved hypotheticals,S,-15.931419,26.95573,1
+Rv1498c,-,1.0,intermediary metabolism and respiration,QR,-14.11041,26.541103,9
+Rv1500,-,2.0,intermediary metabolism and respiration,M,-8.577072,45.689438,5
+Rv1502,-,1.0,unknown,G,-9.490737,26.356638,12
+Rv1505c,-,1.0,conserved hypotheticals,R,-27.725382,27.695572,10
+Rv1507c,-,1.0,conserved hypotheticals,S,-9.703282,26.336145,12
+Rv1508c,-,1.0,cell wall and cell processes,S,-18.087254,12.574859,3
+Rv1512,epiA,3.0,intermediary metabolism and respiration,MG,-24.631418,27.560654,4
+Rv1515c,-,1.0,conserved hypotheticals,QR,-8.859893,45.863037,5
+Rv1516c,-,1.0,intermediary metabolism and respiration,M,-13.808541,26.642088,9
+Rv1517,-,1.0,cell wall and cell processes,S,-8.940157,45.817245,5
+Rv1518,-,1.0,conserved hypotheticals,M,-9.47186,26.34455,12
+Rv1524,-,2.0,intermediary metabolism and respiration,GC,-8.634792,45.244236,5
+Rv1526c,-,1.0,intermediary metabolism and respiration,GC,-17.684011,14.484122,15
+Rv1528c,papA4,1.0,lipid metabolism,S,-8.554715,45.032707,19
+Rv1530,adh,2.0,intermediary metabolism and respiration,ER,-17.021181,15.02074,15
+Rv1532c,-,1.0,conserved hypotheticals,Q,-8.8462515,45.81605,5
+Rv1534,-,1.0,regulatory proteins,K,-14.143874,26.496212,9
+Rv1535,-,1.0,conserved hypotheticals,S,-11.71512,30.025187,16
+Rv1537,dinX,4.0,information pathways,L,-17.06151,14.987239,15
+Rv1538c,ansA,3.0,intermediary metabolism and respiration,EJ,-10.075815,18.758062,6
+Rv1540,-,2.0,conserved hypotheticals,J,-25.906008,27.754211,4
+Rv1541c,lprI,4.0,cell wall and cell processes,R,-8.668158,45.787846,5
+Rv1542c,glbN,5.0,intermediary metabolism and respiration,R,-11.630019,30.09135,16
+Rv1543,-,2.0,lipid metabolism,IQR,-27.33765,27.840427,10
+Rv1544,-,2.0,lipid metabolism,R,-18.372326,14.42114,15
+Rv1546,-,1.0,conserved hypotheticals,S,-13.980641,32.928513,7
+Rv1548c,PPE21,2.0,PE/PPE,S,-27.679195,27.639294,10
+Rv1551,plsB1,2.0,lipid metabolism,I,-27.637257,27.611334,10
+Rv1556,-,1.0,regulatory proteins,K,-17.968681,12.943174,3
+Rv1558,-,3.0,conserved hypotheticals,S,-18.060448,12.670287,3
+Rv1559,ilvA,4.0,intermediary metabolism and respiration,E,-14.327657,37.559006,0
+Rv1562c,treZ,4.0,"virulence, detoxification, adaptation",G,-13.79169,32.70935,7
+Rv1563c,treY,3.0,"virulence, detoxification, adaptation",G,-8.590021,45.570133,5
+Rv1564c,treX,2.0,"virulence, detoxification, adaptation",G,-13.827154,32.796173,7
+Rv1565c,-,1.0,cell wall and cell processes,I,-24.964273,27.69581,4
+Rv1566c,-,1.0,"virulence, detoxification, adaptation",M,-24.489738,27.762012,4
+Rv1568,bioA,5.0,intermediary metabolism and respiration,H,-9.145487,18.377993,6
+Rv1569,bioF1,5.0,intermediary metabolism and respiration,H,-10.121203,32.317898,11
+Rv1570,bioD,5.0,intermediary metabolism and respiration,H,-27.591093,27.816944,10
+Rv1576c,-,1.0,insertion seqs and phages,R,-18.20111,12.746091,3
+Rv1579c,-,1.0,insertion seqs and phages,S,-14.006957,32.98447,7
+Rv1582c,-,1.0,insertion seqs and phages,R,-10.511648,-1.513369,2
+Rv1585c,-,1.0,insertion seqs and phages,S,-14.120544,32.572807,7
+Rv1586c,-,1.0,insertion seqs and phages,L,-10.605761,-1.5593507,2
+Rv1587c,-,1.0,insertion seqs and phages,S,-14.077833,26.50383,9
+Rv1589,bioB,3.0,intermediary metabolism and respiration,H,-9.120138,18.38721,6
+Rv1590,-,1.0,conserved hypotheticals,S,-13.688741,38.078598,0
+Rv1592c,-,2.0,conserved hypotheticals,S,-14.031431,28.033918,14
+Rv1595,nadB,3.0,intermediary metabolism and respiration,H,-14.147557,33.05442,7
+Rv1608c,bcpB,3.0,"virulence, detoxification, adaptation",O,-8.586921,45.638023,5
+Rv1609,trpE,3.0,intermediary metabolism and respiration,EH,-9.97309,32.41038,11
+Rv1612,trpB,3.0,intermediary metabolism and respiration,E,-13.789706,38.241577,0
+Rv1615,-,1.0,cell wall and cell processes,S,-8.810354,45.824146,5
+Rv1617,pykA,5.0,intermediary metabolism and respiration,G,-9.777,-1.6195828,2
+Rv1620c,cydC,2.0,intermediary metabolism and respiration,V,-25.60729,27.119228,4
+Rv1621c,cydD,2.0,intermediary metabolism and respiration,CO,-9.8961,-1.8127514,2
+Rv1622c,cydB,1.0,intermediary metabolism and respiration,C,-9.934107,-1.8514628,2
+Rv1623c,cydA,2.0,intermediary metabolism and respiration,C,-9.830239,-1.773831,2
+Rv1626,-,3.0,regulatory proteins,T,-15.799988,30.697496,13
+Rv1627c,-,1.0,lipid metabolism,I,-12.520907,28.45082,14
+Rv1630,rpsA,4.0,information pathways,J,-13.817796,29.110008,14
+Rv1632c,-,1.0,conserved hypotheticals,S,-27.615671,27.812483,10
+Rv1633,uvrB,4.0,information pathways,L,-22.217133,25.761196,17
+Rv1634,-,2.0,cell wall and cell processes,GEPR,-15.278119,31.015444,13
+Rv1635c,-,1.0,cell wall and cell processes,S,-14.265478,29.020353,14
+Rv1636,TB15.3,2.0,"virulence, detoxification, adaptation",T,-10.014959,32.484398,11
+Rv1638,uvrA,5.0,information pathways,L,-24.984539,27.134356,4
+Rv1640c,lysS,5.0,information pathways,J,-12.951027,30.141293,16
+Rv1644,tsnR,1.0,information pathways,J,-18.029375,12.541944,3
+Rv1664,pks9,1.0,lipid metabolism,Q,-9.590741,32.015663,11
+Rv1665,pks11,4.0,lipid metabolism,Q,-27.721054,27.697401,10
+Rv1672c,-,1.0,cell wall and cell processes,GEPR,-8.660745,45.699387,5
+Rv1673c,-,1.0,conserved hypotheticals,E,-14.514162,33.419544,7
+Rv1674c,-,1.0,regulatory proteins,P,-13.225643,31.700937,16
+Rv1677,dsbF,1.0,cell wall and cell processes,OC,-18.050295,12.577055,3
+Rv1678,-,1.0,cell wall and cell processes,S,-8.915713,45.74994,5
+Rv1679,fadE16,1.0,lipid metabolism,I,-9.167647,44.64661,19
+Rv1682,-,1.0,conserved hypotheticals,S,-9.527613,31.999313,11
+Rv1683,-,1.0,lipid metabolism,IQ,-13.740298,38.160076,0
+Rv1690,lprJ,3.0,cell wall and cell processes,S,-17.515764,29.038437,18
+Rv1691,-,1.0,conserved hypotheticals,R,-13.7749405,26.108133,9
+Rv1692,-,5.0,intermediary metabolism and respiration,G,-18.039146,12.568467,3
+Rv1698,-,4.0,cell wall and cell processes,S,-17.690178,28.859634,18
+Rv1700,-,1.0,information pathways,LR,-25.489567,27.186888,4
+Rv1701,xerD,3.0,insertion seqs and phages,L,-24.818796,27.400896,4
+Rv1707,-,1.0,cell wall and cell processes,P,-13.776778,38.240112,0
+Rv1708,-,3.0,cell wall and cell processes,D,-13.78394,38.20875,0
+Rv1709,-,2.0,cell wall and cell processes,S,-18.095757,13.342807,3
+Rv1710,-,2.0,cell wall and cell processes,K,-17.932972,12.71829,3
+Rv1711,-,2.0,conserved hypotheticals,J,-14.881587,30.568247,13
+Rv1712,cmk,5.0,intermediary metabolism and respiration,F,-17.29927,28.975836,18
+Rv1717,-,1.0,conserved hypotheticals,G,-14.823406,30.861332,13
+Rv1720c,-,2.0,"virulence, detoxification, adaptation",R,-9.343633,44.7508,19
+Rv1725c,-,1.0,conserved hypotheticals,K,-14.368374,33.272026,7
+Rv1729c,-,2.0,lipid metabolism,Q,-13.587042,25.178793,9
+Rv1730c,-,1.0,cell wall and cell processes,V,-15.12659,33.23412,7
+Rv1731,gabD2,3.0,intermediary metabolism and respiration,C,-10.626435,27.3492,20
+Rv1732c,-,1.0,conserved hypotheticals,OC,-9.533177,31.951797,11
+Rv1733c,-,2.0,cell wall and cell processes,S,-27.573547,27.782154,10
+Rv1734c,-,1.0,conserved hypotheticals,C,-27.645855,27.579983,10
+Rv1735c,-,2.0,cell wall and cell processes,P,-17.054825,15.036947,15
+Rv1736c,narX,5.0,intermediary metabolism and respiration,C,-22.115452,25.814243,17
+Rv1737c,narK2,4.0,cell wall and cell processes,P,-10.622537,27.35376,20
+Rv1745c,idi,3.0,intermediary metabolism and respiration,I,-27.251783,27.748274,10
+Rv1747,-,5.0,cell wall and cell processes,V,-14.453326,29.206182,14
+Rv1749c,-,1.0,cell wall and cell processes,S,-9.270001,44.342903,19
+Rv1751,-,1.0,intermediary metabolism and respiration,HC,-8.650968,45.880424,5
+Rv1752,-,1.0,conserved hypotheticals,R,-8.512472,45.924744,5
+Rv1754c,-,1.0,conserved hypotheticals,S,-13.224004,30.901423,16
+Rv1755c,plcD,3.0,intermediary metabolism and respiration,M,-27.322716,27.820515,10
+Rv1756c,-,,insertion seqs and phages,L,7.4984174,7.4761863,8
+Rv1758,cut1,1.0,cell wall and cell processes,S,-10.557474,-1.5178045,2
+Rv1759c,wag22,2.0,PE/PPE,S,-10.527786,-1.5039628,2
+Rv1760,-,4.0,lipid metabolism,S,-9.641519,-1.1446831,2
+Rv1762c,-,1.0,conserved hypotheticals,S,-14.376362,33.281372,7
+Rv1764,-,,insertion seqs and phages,L,7.530267,7.4443126,8
+Rv1768,PE_PGRS31,1.0,PE/PPE,S,-10.629553,27.34617,20
+Rv1769,-,1.0,conserved hypotheticals,E,-13.207142,30.896626,16
+Rv1773c,-,1.0,regulatory proteins,K,-18.025873,12.612154,3
+Rv1775,-,1.0,conserved hypotheticals,S,-18.062584,12.906478,3
+Rv1776c,-,1.0,regulatory proteins,K,-14.107772,26.542046,9
+Rv1780,-,1.0,conserved hypotheticals,S,-9.609727,44.184437,19
+Rv1782,-,3.0,cell wall and cell processes,S,-14.058022,29.878084,14
+Rv1783,-,4.0,cell wall and cell processes,D,-14.054499,29.883007,14
+Rv1784,-,,,D,-14.057727,29.880013,14
+Rv1789,PPE26,2.0,PE/PPE,S,-14.648215,35.686623,0
+Rv1791,PE19,1.0,PE/PPE,S,-16.441605,28.853743,18
+Rv1794,-,3.0,conserved hypotheticals,S,-14.05547,29.893585,14
+Rv1795,-,3.0,cell wall and cell processes,S,-14.057221,29.876513,14
+Rv1796,mycP5,3.0,intermediary metabolism and respiration,O,-14.055357,29.883394,14
+Rv1797,-,3.0,cell wall and cell processes,S,-14.056382,29.877975,14
+Rv1798,-,3.0,cell wall and cell processes,O,-9.019507,18.409445,6
+Rv1809,PPE33,1.0,PE/PPE,S,-25.524906,27.190624,4
+Rv1810,-,1.0,conserved hypotheticals,S,-14.383147,33.29025,7
+Rv1815,-,1.0,conserved hypotheticals,S,-13.797368,26.117947,9
+Rv1818c,PE_PGRS33,5.0,PE/PPE,S,-9.585401,31.974678,11
+Rv1819c,-,4.0,cell wall and cell processes,R,-12.5665655,30.391768,16
+Rv1820,ilvG,5.0,intermediary metabolism and respiration,EH,-12.524589,28.4532,14
+Rv1821,secA2,4.0,cell wall and cell processes,U,-25.226824,27.509768,4
+Rv1823,-,2.0,conserved hypotheticals,S,-14.590908,29.100191,14
+Rv1824,-,1.0,cell wall and cell processes,S,-14.021333,26.92213,9
+Rv1825,-,2.0,conserved hypotheticals,S,-14.490494,29.083044,14
+Rv1826,gcvH,2.0,intermediary metabolism and respiration,E,-13.776946,38.24145,0
+Rv1828,-,3.0,conserved hypotheticals,K,-13.896582,38.096584,0
+Rv1829,-,1.0,conserved hypotheticals,S,-16.114305,30.857096,13
+Rv1832,gcvB,3.0,intermediary metabolism and respiration,E,-13.799857,38.232754,0
+Rv1834,-,1.0,intermediary metabolism and respiration,R,-14.110422,26.498583,9
+Rv1836c,-,2.0,conserved hypotheticals,S,-10.152536,-1.7112362,2
+Rv1837c,glcB,5.0,intermediary metabolism and respiration,C,-9.956051,32.425423,11
+Rv1843c,guaB1,3.0,intermediary metabolism and respiration,F,-27.46668,27.900864,10
+Rv1845c,-,2.0,cell wall and cell processes,O,-9.851555,-1.742479,2
+Rv1846c,-,4.0,regulatory proteins,K,-27.43019,27.63696,10
+Rv1848,ureA,3.0,intermediary metabolism and respiration,E,-8.547715,45.622814,5
+Rv1849,ureB,3.0,intermediary metabolism and respiration,E,-18.094957,12.616668,3
+Rv1854c,ndh,2.0,intermediary metabolism and respiration,C,-16.127937,30.976505,13
+Rv1857,modA,3.0,cell wall and cell processes,P,-14.114305,26.49931,9
+Rv1860,apa,5.0,cell wall and cell processes,S,-25.093811,27.123575,4
+Rv1862,adhA,2.0,intermediary metabolism and respiration,R,-8.735876,45.765865,5
+Rv1866,-,2.0,lipid metabolism,C,-9.513392,26.371534,12
+Rv1868,-,1.0,conserved hypotheticals,MG,-18.010231,12.565977,3
+Rv1877,-,2.0,cell wall and cell processes,GEPR,-8.743122,45.706894,5
+Rv1879,-,1.0,conserved hypotheticals,R,-13.618736,25.13499,9
+Rv1884c,rpfC,4.0,cell wall and cell processes,S,-9.473981,26.329664,12
+Rv1886c,fbpB,5.0,lipid metabolism,R,-9.587983,32.031185,11
+Rv1887,-,1.0,conserved hypotheticals,S,-13.204586,30.91644,16
+Rv1901,cinA,1.0,"virulence, detoxification, adaptation",R,-15.878597,31.08113,13
+Rv1906c,-,1.0,conserved hypotheticals,S,-14.12514,26.611538,9
+Rv1908c,katG,5.0,"virulence, detoxification, adaptation",P,-9.924996,-1.665604,2
+Rv1909c,furA,4.0,regulatory proteins,P,-18.201817,13.828411,3
+Rv1911c,lppC,3.0,cell wall and cell processes,R,-18.08826,12.590625,3
+Rv1913,-,1.0,conserved hypotheticals,R,-8.763975,45.87734,5
+Rv1919c,-,1.0,conserved hypotheticals,S,-17.905779,12.993279,3
+Rv1925,fadD31,1.0,lipid metabolism,IQ,-17.141026,15.115748,15
+Rv1931c,-,3.0,regulatory proteins,K,-8.725306,45.76167,5
+Rv1932,tpx,5.0,"virulence, detoxification, adaptation",O,-9.779925,31.88084,11
+Rv1938,ephB,3.0,"virulence, detoxification, adaptation",R,-13.621365,25.140463,9
+Rv1944c,-,1.0,conserved hypotheticals,U,-8.753788,45.818787,5
+Rv1956,-,5.0,"virulence, detoxification, adaptation",K,-15.48494,31.0614,13
+Rv1957,-,3.0,conserved hypotheticals,S,-15.734107,31.029215,13
+Rv1962c,-,3.0,"virulence, detoxification, adaptation",R,-14.790453,30.898169,13
+Rv1963c,mce3R,4.0,regulatory proteins,K,-17.482763,29.072073,18
+Rv1965,yrbE3B,1.0,"virulence, detoxification, adaptation",Q,-17.579697,15.023758,15
+Rv1973,-,1.0,cell wall and cell processes,S,-27.372871,27.33794,10
+Rv1974,-,1.0,cell wall and cell processes,S,-27.69681,27.708834,10
+Rv1975,-,1.0,conserved hypotheticals,S,-18.033834,12.601696,3
+Rv1976c,-,1.0,conserved hypotheticals,S,-14.101924,26.508121,9
+Rv1980c,mpt64,3.0,cell wall and cell processes,S,-13.218382,30.9007,16
+Rv1991c,-,5.0,"virulence, detoxification, adaptation",T,-13.988949,26.495773,9
+Rv1993c,-,1.0,conserved hypotheticals,S,-8.831886,46.03872,5
+Rv2001,-,1.0,conserved hypotheticals,I,-8.690135,45.85784,5
+Rv2003c,-,1.0,conserved hypotheticals,QR,-27.656815,27.672483,10
+Rv2004c,-,2.0,conserved hypotheticals,R,-17.337442,14.917918,15
+Rv2006,otsB1,3.0,"virulence, detoxification, adaptation",R,-17.510489,29.038534,18
+Rv2007c,fdxA,3.0,intermediary metabolism and respiration,C,-9.288664,44.18436,19
+Rv2012,-,1.0,conserved hypotheticals,R,-18.083012,12.631122,3
+Rv2014,-,1.0,insertion seqs and phages,L,-27.747583,27.6397,10
+Rv2017,-,1.0,regulatory proteins,K,-9.603596,-1.0792625,2
+Rv2018,-,1.0,conserved hypotheticals,S,-9.689049,-1.2291765,2
+Rv2021c,-,2.0,regulatory proteins,K,-10.679459,27.39458,20
+Rv2023c,-,1.0,conserved hypotheticals,S,-9.284476,44.298985,19
+Rv2024c,-,1.0,conserved hypotheticals,R,-10.642415,-1.5774953,2
+Rv2026c,-,2.0,"virulence, detoxification, adaptation",T,-11.56163,30.176138,16
+Rv2027c,-,5.0,regulatory proteins,T,-13.650528,32.02228,7
+Rv2029c,pfkB,5.0,intermediary metabolism and respiration,G,-17.49923,29.030313,18
+Rv2030c,-,2.0,conserved hypotheticals,R,-17.456543,15.0526285,15
+Rv2031c,hspX,5.0,"virulence, detoxification, adaptation",O,-17.490395,28.98629,18
+Rv2032,acg,3.0,conserved hypotheticals,C,-27.621786,27.67955,10
+Rv2035,-,1.0,conserved hypotheticals,S,-18.05163,12.57532,3
+Rv2037c,-,1.0,cell wall and cell processes,R,-27.684603,27.665888,10
+Rv2038c,-,1.0,cell wall and cell processes,G,-9.575482,32.02201,11
+Rv2039c,-,1.0,cell wall and cell processes,G,-9.515826,31.964676,11
+Rv2041c,-,1.0,cell wall and cell processes,G,-8.498787,46.145214,5
+Rv2043c,pncA,5.0,intermediary metabolism and respiration,Q,-9.122295,45.498547,5
+Rv2047c,-,1.0,conserved hypotheticals,MG,-8.894447,18.423252,6
+Rv2048c,pks12,2.0,lipid metabolism,Q,-9.158992,18.37429,6
+Rv2051c,ppm1,5.0,cell wall and cell processes,M,-24.266836,27.629597,4
+Rv2052c,-,1.0,conserved hypotheticals,R,-13.586309,32.50004,7
+Rv2057c,rpmG,2.0,information pathways,J,-13.613008,25.126534,9
+Rv2062c,cobN,1.0,intermediary metabolism and respiration,H,-18.350937,13.781898,3
+Rv2063,-,2.0,"virulence, detoxification, adaptation",S,-14.164398,28.913647,14
+Rv2068c,blaC,5.0,intermediary metabolism and respiration,V,-13.869279,32.409447,7
+Rv2069,sigC,5.0,information pathways,K,-10.208613,32.079437,11
+Rv2074,-,5.0,intermediary metabolism and respiration,S,-10.630821,27.354607,20
+Rv2075c,-,1.0,cell wall and cell processes,S,-13.587787,25.760906,9
+Rv2077A,-,1.0,conserved hypotheticals,S,-8.838576,45.728474,5
+Rv2078,-,1.0,conserved hypotheticals,S,-8.541152,44.846836,19
+Rv2081c,-,1.0,cell wall and cell processes,S,-18.059734,12.564252,3
+Rv2082,-,1.0,conserved hypotheticals,S,-8.674685,45.686142,5
+Rv2086,-,1.0,insertion seqs and phages,L,-12.581208,30.413239,16
+Rv2088,pknJ,5.0,regulatory proteins,RTKL,-17.033094,15.00603,15
+Rv2091c,-,1.0,cell wall and cell processes,S,-8.854737,18.429518,6
+Rv2092c,helY,3.0,information pathways,L,-8.549261,45.180138,5
+Rv2096c,-,3.0,intermediary metabolism and respiration,K,-27.687607,27.606434,10
+Rv2097c,-,5.0,intermediary metabolism and respiration,S,-25.00982,27.727833,4
+Rv2101,helZ,1.0,information pathways,KL,-13.591292,25.783148,9
+Rv2106,-,,insertion seqs and phages,L,7.5013404,7.473256,8
+Rv2112c,-,5.0,intermediary metabolism and respiration,S,-13.945524,29.029772,14
+Rv2113,-,1.0,cell wall and cell processes,S,-18.10741,12.598474,3
+Rv2114,-,1.0,conserved hypotheticals,S,-17.04315,15.009708,15
+Rv2115c,-,5.0,cell wall and cell processes,O,-25.036024,27.718473,4
+Rv2117,-,1.0,conserved hypotheticals,S,-17.501446,29.034866,18
+Rv2118c,-,5.0,intermediary metabolism and respiration,J,-11.9229765,29.988974,16
+Rv2119,-,1.0,conserved hypotheticals,L,-8.692838,45.71876,5
+Rv2123,PPE37,2.0,PE/PPE,S,-18.129103,12.559642,3
+Rv2124c,metH,4.0,intermediary metabolism and respiration,E,-18.044792,13.108656,3
+Rv2127,ansP1,2.0,cell wall and cell processes,E,-13.817887,38.274765,0
+Rv2130c,cysS,4.0,intermediary metabolism and respiration,J,-25.876558,27.584879,4
+Rv2131c,cysQ,5.0,intermediary metabolism and respiration,P,-16.058416,30.535969,13
+Rv2134c,-,1.0,conserved hypotheticals,S,-27.05302,27.796339,10
+Rv2135c,-,1.0,conserved hypotheticals,G,-24.77168,27.525385,4
+Rv2136c,uppP,3.0,cell wall and cell processes,V,-14.291043,29.05684,14
+Rv2138,lppL,1.0,cell wall and cell processes,S,-9.919253,32.385746,11
+Rv2140c,TB18.6,2.0,conserved hypotheticals,R,-8.754248,18.470732,6
+Rv2159c,-,2.0,conserved hypotheticals,S,-10.623731,27.34772,20
+Rv2160A,-,1.0,regulatory proteins,K,-8.530742,44.897285,19
+Rv2165c,mraW,3.0,conserved hypotheticals,M,-25.33289,27.671024,4
+Rv2166c,-,2.0,conserved hypotheticals,S,-14.184617,28.932755,14
+Rv2167c,-,,insertion seqs and phages,L,7.508753,7.465889,8
+Rv2169c,-,1.0,cell wall and cell processes,S,-27.788843,27.755648,10
+Rv2170,-,1.0,intermediary metabolism and respiration,R,-17.875832,14.634726,15
+Rv2171,lppM,4.0,cell wall and cell processes,S,-17.898695,14.630371,15
+Rv2173,idsA2,1.0,lipid metabolism,H,-15.859558,31.093893,13
+Rv2175c,-,4.0,regulatory proteins,S,-11.643132,30.077011,16
+Rv2176,pknL,5.0,regulatory proteins,RTKL,-14.379689,29.133438,14
+Rv2177c,-,1.0,insertion seqs and phages,L,-14.809569,30.870226,13
+Rv2179c,-,4.0,conserved hypotheticals,S,-24.303547,27.626122,4
+Rv2181,-,3.0,cell wall and cell processes,S,-18.06584,12.56382,3
+Rv2182c,-,1.0,conserved hypotheticals,I,-9.654076,-1.4118277,2
+Rv2183c,-,1.0,conserved hypotheticals,S,-10.21164,18.884382,6
+Rv2184c,-,1.0,conserved hypotheticals,P,-10.195121,18.869387,6
+Rv2185c,TB16.3,1.0,conserved hypotheticals,S,-10.074333,18.746187,6
+Rv2190c,-,2.0,"virulence, detoxification, adaptation",M,-24.518068,27.761112,4
+Rv2192c,trpD,5.0,intermediary metabolism and respiration,E,-9.975043,32.3847,11
+Rv2197c,-,1.0,cell wall and cell processes,S,-13.516507,29.627676,14
+Rv2198c,mmpS3,2.0,cell wall and cell processes,S,-24.61316,27.667454,4
+Rv2202c,cbhK,5.0,intermediary metabolism and respiration,G,-9.579343,-1.254611,2
+Rv2203,-,1.0,cell wall and cell processes,S,-16.626602,28.541426,18
+Rv2206,-,2.0,cell wall and cell processes,S,-27.241627,27.256208,10
+Rv2207,cobT,2.0,intermediary metabolism and respiration,H,-25.398355,27.110302,4
+Rv2210c,ilvE,5.0,intermediary metabolism and respiration,EH,-9.5931425,-1.0738254,2
+Rv2211c,gcvT,3.0,intermediary metabolism and respiration,E,-13.802208,38.239384,0
+Rv2214c,ephD,2.0,"virulence, detoxification, adaptation",R,-17.977213,13.00325,3
+Rv2215,dlaT,5.0,intermediary metabolism and respiration,C,-27.49605,27.796345,10
+Rv2216,-,2.0,conserved hypotheticals,R,-13.589285,25.790619,9
+Rv2219A,-,1.0,cell wall and cell processes,S,-9.126263,45.63094,5
+Rv2221c,glnE,4.0,intermediary metabolism and respiration,OT,-25.264387,27.46782,4
+Rv2222c,glnA2,4.0,intermediary metabolism and respiration,E,-25.146717,27.58827,4
+Rv2224c,-,5.0,cell wall and cell processes,R,-9.134853,18.374254,6
+Rv2225,panB,5.0,intermediary metabolism and respiration,H,-13.682616,38.097847,0
+Rv2226,-,1.0,conserved hypotheticals,S,-14.097835,26.505846,9
+Rv2228c,-,5.0,information pathways,L,-14.087487,32.49566,7
+Rv2230c,-,2.0,conserved hypotheticals,S,-27.416182,27.360844,10
+Rv2231c,cobC,2.0,intermediary metabolism and respiration,E,-25.598364,27.305237,4
+Rv2232,-,2.0,regulatory proteins,R,-10.622788,27.346766,20
+Rv2234,ptpA,5.0,regulatory proteins,T,-14.057142,26.475077,9
+Rv2236c,cobD,2.0,intermediary metabolism and respiration,H,-27.55689,27.704702,10
+Rv2237,-,1.0,conserved hypotheticals,S,-13.979617,26.534246,9
+Rv2239c,-,1.0,conserved hypotheticals,S,-17.50334,29.05289,18
+Rv2241,aceE,5.0,intermediary metabolism and respiration,C,-24.945469,27.731884,4
+Rv2246,kasB,4.0,lipid metabolism,IQ,-26.019756,27.3888,4
+Rv2248,-,1.0,conserved hypotheticals,S,-8.822256,45.696205,5
+Rv2249c,glpD1,3.0,intermediary metabolism and respiration,C,-12.4221945,29.958866,16
+Rv2250c,-,1.0,regulatory proteins,K,-14.15761,32.48074,7
+Rv2251,-,1.0,intermediary metabolism and respiration,C,-8.527332,45.96093,5
+Rv2253,-,1.0,cell wall and cell processes,S,-9.888742,32.346966,11
+Rv2256c,-,1.0,conserved hypotheticals,S,-12.112586,26.356009,20
+Rv2257c,-,1.0,conserved hypotheticals,V,-27.44168,27.4117,10
+Rv2258c,-,1.0,regulatory proteins,QR,-25.619175,27.141758,4
+Rv2259,adhE2,2.0,intermediary metabolism and respiration,C,-15.811175,31.103298,13
+Rv2260,-,1.0,conserved hypotheticals,R,-9.327155,44.349766,19
+Rv2264c,-,1.0,conserved hypotheticals,O,-12.707652,26.356441,9
+Rv2267c,-,3.0,conserved hypotheticals,R,-13.795515,38.17755,0
+Rv2269c,-,1.0,conserved hypotheticals,S,-14.126741,32.47114,7
+Rv2270,lppN,3.0,cell wall and cell processes,S,-12.023607,26.339159,20
+Rv2274c,-,2.0,"virulence, detoxification, adaptation",S,-8.486619,45.516533,5
+Rv2276,cyp121,5.0,intermediary metabolism and respiration,Q,-17.02843,15.031766,15
+Rv2279,-,,insertion seqs and phages,L,7.4980726,7.476528,8
+Rv2281,pitB,2.0,cell wall and cell processes,P,-8.805965,45.774406,5
+Rv2282c,-,2.0,regulatory proteins,K,-14.805047,30.877811,13
+Rv2283,-,1.0,conserved hypotheticals,S,-13.314596,32.584286,7
+Rv2284,lipM,2.0,intermediary metabolism and respiration,I,-18.32572,13.608344,3
+Rv2285,-,4.0,lipid metabolism,S,-12.781924,26.299692,9
+Rv2286c,-,1.0,conserved hypotheticals,Q,-11.688885,30.048609,16
+Rv2287,yjcE,2.0,cell wall and cell processes,P,-18.02895,12.668638,3
+Rv2299c,htpG,3.0,"virulence, detoxification, adaptation",O,-13.747829,38.230156,0
+Rv2301,cut2,3.0,cell wall and cell processes,S,-14.809651,30.871561,13
+Rv2306B,-,1.0,cell wall and cell processes,S,-8.572258,45.803005,5
+Rv2307D,-,1.0,conserved hypotheticals,S,-17.67792,14.487201,15
+Rv2309A,-,1.0,conserved hypotheticals,S,-13.588871,25.758163,9
+Rv2311,-,1.0,conserved hypotheticals,L,-12.560159,30.528334,16
+Rv2312,-,1.0,conserved hypotheticals,S,-13.794735,26.679379,9
+Rv2314c,-,1.0,conserved hypotheticals,R,-15.567207,33.684204,7
+Rv2315c,-,1.0,conserved hypotheticals,R,-18.327576,13.81267,3
+Rv2317,uspB,1.0,cell wall and cell processes,G,-8.491032,45.860077,5
+Rv2318,uspC,1.0,cell wall and cell processes,G,-9.141487,45.49809,5
+Rv2322c,rocD1,1.0,intermediary metabolism and respiration,E,-27.406029,27.791826,10
+Rv2325c,-,1.0,conserved hypotheticals,P,-14.105829,26.469501,9
+Rv2326c,-,2.0,cell wall and cell processes,P,-13.665487,25.081203,9
+Rv2328,PE23,2.0,PE/PPE,S,-22.10973,25.808636,17
+Rv2329c,narK1,1.0,cell wall and cell processes,P,-14.365162,33.90329,7
+Rv2331,-,1.0,conserved hypotheticals,C,-8.905311,45.549484,5
+Rv2331A,-,1.0,conserved hypotheticals,P,-27.608995,27.859278,10
+Rv2332,mez,3.0,intermediary metabolism and respiration,C,-8.431613,45.804283,5
+Rv2333c,-,2.0,cell wall and cell processes,GEPR,-15.296058,31.054295,13
+Rv2334,cysK1,5.0,intermediary metabolism and respiration,E,-9.97744,18.61504,6
+Rv2335,cysE,3.0,intermediary metabolism and respiration,E,-27.056581,27.713749,10
+Rv2340c,PE_PGRS39,1.0,PE/PPE,S,-11.693963,30.041506,16
+Rv2342,-,1.0,conserved hypotheticals,S,-27.25449,27.78083,10
+Rv2344c,dgt,2.0,intermediary metabolism and respiration,F,-18.373686,13.658317,3
+Rv2346c,esxO,3.0,cell wall and cell processes,S,-9.482217,26.35075,12
+Rv2350c,plcB,4.0,intermediary metabolism and respiration,M,-17.518496,29.05573,18
+Rv2355,-,,insertion seqs and phages,L,7.4995666,7.4750495,8
+Rv2358,-,3.0,regulatory proteins,K,-8.842003,45.16703,19
+Rv2362c,recO,2.0,information pathways,L,-27.2463,27.797869,10
+Rv2363,amiA2,2.0,intermediary metabolism and respiration,J,-25.351648,27.045507,4
+Rv2364c,era,4.0,intermediary metabolism and respiration,R,-15.569066,33.686565,7
+Rv2366c,-,2.0,cell wall and cell processes,R,-14.0211,26.523066,9
+Rv2368c,phoH1,2.0,intermediary metabolism and respiration,T,-15.303983,30.992537,13
+Rv2372c,-,2.0,conserved hypotheticals,S,-18.32427,13.726978,3
+Rv2374c,hrcA,2.0,"virulence, detoxification, adaptation",K,-16.257765,30.878534,13
+Rv2375,-,1.0,conserved hypotheticals,S,-14.177602,28.827541,14
+Rv2376c,cfp2,3.0,cell wall and cell processes,S,-14.152701,28.908102,14
+Rv2378c,mbtG,3.0,lipid metabolism,Q,-24.696709,27.091223,4
+Rv2379c,mbtF,2.0,lipid metabolism,Q,-10.816566,-2.5301495,2
+Rv2380c,mbtE,2.0,lipid metabolism,Q,-10.82939,-2.5402594,2
+Rv2381c,mbtD,1.0,lipid metabolism,Q,-10.83097,-2.5413368,2
+Rv2382c,mbtC,1.0,lipid metabolism,Q,-17.595037,28.893042,18
+Rv2383c,mbtB,5.0,lipid metabolism,Q,-10.849292,-2.559605,2
+Rv2384,mbtA,5.0,lipid metabolism,Q,-10.743486,-2.4580483,2
+Rv2386c,mbtI,5.0,lipid metabolism,EH,-17.209225,29.063862,18
+Rv2387,-,1.0,conserved hypotheticals,R,-11.632454,30.100622,16
+Rv2388c,hemN,3.0,intermediary metabolism and respiration,H,-15.499123,31.072021,13
+Rv2389c,rpfD,5.0,cell wall and cell processes,S,-18.186153,12.736058,3
+Rv2391,nirA,5.0,intermediary metabolism and respiration,P,-16.082317,30.838604,13
+Rv2392,cysH,4.0,intermediary metabolism and respiration,EH,-14.165273,28.909033,14
+Rv2393,-,1.0,intermediary metabolism and respiration,S,-15.527392,31.091925,13
+Rv2394,ggtB,1.0,intermediary metabolism and respiration,E,-12.707496,26.372551,9
+Rv2397c,cysA1,4.0,cell wall and cell processes,P,-16.102465,30.9832,13
+Rv2398c,cysW,1.0,cell wall and cell processes,P,-14.231607,37.70854,0
+Rv2399c,cysT,2.0,cell wall and cell processes,O,-25.80625,27.65382,4
+Rv2400c,subI,1.0,cell wall and cell processes,P,-16.19858,30.989126,13
+Rv2404c,lepA,3.0,intermediary metabolism and respiration,M,-15.555842,31.010239,13
+Rv2409c,-,1.0,conserved hypotheticals,E,-8.765148,45.83688,5
+Rv2410c,-,1.0,conserved hypotheticals,S,-27.558226,27.771463,10
+Rv2411c,-,1.0,conserved hypotheticals,S,-15.97986,30.8057,13
+Rv2417c,-,2.0,conserved hypotheticals,S,-8.710294,45.882355,5
+Rv2419c,-,5.0,intermediary metabolism and respiration,G,-9.55279,32.02797,11
+Rv2427c,proA,3.0,intermediary metabolism and respiration,E,-9.701223,32.15151,11
+Rv2428,ahpC,5.0,"virulence, detoxification, adaptation",O,-15.898498,31.054674,13
+Rv2429,ahpD,5.0,"virulence, detoxification, adaptation",S,-15.817436,30.990509,13
+Rv2430c,PPE41,4.0,PE/PPE,S,-27.576965,27.667429,10
+Rv2434c,-,1.0,cell wall and cell processes,T,-15.567408,30.986912,13
+Rv2435c,-,1.0,intermediary metabolism and respiration,NT,-13.750362,38.28146,0
+Rv2439c,proB,3.0,intermediary metabolism and respiration,E,-13.822685,38.189793,0
+Rv2450c,rpfE,5.0,cell wall and cell processes,S,-27.55634,27.730358,10
+Rv2451,-,1.0,conserved hypotheticals,S,-27.5645,27.591423,10
+Rv2452c,-,1.0,conserved hypotheticals,S,-8.900883,45.932312,5
+Rv2454c,-,4.0,intermediary metabolism and respiration,C,-16.322052,30.887394,13
+Rv2455c,-,4.0,intermediary metabolism and respiration,C,-9.852518,-1.6794255,2
+Rv2456c,-,1.0,cell wall and cell processes,GEPR,-18.057322,12.624697,3
+Rv2458,mmuM,1.0,intermediary metabolism and respiration,E,-18.361954,13.712427,3
+Rv2462c,tig,4.0,cell wall and cell processes,O,-25.633886,27.286238,4
+Rv2463,lipP,1.0,intermediary metabolism and respiration,V,-18.3398,13.601202,3
+Rv2466c,-,3.0,conserved hypotheticals,O,-17.03533,15.024468,15
+Rv2467,pepN,1.0,intermediary metabolism and respiration,E,-18.382097,13.669144,3
+Rv2468c,-,1.0,conserved hypotheticals,S,-18.372524,13.748532,3
+Rv2470,glbO,5.0,intermediary metabolism and respiration,R,-16.19163,30.951313,13
+Rv2471,aglA,1.0,intermediary metabolism and respiration,G,-8.397086,45.75289,5
+Rv2474c,-,1.0,conserved hypotheticals,S,-8.573915,45.960754,5
+Rv2475c,-,1.0,conserved hypotheticals,R,-14.026225,26.46178,9
+Rv2476c,gdh,4.0,intermediary metabolism and respiration,E,-10.070326,18.745895,6
+Rv2477c,-,4.0,cell wall and cell processes,R,-14.204236,37.733868,0
+Rv2479c,-,,insertion seqs and phages,L,7.49989,7.4747133,8
+Rv2481c,-,1.0,conserved hypotheticals,S,-8.594815,45.719063,5
+Rv2482c,plsB2,3.0,lipid metabolism,I,-15.5612335,33.680485,7
+Rv2483c,plsC,1.0,lipid metabolism,I,-13.606602,25.121801,9
+Rv2484c,-,3.0,lipid metabolism,S,-22.112864,25.826069,17
+Rv2490c,PE_PGRS43,1.0,PE/PPE,S,-10.63452,27.333214,20
+Rv2491,-,1.0,conserved hypotheticals,R,-9.545312,31.994665,11
+Rv2496c,pdhB,4.0,intermediary metabolism and respiration,C,-14.16268,32.45938,7
+Rv2497c,pdhA,3.0,intermediary metabolism and respiration,C,-8.5677,45.64476,5
+Rv2498c,citE,4.0,intermediary metabolism and respiration,G,-9.734613,31.970194,11
+Rv2499c,-,1.0,intermediary metabolism and respiration,I,-22.107662,25.81045,17
+Rv2500c,fadE19,1.0,lipid metabolism,I,-13.993227,26.427927,9
+Rv2501c,accA1,4.0,lipid metabolism,I,-9.557784,32.02407,11
+Rv2502c,accD1,1.0,lipid metabolism,I,-13.247994,31.596064,16
+Rv2504c,scoA,2.0,lipid metabolism,I,-14.108324,26.507124,9
+Rv2506,-,1.0,regulatory proteins,K,-12.521919,28.460161,14
+Rv2507,-,1.0,cell wall and cell processes,S,-25.17564,27.76082,4
+Rv2508c,-,1.0,cell wall and cell processes,R,-11.614847,30.111639,16
+Rv2509,-,1.0,intermediary metabolism and respiration,R,-13.831235,29.104568,14
+Rv2511,orn,2.0,intermediary metabolism and respiration,A,-15.42298,31.113869,13
+Rv2512c,-,,insertion seqs and phages,L,-12.947459,30.679472,16
+Rv2515c,-,1.0,conserved hypotheticals,K,-9.501513,44.837616,19
+Rv2518c,lppS,5.0,cell wall and cell processes,S,-24.80867,27.380598,4
+Rv2521,bcp,4.0,"virulence, detoxification, adaptation",O,-8.570569,45.854195,5
+Rv2525c,-,4.0,conserved hypotheticals,S,-13.7788725,31.940239,7
+Rv2529,-,2.0,conserved hypotheticals,L,-8.515375,45.894268,5
+Rv2531c,-,1.0,intermediary metabolism and respiration,E,-18.088818,12.5823,3
+Rv2532c,-,1.0,conserved hypotheticals,R,-14.125484,26.526625,9
+Rv2534c,efp,2.0,information pathways,J,-9.600419,-1.0965624,2
+Rv2535c,pepQ,1.0,intermediary metabolism and respiration,E,-16.25393,30.60381,13
+Rv2536,-,2.0,cell wall and cell processes,S,-27.699184,27.730135,10
+Rv2543,lppA,2.0,cell wall and cell processes,S,-8.869575,46.14873,5
+Rv2553c,-,3.0,cell wall and cell processes,R,-24.633703,27.526747,4
+Rv2556c,-,1.0,conserved hypotheticals,S,-27.695034,27.671343,10
+Rv2563,-,2.0,cell wall and cell processes,V,-18.46599,13.8882475,3
+Rv2564,glnQ,2.0,cell wall and cell processes,V,-14.023626,28.036167,14
+Rv2567,-,1.0,conserved hypotheticals,S,-15.924046,30.827826,13
+Rv2568c,-,1.0,conserved hypotheticals,S,-8.608169,46.025696,5
+Rv2569c,-,1.0,conserved hypotheticals,E,-15.882783,30.825037,13
+Rv2573,-,3.0,conserved hypotheticals,H,-11.70977,30.025848,16
+Rv2575,-,1.0,cell wall and cell processes,R,-8.720116,46.064457,5
+Rv2579,dhaA,3.0,intermediary metabolism and respiration,R,-18.319221,13.759644,3
+Rv2582,ppiB,3.0,information pathways,O,-24.897446,27.359182,4
+Rv2583c,relA,5.0,intermediary metabolism and respiration,TK,-15.562127,30.951578,13
+Rv2584c,apt,3.0,intermediary metabolism and respiration,F,-27.685535,27.697563,10
+Rv2585c,-,2.0,cell wall and cell processes,E,-13.857963,38.180367,0
+Rv2593c,ruvA,3.0,information pathways,L,-27.684778,27.627192,10
+Rv2601,speE,4.0,intermediary metabolism and respiration,R,-17.44734,15.058636,15
+Rv2603c,-,1.0,conserved hypotheticals,S,-15.539812,33.659786,7
+Rv2605c,tesB2,1.0,lipid metabolism,I,-8.836712,45.192265,19
+Rv2606c,-,4.0,intermediary metabolism and respiration,H,-10.113233,18.781883,6
+Rv2609c,-,1.0,cell wall and cell processes,S,-27.278238,27.276972,10
+Rv2613c,-,5.0,lipid metabolism,FGR,-17.523294,29.031757,18
+Rv2618,-,1.0,conserved hypotheticals,K,-17.535364,29.05314,18
+Rv2621c,-,1.0,regulatory proteins,K,-14.092801,26.4573,9
+Rv2622,-,1.0,intermediary metabolism and respiration,QR,-9.484102,26.351568,12
+Rv2623,TB31.7,5.0,"virulence, detoxification, adaptation",T,-17.478357,29.034615,18
+Rv2625c,-,3.0,cell wall and cell processes,R,-8.652143,46.026257,5
+Rv2628,-,1.0,conserved hypotheticals,S,-27.61681,27.687876,10
+Rv2632c,-,1.0,conserved hypotheticals,S,-11.639768,30.080868,16
+Rv2633c,-,1.0,conserved hypotheticals,S,-27.628345,27.69986,10
+Rv2636,-,1.0,conserved hypotheticals,V,-22.104765,25.806946,17
+Rv2638,-,1.0,conserved hypotheticals,T,-27.706888,27.803848,10
+Rv2640c,-,1.0,regulatory proteins,K,-15.918865,27.001978,1
+Rv2642,-,1.0,regulatory proteins,K,-10.646723,27.368113,20
+Rv2643,arsC,2.0,cell wall and cell processes,T,-8.594663,46.02722,5
+Rv2646,-,1.0,insertion seqs and phages,L,-12.702863,26.35843,9
+Rv2647,-,1.0,insertion seqs and phages,S,-8.466757,45.98932,5
+Rv2649,-,,insertion seqs and phages,L,7.494524,7.480093,8
+Rv2651c,-,1.0,insertion seqs and phages,R,-22.109516,25.810003,17
+Rv2655c,-,1.0,insertion seqs and phages,S,-14.866086,30.557318,13
+Rv2656c,-,1.0,insertion seqs and phages,S,-13.467146,32.37267,7
+Rv2661c,-,1.0,conserved hypotheticals,S,-15.921574,26.94331,1
+Rv2666,-,1.0,insertion seqs and phages,L,-12.974953,30.761711,16
+Rv2669,-,2.0,intermediary metabolism and respiration,KR,-22.107288,25.80837,17
+Rv2671,ribD,2.0,intermediary metabolism and respiration,H,-16.03217,27.861813,1
+Rv2672,-,1.0,intermediary metabolism and respiration,R,-16.714273,28.484438,18
+Rv2674,-,2.0,intermediary metabolism and respiration,O,-14.806627,30.87075,13
+Rv2680,-,1.0,conserved hypotheticals,P,-18.456532,14.394995,15
+Rv2681,-,1.0,conserved hypotheticals,J,-25.593498,27.39318,4
+Rv2683,-,1.0,conserved hypotheticals,R,-14.127307,32.439472,7
+Rv2684,arsA,2.0,cell wall and cell processes,P,-17.054907,28.601994,18
+Rv2686c,-,2.0,cell wall and cell processes,S,-8.558142,45.8714,5
+Rv2687c,-,2.0,cell wall and cell processes,S,-27.750172,27.71089,10
+Rv2690c,-,1.0,cell wall and cell processes,E,-24.511297,27.529732,4
+Rv2691,ceoB,1.0,cell wall and cell processes,P,-16.506678,28.861284,18
+Rv2692,ceoC,2.0,cell wall and cell processes,P,-17.499054,29.035177,18
+Rv2694c,-,1.0,conserved hypotheticals,S,-16.829334,29.0041,18
+Rv2695,-,1.0,conserved hypotheticals,S,-13.239263,32.516182,7
+Rv2696c,-,1.0,conserved hypotheticals,J,-26.221113,27.536213,4
+Rv2700,-,1.0,cell wall and cell processes,S,-27.73605,27.614407,10
+Rv2702,ppgK,3.0,intermediary metabolism and respiration,KG,-15.045692,30.700323,13
+Rv2707,-,1.0,conserved hypotheticals,S,-16.982357,15.10199,15
+Rv2709,-,1.0,cell wall and cell processes,S,-13.509048,26.429848,9
+Rv2710,sigB,5.0,information pathways,K,-25.000788,27.783346,4
+Rv2714,-,1.0,conserved hypotheticals,S,-11.548706,30.193996,16
+Rv2719c,-,1.0,cell wall and cell processes,M,-27.635487,27.72829,10
+Rv2721c,-,1.0,cell wall and cell processes,M,-15.422848,30.937471,13
+Rv2722,-,1.0,conserved hypotheticals,S,-17.516495,29.04372,18
+Rv2723,-,1.0,cell wall and cell processes,P,-13.753128,38.221897,0
+Rv2725c,hflX,2.0,intermediary metabolism and respiration,R,-10.636523,27.362068,20
+Rv2727c,miaA,3.0,intermediary metabolism and respiration,J,-15.308427,31.027794,13
+Rv2728c,-,1.0,conserved hypotheticals,S,-14.180197,33.063625,7
+Rv2731,-,1.0,conserved hypotheticals,S,-15.489102,31.054155,13
+Rv2732c,-,1.0,cell wall and cell processes,S,-9.287459,44.33132,19
+Rv2733c,-,3.0,conserved hypotheticals,J,-13.872304,28.352633,14
+Rv2735c,-,1.0,conserved hypotheticals,S,-9.494541,26.375366,12
+Rv2737c,recA,5.0,information pathways,L,-18.370424,14.444323,15
+Rv2742c,-,1.0,conserved hypotheticals,S,-10.628975,27.350206,20
+Rv2744c,35kd_ag,1.0,conserved hypotheticals,KT,-14.186258,28.916153,14
+Rv2745c,-,4.0,regulatory proteins,K,-8.483152,45.934315,5
+Rv2747,-,5.0,intermediary metabolism and respiration,E,-13.916366,38.146107,0
+Rv2752c,-,5.0,conserved hypotheticals,R,-16.144257,30.735794,13
+Rv2754c,thyX,5.0,intermediary metabolism and respiration,F,-9.675997,-1.5263982,2
+Rv2756c,hsdM,1.0,information pathways,V,-8.553566,45.150852,5
+Rv2760c,-,1.0,"virulence, detoxification, adaptation",S,-14.504632,31.386253,13
+Rv2766c,fabG,1.0,intermediary metabolism and respiration,IQR,-27.637917,27.770308,10
+Rv2777c,-,1.0,conserved hypotheticals,R,-18.02715,12.540926,3
+Rv2780,ald,5.0,intermediary metabolism and respiration,E,-13.628782,25.136963,9
+Rv2781c,-,1.0,intermediary metabolism and respiration,R,-13.851769,32.41636,7
+Rv2782c,pepR,2.0,intermediary metabolism and respiration,R,-8.42922,45.72965,5
+Rv2788,sirR,2.0,regulatory proteins,K,-15.874194,27.72817,1
+Rv2790c,ltp1,1.0,cell wall and cell processes,I,-8.602042,45.98519,5
+Rv2792c,-,1.0,insertion seqs and phages,L,-14.649888,35.68,0
+Rv2793c,truB,3.0,information pathways,J,-13.683857,31.915745,7
+Rv2795c,-,1.0,conserved hypotheticals,R,-18.261276,13.579861,3
+Rv2799,-,1.0,cell wall and cell processes,S,-8.75678,44.59341,19
+Rv2800,-,1.0,intermediary metabolism and respiration,R,-15.943423,26.961697,1
+Rv2801c,-,4.0,"virulence, detoxification, adaptation",T,-9.467246,26.343187,12
+Rv2802c,-,1.0,conserved hypotheticals,S,-8.762377,44.56296,19
+Rv2803,-,1.0,conserved hypotheticals,S,-10.606323,27.374134,20
+Rv2805,-,1.0,conserved hypotheticals,S,-11.644438,30.075241,16
+Rv2809,-,1.0,conserved hypotheticals,S,-8.529583,44.87098,19
+Rv2813,-,1.0,conserved hypotheticals,U,-17.517704,29.04135,18
+Rv2814c,-,,insertion seqs and phages,L,7.4844832,7.4900827,8
+Rv2816c,-,3.0,conserved hypotheticals,L,-9.11918,45.660122,5
+Rv2818c,-,3.0,unknown,S,-10.4501705,-1.5070105,2
+Rv2819c,-,3.0,conserved hypotheticals,L,-9.145207,45.66359,5
+Rv2820c,-,3.0,conserved hypotheticals,L,-14.373893,33.2852,7
+Rv2825c,-,1.0,conserved hypotheticals,S,-27.73349,27.699697,10
+Rv2826c,-,1.0,conserved hypotheticals,S,-18.024096,12.65823,3
+Rv2828c,-,1.0,conserved hypotheticals,S,-17.52799,29.073208,18
+Rv2829c,-,3.0,"virulence, detoxification, adaptation",S,-9.484611,44.86863,19
+Rv2831,echA16,1.0,lipid metabolism,I,-27.68425,27.684326,10
+Rv2832c,ugpC,1.0,cell wall and cell processes,G,-8.733526,46.23046,5
+Rv2833c,ugpB,1.0,cell wall and cell processes,G,-9.74576,26.309532,12
+Rv2835c,ugpA,1.0,cell wall and cell processes,G,-14.112178,26.504425,9
+Rv2837c,-,3.0,conserved hypotheticals,R,-24.606398,27.53084,4
+Rv2838c,rbfA,2.0,information pathways,J,-14.131375,28.887426,14
+Rv2840c,-,1.0,conserved hypotheticals,K,-14.040565,32.94906,7
+Rv2842c,-,2.0,conserved hypotheticals,S,-13.725728,32.640697,7
+Rv2843,-,1.0,cell wall and cell processes,S,-27.556171,27.96148,10
+Rv2846c,efpA,2.0,cell wall and cell processes,GEPR,-13.819006,29.108862,14
+Rv2847c,cysG,2.0,intermediary metabolism and respiration,H,-15.941846,31.058006,13
+Rv2851c,-,1.0,intermediary metabolism and respiration,R,-18.339796,13.752974,3
+Rv2852c,mqo,3.0,intermediary metabolism and respiration,R,-18.098267,13.096888,3
+Rv2855,mtr,5.0,intermediary metabolism and respiration,C,-12.021699,26.342924,20
+Rv2857c,-,1.0,intermediary metabolism and respiration,IQR,-14.169741,32.464745,7
+Rv2859c,-,2.0,intermediary metabolism and respiration,R,-17.519949,29.020891,18
+Rv2860c,glnA4,1.0,intermediary metabolism and respiration,E,-10.618344,27.358543,20
+Rv2861c,mapB,5.0,intermediary metabolism and respiration,J,-25.459211,27.234665,4
+Rv2864c,-,1.0,cell wall and cell processes,M,-9.620504,26.56818,12
+Rv2867c,-,1.0,intermediary metabolism and respiration,R,-8.49286,45.471794,5
+Rv2869c,-,5.0,cell wall and cell processes,M,-24.25075,27.62044,4
+Rv2871,-,2.0,"virulence, detoxification, adaptation",S,-14.090921,26.531033,9
+Rv2873,mpt83,4.0,cell wall and cell processes,M,-12.720653,26.357424,9
+Rv2878c,mpt53,4.0,cell wall and cell processes,OC,-9.487807,26.354599,12
+Rv2879c,-,,conserved hypotheticals,R,-8.818868,46.11367,5
+Rv2884,-,1.0,regulatory proteins,TK,-9.485044,26.35619,12
+Rv2885c,-,2.0,insertion seqs and phages,L,-13.946864,32.96786,7
+Rv2886c,-,2.0,insertion seqs and phages,L,-12.030638,26.333786,20
+Rv2887,-,1.0,regulatory proteins,K,-8.750235,44.569878,19
+Rv2893,-,1.0,intermediary metabolism and respiration,C,-14.079622,26.506224,9
+Rv2894c,xerC,3.0,insertion seqs and phages,L,-24.862717,27.360546,4
+Rv2896c,-,2.0,conserved hypotheticals,LU,-10.5827265,27.300291,20
+Rv2897c,-,1.0,conserved hypotheticals,O,-8.6480875,46.161373,5
+Rv2901c,-,1.0,conserved hypotheticals,S,-17.036606,15.00957,15
+Rv2905,lppW,2.0,cell wall and cell processes,S,-17.020199,15.029158,15
+Rv2907c,rimM,2.0,information pathways,J,-14.895448,30.585068,13
+Rv2914c,pknI,5.0,regulatory proteins,RTKL,-13.736421,38.287003,0
+Rv2917,-,2.0,conserved hypotheticals,KL,-18.273386,12.896454,3
+Rv2919c,glnB,3.0,regulatory proteins,E,-27.677456,27.714605,10
+Rv2922c,smc,3.0,cell wall and cell processes,D,-18.360981,13.784541,3
+Rv2928,tesA,3.0,lipid metabolism,Q,-9.506603,44.848526,19
+Rv2929,-,1.0,conserved hypotheticals,S,-13.607218,25.143456,9
+Rv2930,fadD26,5.0,lipid metabolism,IQ,-9.68229,17.753326,6
+Rv2931,ppsA,5.0,lipid metabolism,Q,-9.679564,17.743988,6
+Rv2932,ppsB,4.0,lipid metabolism,Q,-9.670337,17.732347,6
+Rv2933,ppsC,5.0,lipid metabolism,Q,-9.711537,17.722788,6
+Rv2934,ppsD,4.0,lipid metabolism,Q,-9.681703,17.744041,6
+Rv2935,ppsE,5.0,lipid metabolism,Q,-9.67656,17.742853,6
+Rv2936,drrA,5.0,cell wall and cell processes,V,-18.1442,14.719634,15
+Rv2937,drrB,4.0,cell wall and cell processes,V,-18.12227,14.740649,15
+Rv2938,drrC,3.0,cell wall and cell processes,V,-18.141624,14.747162,15
+Rv2939,papA5,5.0,lipid metabolism,Q,-9.683458,17.764282,6
+Rv2940c,mas,1.0,lipid metabolism,Q,-9.680887,17.744024,6
+Rv2941,fadD28,5.0,lipid metabolism,IQ,-9.680899,17.762358,6
+Rv2942,mmpL7,4.0,cell wall and cell processes,R,-9.070633,18.402327,6
+Rv2945c,lppX,5.0,cell wall and cell processes,S,-18.121735,14.7943125,15
+Rv2946c,pks1,4.0,lipid metabolism,Q,-15.881557,27.738766,1
+Rv2947c,pks15,2.0,lipid metabolism,Q,-16.995663,15.052822,15
+Rv2949c,-,4.0,intermediary metabolism and respiration,H,-8.745741,46.01461,5
+Rv2950c,fadD29,5.0,lipid metabolism,IQ,-13.590784,25.761938,9
+Rv2952,-,2.0,intermediary metabolism and respiration,QR,-13.475292,32.582024,7
+Rv2953,-,3.0,lipid metabolism,S,-8.291454,45.722374,5
+Rv2955c,-,1.0,conserved hypotheticals,QR,-13.272499,32.61828,7
+Rv2958c,-,3.0,intermediary metabolism and respiration,GC,-13.520769,32.428772,7
+Rv2959c,-,3.0,intermediary metabolism and respiration,V,-8.559247,45.76035,5
+Rv2960c,-,1.0,conserved hypotheticals,S,-12.016462,26.342697,20
+Rv2961,-,1.0,insertion seqs and phages,L,-8.487341,45.939663,5
+Rv2962c,-,3.0,intermediary metabolism and respiration,GC,-14.505648,33.41502,7
+Rv2966c,-,1.0,intermediary metabolism and respiration,L,-18.526836,14.230014,3
+Rv2967c,pca,2.0,intermediary metabolism and respiration,C,-17.145811,28.54768,18
+Rv2970A,-,1.0,conserved hypotheticals,R,-9.112323,45.467957,5
+Rv2973c,recG,3.0,information pathways,LK,-27.75538,27.644613,10
+Rv2983,-,3.0,conserved hypotheticals,S,-27.673433,27.642124,10
+Rv2984,ppk,5.0,intermediary metabolism and respiration,P,-13.921089,38.132477,0
+Rv2985,mutT1,4.0,information pathways,G,-18.11656,12.543183,3
+Rv2988c,leuC,3.0,intermediary metabolism and respiration,E,-13.739564,38.264923,0
+Rv2989,-,1.0,regulatory proteins,K,-10.101256,18.762869,6
+Rv2991,-,1.0,conserved hypotheticals,P,-8.523772,44.850388,19
+Rv2995c,leuB,4.0,intermediary metabolism and respiration,CE,-13.810202,38.216927,0
+Rv2996c,serA1,4.0,intermediary metabolism and respiration,HE,-14.396623,33.299286,7
+Rv2997,-,1.0,intermediary metabolism and respiration,Q,-8.340527,46.02849,5
+Rv2998,-,1.0,conserved hypotheticals,S,-15.880404,27.7352,1
+Rv3000,-,1.0,cell wall and cell processes,R,-27.740211,27.550566,10
+Rv3003c,ilvB1,5.0,intermediary metabolism and respiration,EH,-13.76854,38.00486,0
+Rv3005c,-,1.0,conserved hypotheticals,S,-16.400846,29.218588,18
+Rv3010c,pfkA,5.0,intermediary metabolism and respiration,G,-15.506824,31.11801,13
+Rv3014c,ligA,5.0,information pathways,L,-15.567321,33.682816,7
+Rv3019c,esxR,2.0,cell wall and cell processes,S,-14.375476,33.28693,7
+Rv3023c,-,,insertion seqs and phages,L,-12.919605,30.683182,16
+Rv3024c,trmU,3.0,information pathways,J,-25.78029,27.615406,4
+Rv3025c,iscS,5.0,intermediary metabolism and respiration,E,-15.798268,31.093773,13
+Rv3027c,-,1.0,intermediary metabolism and respiration,R,-8.785192,45.88716,5
+Rv3031,-,3.0,conserved hypotheticals,S,-13.783669,38.26195,0
+Rv3032,-,3.0,intermediary metabolism and respiration,M,-24.832113,27.307997,4
+Rv3035,-,1.0,conserved hypotheticals,S,-25.563837,27.674818,4
+Rv3036c,TB22.2,1.0,cell wall and cell processes,S,-25.341843,27.057098,4
+Rv3037c,-,1.0,conserved hypotheticals,QR,-27.459166,27.999586,10
+Rv3040c,-,1.0,conserved hypotheticals,LR,-9.546443,32.015465,11
+Rv3041c,-,1.0,cell wall and cell processes,P,-17.4715,28.99722,18
+Rv3042c,serB2,5.0,intermediary metabolism and respiration,E,-9.643436,-1.3040401,2
+Rv3044,fecB,1.0,cell wall and cell processes,P,-24.67078,27.660978,4
+Rv3045,adhC,3.0,intermediary metabolism and respiration,R,-17.448557,28.688616,18
+Rv3051c,nrdE,5.0,information pathways,F,-14.401602,33.845478,7
+Rv3052c,nrdI,2.0,information pathways,F,-10.031222,32.472263,11
+Rv3057c,-,1.0,intermediary metabolism and respiration,IQR,-9.078157,18.390358,6
+Rv3058c,-,1.0,regulatory proteins,K,-14.320861,29.10576,14
+Rv3059,cyp136,2.0,intermediary metabolism and respiration,Q,-13.745234,38.18487,0
+Rv3062,ligB,5.0,information pathways,L,-27.60859,27.688673,10
+Rv3064c,-,1.0,cell wall and cell processes,S,-8.637486,46.12566,5
+Rv3066,-,1.0,regulatory proteins,S,-18.276505,12.80556,3
+Rv3067,-,1.0,conserved hypotheticals,CE,-14.170872,28.917738,14
+Rv3068c,pgmA,1.0,intermediary metabolism and respiration,G,-17.50434,29.049654,18
+Rv3069,ccrB,2.0,cell wall and cell processes,D,-27.75172,27.726814,10
+Rv3073c,-,1.0,conserved hypotheticals,S,-27.799511,27.571459,10
+Rv3078,hab,1.0,intermediary metabolism and respiration,S,-27.455442,27.679344,10
+Rv3081,-,1.0,conserved hypotheticals,S,-11.617092,30.091614,16
+Rv3084,lipR,3.0,intermediary metabolism and respiration,I,-9.322282,45.204815,19
+Rv3089,fadD13,5.0,lipid metabolism,IQ,-14.401703,33.31272,7
+Rv3098c,-,1.0,conserved hypotheticals,E,-8.817469,46.16167,5
+Rv3101c,ftsX,3.0,cell wall and cell processes,D,-24.79959,27.4402,4
+Rv3102c,ftsE,4.0,cell wall and cell processes,D,-25.503359,27.379507,4
+Rv3110,moaB1,2.0,intermediary metabolism and respiration,H,-18.161692,12.758023,3
+Rv3111,moaC,4.0,intermediary metabolism and respiration,H,-13.730218,38.261524,0
+Rv3113,-,1.0,intermediary metabolism and respiration,R,-9.278061,44.308014,19
+Rv3115,-,,insertion seqs and phages,L,-12.937963,30.69037,16
+Rv3117,cysA3,3.0,intermediary metabolism and respiration,P,-13.754589,38.290577,0
+Rv3118,sseC1,1.0,intermediary metabolism and respiration,S,-8.9611845,45.920425,5
+Rv3122,-,1.0,conserved hypotheticals,S,-14.070589,26.418036,9
+Rv3127,-,1.0,conserved hypotheticals,S,-9.065909,46.03375,5
+Rv3129,-,1.0,conserved hypotheticals,S,-27.635359,27.642763,10
+Rv3130c,-,5.0,lipid metabolism,S,-13.602075,25.123621,9
+Rv3131,-,3.0,conserved hypotheticals,S,-27.565073,27.554844,10
+Rv3132c,devS,5.0,regulatory proteins,T,-10.039615,18.713446,6
+Rv3133c,devR,5.0,regulatory proteins,TK,-17.566572,28.912142,18
+Rv3134c,-,2.0,"virulence, detoxification, adaptation",T,-18.356195,13.635383,3
+Rv3135,PPE50,1.0,PE/PPE,S,-12.841131,30.179665,16
+Rv3136,PPE51,2.0,PE/PPE,S,-12.828176,30.192513,16
+Rv3137,-,4.0,intermediary metabolism and respiration,G,-9.626203,-1.0830058,2
+Rv3138,pflA,1.0,intermediary metabolism and respiration,O,-8.61965,45.833435,5
+Rv3139,fadE24,2.0,lipid metabolism,I,-18.565165,14.2739725,3
+Rv3140,fadE23,1.0,lipid metabolism,I,-18.525768,14.209008,3
+Rv3141,fadB4,1.0,lipid metabolism,CR,-13.587518,25.18831,9
+Rv3144c,PPE52,1.0,PE/PPE,S,-18.01587,13.045331,3
+Rv3145,nuoA,3.0,intermediary metabolism and respiration,C,-14.001482,32.97316,7
+Rv3146,nuoB,3.0,intermediary metabolism and respiration,C,-9.804169,26.335247,12
+Rv3147,nuoC,2.0,intermediary metabolism and respiration,C,-9.264097,44.28853,19
+Rv3148,nuoD,3.0,intermediary metabolism and respiration,C,-26.022102,27.769196,4
+Rv3149,nuoE,3.0,intermediary metabolism and respiration,C,-17.074305,14.989564,15
+Rv3150,nuoF,3.0,intermediary metabolism and respiration,C,-26.075974,27.804243,4
+Rv3151,nuoG,5.0,intermediary metabolism and respiration,C,-27.7789,27.836628,10
+Rv3152,nuoH,3.0,intermediary metabolism and respiration,C,-22.32043,25.84468,17
+Rv3154,nuoJ,2.0,intermediary metabolism and respiration,C,-9.152236,45.73227,5
+Rv3155,nuoK,3.0,intermediary metabolism and respiration,C,-8.371844,45.969524,5
+Rv3156,nuoL,3.0,intermediary metabolism and respiration,CP,-27.755411,27.650047,10
+Rv3157,nuoM,3.0,intermediary metabolism and respiration,C,-17.071676,14.990899,15
+Rv3158,nuoN,3.0,intermediary metabolism and respiration,C,-18.133398,12.836906,3
+Rv3159c,PPE53,1.0,PE/PPE,S,-14.505373,33.412872,7
+Rv3160c,-,1.0,regulatory proteins,K,-14.37765,26.79248,9
+Rv3168,-,4.0,"virulence, detoxification, adaptation",R,-14.156857,32.46723,7
+Rv3170,aofH,2.0,intermediary metabolism and respiration,E,-22.11752,25.843176,17
+Rv3171c,hpx,1.0,"virulence, detoxification, adaptation",R,-9.544496,26.301577,12
+Rv3172c,-,1.0,conserved hypotheticals,S,-9.541381,26.391264,12
+Rv3173c,-,1.0,regulatory proteins,K,-13.772212,26.10239,9
+Rv3175,-,1.0,intermediary metabolism and respiration,J,-14.521701,33.42507,7
+Rv3176c,mesT,1.0,"virulence, detoxification, adaptation",R,-8.819754,45.18269,19
+Rv3177,-,1.0,"virulence, detoxification, adaptation",R,-8.329559,46.040142,5
+Rv3178,-,2.0,conserved hypotheticals,S,-8.592074,45.893753,5
+Rv3180c,-,2.0,conserved hypotheticals,R,-8.891008,46.189083,5
+Rv3185,-,,insertion seqs and phages,L,7.4984794,7.476138,8
+Rv3187,-,,insertion seqs and phages,L,7.4984207,7.4761963,8
+Rv3190c,-,1.0,conserved hypotheticals,S,-14.509555,33.422474,7
+Rv3191c,-,2.0,insertion seqs and phages,L,-8.900447,46.007683,5
+Rv3192,-,1.0,conserved hypotheticals,C,-18.058985,12.562884,3
+Rv3193c,-,2.0,cell wall and cell processes,S,-10.010589,-1.5695916,2
+Rv3194c,-,2.0,cell wall and cell processes,T,-16.281982,30.71917,13
+Rv3196,-,1.0,conserved hypotheticals,S,-14.480376,33.232025,7
+Rv3197,-,1.0,cell wall and cell processes,R,-15.900472,27.762049,1
+Rv3198c,uvrD2,5.0,information pathways,L,-9.592187,-1.0774758,2
+Rv3200c,-,1.0,cell wall and cell processes,P,-16.451874,28.855253,18
+Rv3201c,-,2.0,information pathways,L,-9.785389,-1.2002186,2
+Rv3202c,-,2.0,information pathways,L,-9.723423,-1.142443,2
+Rv3203,lipV,5.0,intermediary metabolism and respiration,R,-9.498432,44.85869,19
+Rv3204,-,1.0,information pathways,L,-9.227784,44.36099,19
+Rv3205c,-,1.0,conserved hypotheticals,S,-14.215171,37.690247,0
+Rv3206c,moeB1,5.0,intermediary metabolism and respiration,H,-9.573092,-1.1236299,2
+Rv3207c,-,1.0,conserved hypotheticals,S,-9.843048,-1.2713004,2
+Rv3208,-,1.0,regulatory proteins,K,-14.366058,33.895107,7
+Rv3208A,TB9.4,1.0,conserved hypotheticals,S,-13.795386,26.674826,9
+Rv3209,-,1.0,conserved hypotheticals,S,-13.447273,32.56059,7
+Rv3210c,-,1.0,conserved hypotheticals,S,-10.125442,18.787533,6
+Rv3211,rhlE,2.0,information pathways,LKJ,-9.6963,-1.0941944,2
+Rv3212,-,1.0,conserved hypotheticals,S,-9.590896,-1.0904884,2
+Rv3214,gpm2,5.0,intermediary metabolism and respiration,G,-9.410874,43.98934,19
+Rv3215,entC,3.0,intermediary metabolism and respiration,HQ,-9.67364,-1.6203123,2
+Rv3217c,-,1.0,cell wall and cell processes,S,-8.460518,45.45206,5
+Rv3218,-,1.0,conserved hypotheticals,IR,-27.739502,27.609097,10
+Rv3219,whiB1,5.0,regulatory proteins,S,-14.448861,33.35592,7
+Rv3220c,-,4.0,regulatory proteins,T,-15.793063,30.639698,13
+Rv3222c,-,1.0,conserved hypotheticals,S,-9.572066,-1.0916063,2
+Rv3223c,sigH,5.0,information pathways,K,-13.00621,30.133886,16
+Rv3224,-,1.0,intermediary metabolism and respiration,IQR,-12.697825,26.374556,9
+Rv3224B,-,1.0,conserved hypotheticals,S,-13.732164,31.93027,7
+Rv3225c,-,1.0,intermediary metabolism and respiration,J,-14.298476,33.20155,7
+Rv3227,aroA,5.0,intermediary metabolism and respiration,E,-9.5692625,-1.0677449,2
+Rv3228,-,2.0,conserved hypotheticals,R,-25.367996,27.835344,4
+Rv3229c,-,5.0,lipid metabolism,I,-10.022783,-1.3257313,2
+Rv3230c,-,4.0,intermediary metabolism and respiration,C,-13.82983,37.906303,0
+Rv3231c,-,1.0,conserved hypotheticals,S,-9.520387,32.108902,11
+Rv3232c,pvdS,5.0,intermediary metabolism and respiration,S,-10.651051,27.383617,20
+Rv3236c,-,1.0,cell wall and cell processes,P,-17.418108,29.067612,18
+Rv3239c,-,1.0,cell wall and cell processes,GEPR,-14.342093,33.251442,7
+Rv3240c,secA1,4.0,cell wall and cell processes,U,-9.574302,-1.0680624,2
+Rv3244c,lpqB,3.0,cell wall and cell processes,S,-9.551757,-1.2620691,2
+Rv3245c,mtrB,5.0,regulatory proteins,T,-9.7756605,-1.6215512,2
+Rv3246c,mtrA,5.0,regulatory proteins,TK,-9.568516,-1.4964453,2
+Rv3247c,tmk,5.0,intermediary metabolism and respiration,F,-9.557021,-1.2924321,2
+Rv3248c,sahH,5.0,intermediary metabolism and respiration,H,-9.56084,-1.0902935,2
+Rv3249c,-,1.0,regulatory proteins,K,-9.558623,-1.0791813,2
+Rv3252c,alkB,2.0,lipid metabolism,S,-14.296692,33.204227,7
+Rv3255c,manA,2.0,intermediary metabolism and respiration,G,-9.540637,-1.2561816,2
+Rv3256c,-,1.0,conserved hypotheticals,S,-9.6851635,-1.0044755,2
+Rv3257c,manB,2.0,intermediary metabolism and respiration,G,-9.577403,-1.3801838,2
+Rv3258c,-,1.0,conserved hypotheticals,S,-9.868482,-1.319308,2
+Rv3259,-,1.0,conserved hypotheticals,L,-26.116167,27.451956,4
+Rv3260c,whiB2,5.0,regulatory proteins,S,-14.347224,33.301167,7
+Rv3261,fbiA,3.0,intermediary metabolism and respiration,S,-16.021322,30.556252,13
+Rv3262,fbiB,5.0,intermediary metabolism and respiration,C,-16.053919,30.924526,13
+Rv3263,-,1.0,information pathways,L,-18.373413,13.708314,3
+Rv3264c,manB,1.0,cell wall and cell processes,MJ,-9.546279,-1.2668939,2
+Rv3265c,wbbL1,4.0,cell wall and cell processes,R,-9.570249,-1.1003364,2
+Rv3266c,rmlD,4.0,intermediary metabolism and respiration,M,-9.548219,-1.2738587,2
+Rv3267,-,1.0,conserved hypotheticals,K,-24.503674,27.626184,4
+Rv3268,-,1.0,conserved hypotheticals,S,-9.533268,31.976469,11
+Rv3269,-,1.0,"virulence, detoxification, adaptation",S,-15.316892,31.06346,13
+Rv3270,ctpC,5.0,cell wall and cell processes,P,-16.096792,30.958307,13
+Rv3271c,-,1.0,cell wall and cell processes,S,-9.858802,-1.317308,2
+Rv3272,-,3.0,conserved hypotheticals,C,-13.788345,38.225513,0
+Rv3273,-,2.0,intermediary metabolism and respiration,P,-13.827557,38.17629,0
+Rv3274c,fadE25,2.0,lipid metabolism,I,-9.666942,-1.0600443,2
+Rv3275c,purE,2.0,intermediary metabolism and respiration,F,-9.561142,-1.0680177,2
+Rv3276c,purK,3.0,intermediary metabolism and respiration,F,-9.515277,-1.0852525,2
+Rv3277,-,1.0,cell wall and cell processes,S,-9.714079,-1.1492225,2
+Rv3278c,-,1.0,cell wall and cell processes,S,-17.05298,15.003766,15
+Rv3279c,birA,2.0,intermediary metabolism and respiration,H,-9.546875,-1.0255924,2
+Rv3280,accD5,4.0,lipid metabolism,I,-9.5604105,-1.3391362,2
+Rv3281,-,2.0,lipid metabolism,S,-14.513676,33.42378,7
+Rv3283,sseA,3.0,intermediary metabolism and respiration,P,-14.01925,28.03851,14
+Rv3284,-,1.0,conserved hypotheticals,R,-14.302776,33.956318,7
+Rv3285,accA3,2.0,lipid metabolism,I,-9.554284,-1.3687747,2
+Rv3288c,usfY,1.0,conserved hypotheticals,S,-14.117266,33.04126,7
+Rv3291c,-,1.0,regulatory proteins,K,-18.275984,13.861831,3
+Rv3292,-,1.0,conserved hypotheticals,S,-10.423287,-1.475965,2
+Rv3294c,-,1.0,conserved hypotheticals,R,-14.359715,33.264317,7
+Rv3295,-,1.0,regulatory proteins,K,-22.274038,25.832983,17
+Rv3296,lhr,1.0,information pathways,R,-10.438459,-1.4739201,2
+Rv3301c,phoY1,2.0,cell wall and cell processes,P,-17.4565,28.965672,18
+Rv3302c,glpD2,2.0,intermediary metabolism and respiration,C,-9.556923,-1.4430524,2
+Rv3303c,lpdA,5.0,intermediary metabolism and respiration,C,-9.548414,-1.0940804,2
+Rv3304,-,1.0,conserved hypotheticals,S,-15.423684,31.106016,13
+Rv3305c,amiA1,1.0,intermediary metabolism and respiration,R,-27.272484,27.514017,10
+Rv3307,deoD,4.0,intermediary metabolism and respiration,F,-14.373576,33.916523,7
+Rv3310,-,5.0,cell wall and cell processes,S,-14.101745,26.520855,9
+Rv3311,-,1.0,conserved hypotheticals,S,-24.706165,27.471304,4
+Rv3313c,add,3.0,intermediary metabolism and respiration,F,-13.9356575,26.539936,9
+Rv3316,sdhC,3.0,intermediary metabolism and respiration,C,-22.098114,25.81919,17
+Rv3317,sdhD,1.0,intermediary metabolism and respiration,C,-13.209167,31.641062,16
+Rv3318,sdhA,3.0,intermediary metabolism and respiration,C,-18.444372,13.800933,3
+Rv3319,sdhB,1.0,intermediary metabolism and respiration,C,-22.108244,25.81054,17
+Rv3320c,-,2.0,"virulence, detoxification, adaptation",R,-8.377768,46.07621,5
+Rv3325,-,,insertion seqs and phages,L,-13.41035,32.462276,7
+Rv3326,-,,insertion seqs and phages,L,7.503649,7.470931,8
+Rv3327,-,1.0,insertion seqs and phages,S,-12.029331,26.336514,20
+Rv3329,-,2.0,intermediary metabolism and respiration,H,-12.012809,26.339508,20
+Rv3330,dacB1,2.0,cell wall and cell processes,M,-14.156969,28.894554,14
+Rv3331,sugI,1.0,cell wall and cell processes,GEPR,-18.187477,13.411485,3
+Rv3332,nagA,2.0,cell wall and cell processes,G,-8.941678,46.182213,5
+Rv3334,-,1.0,regulatory proteins,K,-13.630048,25.158978,9
+Rv3335c,-,1.0,cell wall and cell processes,S,-14.094626,26.536997,9
+Rv3336c,trpS,3.0,information pathways,J,-9.544453,-1.1034257,2
+Rv3337,-,1.0,conserved hypotheticals,R,-12.703474,26.35721,9
+Rv3339c,icd1,5.0,intermediary metabolism and respiration,C,-11.633619,30.085762,16
+Rv3340,metC,1.0,intermediary metabolism and respiration,E,-13.9833145,38.074497,0
+Rv3341,metX,3.0,intermediary metabolism and respiration,E,-9.958585,32.37979,11
+Rv3345c,PE_PGRS50,1.0,PE/PPE,S,-9.903418,-1.1206774,2
+Rv3347c,PPE55,1.0,PE/PPE,S,-14.466655,33.373325,7
+Rv3349c,-,1.0,insertion seqs and phages,L,-8.568726,44.82899,19
+Rv3350c,PPE56,1.0,PE/PPE,S,-14.526003,33.437912,7
+Rv3351c,-,1.0,conserved hypotheticals,C,-18.029327,12.571502,3
+Rv3354,-,1.0,conserved hypotheticals,S,-27.716703,27.784544,10
+Rv3356c,folD,4.0,intermediary metabolism and respiration,H,-9.607394,-1.0085781,2
+Rv3358,-,5.0,"virulence, detoxification, adaptation",S,-9.466695,26.356688,12
+Rv3359,-,1.0,intermediary metabolism and respiration,C,-14.377536,33.288628,7
+Rv3362c,-,1.0,conserved hypotheticals,R,-22.126366,25.818638,17
+Rv3365c,-,2.0,conserved hypotheticals,T,-14.353808,33.929222,7
+Rv3367,PE_PGRS51,1.0,PE/PPE,S,-14.381179,33.299583,7
+Rv3370c,dnaE2,4.0,information pathways,L,-14.366344,33.28056,7
+Rv3371,-,3.0,lipid metabolism,S,-9.579014,26.437397,12
+Rv3372,otsB2,5.0,"virulence, detoxification, adaptation",R,-9.893121,-1.0986488,2
+Rv3373,echA18,1.0,lipid metabolism,I,-14.093191,33.006214,7
+Rv3375,amiD,2.0,intermediary metabolism and respiration,J,-14.349464,33.37186,7
+Rv3378c,-,5.0,intermediary metabolism and respiration,S,-8.743801,45.170895,19
+Rv3380c,-,,insertion seqs and phages,L,7.504982,7.469678,8
+Rv3382c,lytB1,4.0,cell wall and cell processes,IM,-8.258675,45.678368,5
+Rv3383c,idsB,1.0,lipid metabolism,H,-9.574244,32.013084,11
+Rv3386,-,1.0,insertion seqs and phages,L,-14.047901,32.522236,7
+Rv3387,-,1.0,insertion seqs and phages,L,-14.138303,32.46346,7
+Rv3388,PE_PGRS52,1.0,PE/PPE,S,-15.108976,33.212353,7
+Rv3389c,-,1.0,intermediary metabolism and respiration,I,-14.383064,33.30319,7
+Rv3391,acrA1,1.0,lipid metabolism,IQR,-14.401637,33.32227,7
+Rv3394c,-,2.0,conserved hypotheticals,L,-14.392817,33.30677,7
+Rv3396c,guaA,5.0,intermediary metabolism and respiration,F,-9.568418,-1.0365838,2
+Rv3399,-,2.0,lipid metabolism,Q,-13.623241,25.734793,9
+Rv3400,-,1.0,intermediary metabolism and respiration,R,-10.461844,32.170155,11
+Rv3402c,-,2.0,cell wall and cell processes,M,-14.479489,33.39644,7
+Rv3403c,-,1.0,conserved hypotheticals,S,-14.350695,33.27603,7
+Rv3405c,-,3.0,regulatory proteins,K,-14.130239,26.523521,9
+Rv3406,-,5.0,intermediary metabolism and respiration,Q,-9.478809,26.357885,12
+Rv3410c,guaB3,2.0,intermediary metabolism and respiration,F,-9.662384,-1.0081903,2
+Rv3411c,guaB2,5.0,intermediary metabolism and respiration,F,-9.545162,-1.1038198,2
+Rv3412,-,1.0,conserved hypotheticals,S,-27.837019,27.638056,10
+Rv3413c,-,4.0,conserved hypotheticals,S,-14.149344,26.913548,9
+Rv3414c,sigD,5.0,information pathways,K,-8.572035,45.874874,5
+Rv3416,whiB3,5.0,regulatory proteins,S,-9.554442,32.036175,11
+Rv3417c,groEL,5.0,"virulence, detoxification, adaptation",O,-25.395552,27.020512,4
+Rv3418c,groES,5.0,"virulence, detoxification, adaptation",O,-9.5902605,-1.0439174,2
+Rv3419c,gcp,4.0,intermediary metabolism and respiration,O,-10.065547,18.721739,6
+Rv3420c,rimI,5.0,information pathways,R,-14.180963,32.610905,7
+Rv3421c,-,1.0,conserved hypotheticals,O,-10.591821,-1.544761,2
+Rv3422c,-,2.0,conserved hypotheticals,R,-13.30699,32.573475,7
+Rv3423c,alr,5.0,intermediary metabolism and respiration,M,-9.541971,-1.4263753,2
+Rv3425,PPE57,3.0,PE/PPE,S,-15.567747,33.682796,7
+Rv3427c,-,2.0,insertion seqs and phages,L,-15.347274,33.64104,7
+Rv3433c,-,4.0,conserved hypotheticals,S,-16.744545,29.123833,18
+Rv3434c,-,1.0,cell wall and cell processes,S,-18.310904,13.715456,3
+Rv3438,-,1.0,conserved hypotheticals,S,-13.734685,38.27763,0
+Rv3446c,-,1.0,conserved hypotheticals,S,-15.930851,26.954714,1
+Rv3450c,-,2.0,cell wall and cell processes,S,-10.703926,27.286852,20
+Rv3453,-,1.0,cell wall and cell processes,S,-18.154764,12.509971,3
+Rv3455c,truA,3.0,information pathways,J,-15.926289,31.057951,13
+Rv3460c,rpsM,2.0,information pathways,J,-13.831042,29.103481,14
+Rv3463,-,1.0,conserved hypotheticals,C,-13.702929,38.28103,0
+Rv3468c,-,1.0,intermediary metabolism and respiration,MG,-12.705059,26.375105,9
+Rv3470c,ilvB2,3.0,intermediary metabolism and respiration,EH,-16.923431,15.199427,15
+Rv3472,-,1.0,conserved hypotheticals,S,-12.715741,26.36366,9
+Rv3473c,bpoA,1.0,"virulence, detoxification, adaptation",R,-9.441516,26.31644,12
+Rv3475,-,,insertion seqs and phages,L,7.4845395,7.4899936,8
+Rv3477,PE31,1.0,PE/PPE,S,-9.078472,44.87182,19
+Rv3483c,-,1.0,cell wall and cell processes,S,-14.045242,26.478958,9
+Rv3484,cpsA,1.0,conserved hypotheticals,K,-9.156787,18.370272,6
+Rv3490,otsA,5.0,"virulence, detoxification, adaptation",G,-25.401955,27.785948,4
+Rv3491,-,1.0,conserved hypotheticals,S,-8.685296,45.960052,5
+Rv3492c,-,1.0,conserved hypotheticals,S,-12.479145,30.45058,16
+Rv3493c,-,1.0,conserved hypotheticals,S,-12.847997,28.37336,14
+Rv3494c,mce4F,1.0,"virulence, detoxification, adaptation",Q,-9.797637,18.593994,6
+Rv3495c,lprN,3.0,cell wall and cell processes,Q,-10.062766,18.73865,6
+Rv3496c,mce4D,1.0,"virulence, detoxification, adaptation",Q,-9.210592,18.384478,6
+Rv3497c,mce4C,1.0,"virulence, detoxification, adaptation",Q,-9.251367,18.409859,6
+Rv3498c,mce4B,1.0,"virulence, detoxification, adaptation",Q,-10.096213,18.77123,6
+Rv3499c,mce4A,1.0,"virulence, detoxification, adaptation",Q,-9.263738,18.375776,6
+Rv3500c,yrbE4B,1.0,"virulence, detoxification, adaptation",Q,-9.762022,18.581526,6
+Rv3501c,yrbE4A,1.0,"virulence, detoxification, adaptation",Q,-10.103818,18.772575,6
+Rv3502c,fabG,1.0,intermediary metabolism and respiration,IQR,-8.782815,18.474627,6
+Rv3503c,fdxD,1.0,intermediary metabolism and respiration,C,-8.7882185,46.207756,5
+Rv3506,fadD17,4.0,lipid metabolism,IQ,-11.988539,26.327312,20
+Rv3510c,-,1.0,conserved hypotheticals,R,-8.839162,46.030525,5
+Rv3512,PE_PGRS56,1.0,PE/PPE,S,-27.783312,27.850147,10
+Rv3516,echA19,1.0,lipid metabolism,I,-14.108917,26.51861,9
+Rv3518c,cyp142,5.0,intermediary metabolism and respiration,Q,-13.61971,25.135376,9
+Rv3521,-,1.0,conserved hypotheticals,R,-11.624024,30.090038,16
+Rv3522,ltp4,1.0,lipid metabolism,I,-13.63394,25.113783,9
+Rv3526,-,5.0,intermediary metabolism and respiration,PR,-13.691435,26.821215,9
+Rv3529c,-,1.0,conserved hypotheticals,S,-8.703606,46.087963,5
+Rv3531c,-,1.0,conserved hypotheticals,S,-12.528402,28.450193,14
+Rv3534c,-,3.0,intermediary metabolism and respiration,E,-8.812592,45.93086,5
+Rv3535c,-,3.0,intermediary metabolism and respiration,Q,-12.468507,30.379442,16
+Rv3536c,-,1.0,intermediary metabolism and respiration,Q,-9.543025,32.068413,11
+Rv3537,-,4.0,intermediary metabolism and respiration,C,-9.6662445,31.993013,11
+Rv3540c,ltp2,1.0,lipid metabolism,I,-10.20846,32.120655,11
+Rv3541c,-,1.0,conserved hypotheticals,S,-9.601886,32.071327,11
+Rv3542c,-,1.0,conserved hypotheticals,R,-10.126511,32.077354,11
+Rv3543c,fadE29,5.0,lipid metabolism,I,-12.881648,28.424583,14
+Rv3544c,fadE28,5.0,lipid metabolism,I,-8.80107,18.46216,6
+Rv3545c,cyp125,5.0,intermediary metabolism and respiration,Q,-11.937785,29.83728,16
+Rv3546,fadA5,5.0,lipid metabolism,I,-12.630498,28.354036,14
+Rv3549c,-,1.0,intermediary metabolism and respiration,IQR,-9.238855,44.346596,19
+Rv3550,echA20,1.0,lipid metabolism,I,-9.8200245,32.333923,11
+Rv3551,-,2.0,intermediary metabolism and respiration,I,-27.366013,27.350586,10
+Rv3552,-,2.0,intermediary metabolism and respiration,I,-14.173746,32.482906,7
+Rv3553,-,1.0,intermediary metabolism and respiration,R,-12.665716,30.28855,16
+Rv3556c,fadA6,1.0,lipid metabolism,I,-10.039547,32.02534,11
+Rv3557c,-,3.0,regulatory proteins,K,-14.0984955,26.462818,9
+Rv3559c,-,1.0,intermediary metabolism and respiration,IQR,-8.872136,45.167793,19
+Rv3560c,fadE30,1.0,lipid metabolism,I,-9.998357,32.026127,11
+Rv3561,fadD3,3.0,lipid metabolism,IQ,-8.956088,45.288517,5
+Rv3563,fadE32,1.0,lipid metabolism,I,-12.634742,30.107338,16
+Rv3564,fadE33,1.0,lipid metabolism,I,-12.528256,28.449064,14
+Rv3565,aspB,2.0,intermediary metabolism and respiration,E,-8.787909,46.14447,5
+Rv3567c,-,4.0,intermediary metabolism and respiration,R,-27.293581,27.921879,10
+Rv3568c,bphC,5.0,intermediary metabolism and respiration,E,-12.527986,28.447878,14
+Rv3569c,bphD,5.0,intermediary metabolism and respiration,R,-12.591753,30.145393,16
+Rv3570c,-,5.0,intermediary metabolism and respiration,I,-12.508725,28.476336,14
+Rv3571,hmp,5.0,intermediary metabolism and respiration,C,-12.53551,28.449991,14
+Rv3574,-,3.0,regulatory proteins,K,-17.570919,28.846659,18
+Rv3575c,-,1.0,regulatory proteins,K,-12.609566,30.398363,16
+Rv3576,lppH,1.0,cell wall and cell processes,S,-12.027987,26.338781,20
+Rv3577,-,1.0,conserved hypotheticals,R,-8.8984,46.04685,5
+Rv3586,-,5.0,conserved hypotheticals,R,-14.178016,28.91742,14
+Rv3589,mutY,4.0,information pathways,L,-15.877584,27.734255,1
+Rv3590c,PE_PGRS58,1.0,PE/PPE,S,-10.6237,27.35531,20
+Rv3591c,-,1.0,intermediary metabolism and respiration,R,-9.496995,26.310358,12
+Rv3592,TB11.2,5.0,intermediary metabolism and respiration,R,-8.856426,46.22076,5
+Rv3593,lpqF,1.0,cell wall and cell processes,V,-24.646677,27.471922,4
+Rv3594,-,1.0,conserved hypotheticals,S,-14.0427,26.455143,9
+Rv3595c,PE_PGRS59,1.0,PE/PPE,S,-17.488157,29.063738,18
+Rv3600c,-,4.0,conserved hypotheticals,K,-15.502472,30.875204,13
+Rv3601c,panD,5.0,intermediary metabolism and respiration,H,-13.878746,38.161507,0
+Rv3602c,panC,5.0,intermediary metabolism and respiration,H,-13.771238,38.26911,0
+Rv3604c,-,1.0,cell wall and cell processes,S,-14.16044,37.78278,0
+Rv3607c,folB,5.0,intermediary metabolism and respiration,H,-27.818195,27.79119,10
+Rv3610c,ftsH,5.0,cell wall and cell processes,O,-25.43221,27.339954,4
+Rv3612c,-,1.0,conserved hypotheticals,S,-22.106888,25.81038,17
+Rv3614c,-,4.0,cell wall and cell processes,S,-13.70037,31.923414,7
+Rv3615c,-,4.0,cell wall and cell processes,S,-8.900502,18.42333,6
+Rv3616c,-,5.0,cell wall and cell processes,S,-8.862291,18.415255,6
+Rv3618,-,1.0,intermediary metabolism and respiration,C,-18.050762,12.509704,3
+Rv3619c,esxV,3.0,cell wall and cell processes,S,-18.014442,12.532353,3
+Rv3622c,PE32,1.0,PE/PPE,S,-13.670726,25.155798,9
+Rv3623,lpqG,1.0,cell wall and cell processes,S,-8.703871,46.215908,5
+Rv3626c,-,1.0,conserved hypotheticals,S,-12.041953,26.334145,20
+Rv3627c,-,2.0,conserved hypotheticals,M,-9.796975,-1.2233428,2
+Rv3630,-,2.0,cell wall and cell processes,S,-24.360035,27.760078,4
+Rv3631,-,1.0,intermediary metabolism and respiration,M,-14.062908,26.500975,9
+Rv3632,-,1.0,cell wall and cell processes,S,-8.262865,46.05844,5
+Rv3633,-,1.0,conserved hypotheticals,Q,-16.910477,15.302252,15
+Rv3635,-,1.0,cell wall and cell processes,S,-27.807873,27.607286,10
+Rv3636,-,1.0,insertion seqs and phages,L,-9.139353,45.85191,5
+Rv3640c,-,2.0,insertion seqs and phages,L,-11.612804,30.095724,16
+Rv3642c,-,1.0,conserved hypotheticals,S,-17.452663,29.100002,18
+Rv3643,-,1.0,conserved hypotheticals,S,-18.345934,13.603731,3
+Rv3645,-,1.0,cell wall and cell processes,T,-9.585309,-1.4783784,2
+Rv3647c,-,1.0,conserved hypotheticals,S,-9.518777,44.820934,19
+Rv3651,-,1.0,conserved hypotheticals,S,-14.027262,26.529472,9
+Rv3652,PE_PGRS60,2.0,PE/PPE,S,-9.086466,46.093323,5
+Rv3655c,-,3.0,conserved hypotheticals,S,-27.743546,27.662949,10
+Rv3656c,-,1.0,conserved hypotheticals,S,-9.038448,46.11908,5
+Rv3658c,-,1.0,cell wall and cell processes,S,-13.613192,25.117794,9
+Rv3659c,-,2.0,conserved hypotheticals,U,-8.932962,46.144753,5
+Rv3660c,-,3.0,"virulence, detoxification, adaptation",S,-8.270494,46.11595,5
+Rv3661,-,3.0,"virulence, detoxification, adaptation",E,-18.504665,14.154359,3
+Rv3663c,dppD,1.0,cell wall and cell processes,R,-8.574946,46.21284,5
+Rv3664c,dppC,2.0,cell wall and cell processes,EP,-18.314552,12.769945,3
+Rv3665c,dppB,1.0,cell wall and cell processes,EP,-8.895685,45.141216,19
+Rv3666c,dppA,1.0,cell wall and cell processes,E,-8.715685,44.908913,19
+Rv3667,acs,5.0,lipid metabolism,I,-17.036247,15.055452,15
+Rv3670,ephE,1.0,"virulence, detoxification, adaptation",R,-25.160418,27.338404,4
+Rv3671c,-,5.0,intermediary metabolism and respiration,O,-24.823431,27.383844,4
+Rv3672c,-,1.0,conserved hypotheticals,LR,-8.470761,46.239227,5
+Rv3674c,nth,4.0,information pathways,L,-14.072727,26.456148,9
+Rv3675,-,1.0,cell wall and cell processes,S,-8.389204,46.044388,5
+Rv3677c,-,1.0,intermediary metabolism and respiration,R,-14.4310875,33.333744,7
+Rv3679,-,2.0,cell wall and cell processes,P,-25.507504,27.134907,4
+Rv3680,-,1.0,cell wall and cell processes,P,-10.157665,18.80999,6
+Rv3682,ponA2,2.0,cell wall and cell processes,M,-24.15373,27.58778,4
+Rv3683,-,1.0,conserved hypotheticals,R,-14.169387,28.94429,14
+Rv3684,-,1.0,intermediary metabolism and respiration,E,-14.202824,32.43426,7
+Rv3687c,rsfB,4.0,information pathways,T,-9.625073,32.002228,11
+Rv3689,-,1.0,cell wall and cell processes,S,-17.071363,14.984566,15
+Rv3690,-,1.0,cell wall and cell processes,S,-15.105277,33.21522,7
+Rv3691,-,2.0,conserved hypotheticals,S,-17.805727,12.79704,3
+Rv3693,-,1.0,cell wall and cell processes,R,-14.037497,26.477348,9
+Rv3694c,-,1.0,cell wall and cell processes,S,-27.775352,27.75878,10
+Rv3695,-,1.0,cell wall and cell processes,S,-8.950253,45.675453,5
+Rv3696c,glpK,3.0,intermediary metabolism and respiration,C,-9.705308,18.495523,6
+Rv3697c,-,2.0,"virulence, detoxification, adaptation",R,-8.878371,46.03595,5
+Rv3698,-,1.0,conserved hypotheticals,S,-12.003818,26.3287,20
+Rv3705c,-,1.0,conserved hypotheticals,S,-27.518904,27.915634,10
+Rv3710,leuA,5.0,intermediary metabolism and respiration,E,-13.797987,38.09342,0
+Rv3715c,recR,2.0,information pathways,L,-9.420838,44.406612,19
+Rv3716c,-,2.0,conserved hypotheticals,S,-27.691916,27.589619,10
+Rv3717,-,5.0,conserved hypotheticals,M,-16.447695,29.262695,18
+Rv3719,-,1.0,conserved hypotheticals,C,-17.508167,28.944529,18
+Rv3720,-,2.0,lipid metabolism,M,-16.975027,28.976334,18
+Rv3723,-,3.0,cell wall and cell processes,S,-12.802323,30.27164,16
+Rv3724B,cut5b,1.0,cell wall and cell processes,S,-9.1941805,45.522152,5
+Rv3725,-,1.0,intermediary metabolism and respiration,MG,-8.5818815,46.251026,5
+Rv3737,-,1.0,cell wall and cell processes,S,-8.330259,46.06157,5
+Rv3739c,PPE67,1.0,PE/PPE,S,-15.8866,27.74206,1
+Rv3748,-,1.0,conserved hypotheticals,S,-11.63994,30.078098,16
+Rv3750c,-,1.0,insertion seqs and phages,S,-16.926636,15.331261,15
+Rv3755c,-,1.0,conserved hypotheticals,S,-16.089664,31.07502,13
+Rv3756c,proZ,2.0,"virulence, detoxification, adaptation",E,-15.80666,27.698477,1
+Rv3757c,proW,2.0,"virulence, detoxification, adaptation",E,-14.156828,32.4613,7
+Rv3760,-,1.0,cell wall and cell processes,S,-8.942802,46.151215,5
+Rv3764c,-,5.0,regulatory proteins,T,-13.945027,32.918137,7
+Rv3766,-,1.0,conserved hypotheticals,S,-14.363021,33.900925,7
+Rv3767c,-,2.0,lipid metabolism,Q,-14.329158,33.889618,7
+Rv3769,-,1.0,conserved hypotheticals,NT,-27.834938,27.763014,10
+Rv3770A,-,1.0,insertion seqs and phages,S,-13.316699,32.614494,7
+Rv3772,hisC2,2.0,intermediary metabolism and respiration,E,-27.75472,27.75375,10
+Rv3774,echA21,1.0,lipid metabolism,I,-13.635033,25.121103,9
+Rv3775,lipE,1.0,intermediary metabolism and respiration,V,-14.123664,26.516155,9
+Rv3777,-,1.0,intermediary metabolism and respiration,CR,-15.130608,30.885149,13
+Rv3778c,-,3.0,intermediary metabolism and respiration,E,-14.109823,28.879822,14
+Rv3779,-,2.0,cell wall and cell processes,S,-12.796267,30.247454,16
+Rv3789,-,4.0,cell wall and cell processes,S,-10.065409,-1.5002104,2
+Rv3801c,fadD32,4.0,lipid metabolism,IQ,-13.818804,29.10784,14
+Rv3802c,-,3.0,cell wall and cell processes,S,-9.924067,32.387634,11
+Rv3804c,fbpA,5.0,lipid metabolism,R,-9.712178,-0.9857746,2
+Rv3810,pirG,4.0,cell wall and cell processes,S,-24.278543,27.56047,4
+Rv3811,-,1.0,conserved hypotheticals,M,-13.845227,32.403305,7
+Rv3813c,-,1.0,conserved hypotheticals,R,-27.555447,27.914745,10
+Rv3814c,-,1.0,intermediary metabolism and respiration,I,-9.501006,26.382215,12
+Rv3815c,-,1.0,intermediary metabolism and respiration,I,-15.888245,27.750622,1
+Rv3816c,-,1.0,intermediary metabolism and respiration,I,-17.457191,28.895288,18
+Rv3817,-,2.0,intermediary metabolism and respiration,J,-9.148513,45.519794,5
+Rv3818,-,2.0,conserved hypotheticals,PR,-17.423378,14.837452,15
+Rv3819,-,1.0,conserved hypotheticals,S,-11.977856,26.371857,20
+Rv3821,-,3.0,cell wall and cell processes,S,-27.605614,27.863735,10
+Rv3822,-,4.0,conserved hypotheticals,S,-27.421225,27.323505,10
+Rv3823c,mmpL8,3.0,cell wall and cell processes,R,-8.809071,18.458012,6
+Rv3824c,papA1,3.0,lipid metabolism,Q,-10.614264,27.330462,20
+Rv3825c,pks2,4.0,lipid metabolism,Q,-17.94517,12.543254,3
+Rv3828c,-,1.0,insertion seqs and phages,L,-8.831945,46.213963,5
+Rv3829c,-,1.0,intermediary metabolism and respiration,Q,-8.833741,46.088715,5
+Rv3830c,-,1.0,regulatory proteins,K,-14.076012,26.589392,9
+Rv3835,-,3.0,cell wall and cell processes,S,-9.538939,44.865086,19
+Rv3838c,pheA,4.0,intermediary metabolism and respiration,E,-13.819638,37.962826,0
+Rv3839,-,1.0,conserved hypotheticals,S,-13.293557,31.953794,7
+Rv3841,bfrB,5.0,intermediary metabolism and respiration,P,-18.005611,12.543416,3
+Rv3842c,glpQ1,3.0,intermediary metabolism and respiration,C,-14.318396,29.12665,14
+Rv3843c,-,1.0,cell wall and cell processes,S,-14.118232,26.59097,9
+Rv3848,-,2.0,cell wall and cell processes,S,-16.030678,31.083807,13
+Rv3849,espR,5.0,regulatory proteins,S,-15.852786,31.053205,13
+Rv3850,-,1.0,conserved hypotheticals,S,-27.849836,27.677519,10
+Rv3852,hns,1.0,information pathways,S,-15.28366,31.01367,13
+Rv3855,ethR,4.0,regulatory proteins,K,-27.419188,27.964674,10
+Rv3859c,gltB,4.0,intermediary metabolism and respiration,E,-9.577281,-1.0716829,2
+Rv3861,-,1.0,conserved hypotheticals,S,-27.834688,27.711554,10
+Rv3864,-,2.0,cell wall and cell processes,S,-25.543873,27.245474,4
+Rv3865,-,2.0,cell wall and cell processes,S,-8.819838,46.179886,5
+Rv3866,-,3.0,cell wall and cell processes,S,-11.768341,29.975697,16
+Rv3867,-,2.0,cell wall and cell processes,S,-13.18004,31.658709,16
+Rv3868,-,5.0,cell wall and cell processes,O,-9.086478,18.383146,6
+Rv3869,-,5.0,cell wall and cell processes,S,-9.189453,18.346521,6
+Rv3870,-,5.0,cell wall and cell processes,D,-9.150012,18.355747,6
+Rv3871,-,5.0,cell wall and cell processes,D,-9.161136,18.35609,6
+Rv3873,PPE68,4.0,PE/PPE,S,-9.15848,18.395618,6
+Rv3874,esxB,5.0,cell wall and cell processes,S,-18.41453,13.647644,3
+Rv3876,-,4.0,cell wall and cell processes,D,-9.085003,18.388115,6
+Rv3877,-,5.0,cell wall and cell processes,S,-9.134421,18.38067,6
+Rv3880c,-,2.0,cell wall and cell processes,S,-13.2353525,31.582106,16
+Rv3881c,-,5.0,cell wall and cell processes,S,-15.792555,27.677313,1
+Rv3882c,-,3.0,cell wall and cell processes,S,-9.048323,18.390429,6
+Rv3883c,mycP1,5.0,intermediary metabolism and respiration,O,-9.100815,18.393122,6
+Rv3884c,-,2.0,cell wall and cell processes,O,-14.167794,33.06873,7
+Rv3887c,-,2.0,cell wall and cell processes,S,-15.490692,33.59906,7
+Rv3888c,-,1.0,cell wall and cell processes,D,-15.568118,33.683422,7
+Rv3889c,-,2.0,cell wall and cell processes,S,-15.566218,33.68128,7
+Rv3893c,PE36,1.0,PE/PPE,S,-11.630836,30.086641,16
+Rv3896c,-,1.0,conserved hypotheticals,R,-13.660074,25.132837,9
+Rv3897c,-,1.0,conserved hypotheticals,S,-18.053509,12.55054,3
+Rv3898c,-,1.0,conserved hypotheticals,S,-9.168232,45.63205,5
+Rv3908,-,3.0,information pathways,LR,-27.861143,27.658092,10
+Rv3909,-,1.0,conserved hypotheticals,S,-9.542178,32.02478,11
+Rv3910,-,5.0,cell wall and cell processes,RTKL,-9.569957,26.517447,12
+Rv3916c,-,1.0,conserved hypotheticals,S,-16.27751,30.736908,13
+Rv3919c,gidB,3.0,cell wall and cell processes,M,-25.483955,27.22506,4
+Rv3920c,-,1.0,conserved hypotheticals,R,-16.315174,30.699966,13
+Rv3922c,-,1.0,"virulence, detoxification, adaptation",S,-26.013714,27.79675,4
+Rvnr01,rrs,,,S,-14.055241,37.931946,0
