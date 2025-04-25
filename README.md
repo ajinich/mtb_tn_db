@@ -1,5 +1,5 @@
 # Project Overview
-This code is relevant to the manuscript titled 'Comprehensive genetic interaction maps reveal the landscape of conditional genetic interactions in Mycobacterium tuberculosis,' available at bioRxiv (https://www.biorxiv.org/content/10.1101/2021.03.05.434127v2).
+This code is relevant to the manuscript titled 'The Mycobacterium tuberculosis transposon sequencing database (MtbTnDB): a large-scale guide to genetic conditional essentiality,' available at bioRxiv (https://www.biorxiv.org/content/10.1101/2021.03.05.434127v2).
 
 This repository contains code and data for analyzing TnSeq data, including pre-processing, dimensionality reduction, unsupervised and supervised machine learning, and statistical analysis. The goal is to elucidate gene essentiality and interactions in *Mycobacterium tuberculosis* using standardized data from various sources.
 
